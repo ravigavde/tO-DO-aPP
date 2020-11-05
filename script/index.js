@@ -1,5 +1,8 @@
 let name = [];
 
+// console.log(name_data);
+
+
 let data = JSON.parse(window.localStorage.getItem(window.localStorage.key(1)));
 for(let i=0; i< data.length ; i++)
 {
