@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>to-DO</title>
+    <script src="script/to-DO.js"></script>
+</head>
+<style>
+    .edit_list{
+        border: 2px solid black;
+        height: 700px;
+    }
+</style>
+<body>
+    <section>
+        <div class="main">
+            <div class="head">
+                <h1>Start adding tasks to your to-Do lists</h1>
+            </div>
+            
+            <label for="add_task">Add task</label>
+            <input type="text" name="add_task" id="tasks">
+            <label for="start_date">Start date</label>
+            <input type="date" name="start_date" id="s_date">
+            <label for="end_date">End date</label>
+            <input type="date" name="end_date" id="e_date">
+            <select name="" id="priority">
+                <option value="" selected disabled hidden>Please select the level of task</option>
+                <option value="low">low</option>
+                <option value="medium">medium</option>
+                <option value="high">high</option>
+            </select>
+            <input type="button" value="ADD" onclick="add()">
+            <div class="edit_list">
+                
+            </div>
+            <div class="permanent_list">
+                
+            </div>
+        </div>
+    </section>
+    
+</body>
+
+</html>
+
+
