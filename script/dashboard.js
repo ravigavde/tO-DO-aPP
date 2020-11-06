@@ -4,26 +4,26 @@ let count = 0;
 let flag = false;
 let name_count = 0;
 
-for(let i = 0; i< sessionStorage.length;i++)
-{
+// for(let i = 0; i< sessionStorage.length;i++)
+// {
     
-    // console.log(sessionStorage.getItem(`user${count}`));
+//     // console.log(sessionStorage.getItem(`user${count}`));
 
-    if(sessionStorage.getItem(`user${i}`) == current_user )
-    {
-        console.log("match");
-        flag = true;
-    }
-    count++;
-}
+//     if(sessionStorage.getItem(`user${i}`) == current_user )
+//     {
+//         console.log("match");
+//         flag = true;
+//     }
+//     count++;
+// }
 
-if(!flag){
-    sessionStorage.setItem(`user${count}`,current_user);
- }
- else{
-    // window.location.href = "index.html";
-    document.write("Already logged in Session is active");
-}
+// if(!flag){
+//     sessionStorage.setItem(`user${count}`,current_user);
+//  }
+//  else{
+//     // window.location.href = "index.html";
+//     document.write("Already logged in Session is active");
+// }
 
 
 

@@ -1,6 +1,28 @@
 let name = [];
-
+let flag = false;
+let count = 0;
+let current_user = localStorage.getItem("Current_user");
 // console.log(name_data);
+for(let i = 0; i< sessionStorage.length;i++)
+{
+    
+    // console.log(sessionStorage.getItem(`user${count}`));
+
+    if(sessionStorage.getItem(`user${i}`) == current_user )
+    {
+        console.log("match");
+        flag = true;
+    }
+    count++;
+}
+
+if(!flag){
+    sessionStorage.setItem(`user${count}`,current_user);
+ }
+ else{
+    // window.location.href = "index.html";
+    document.write("Already logged in Session is active for "+current_user );
+}
 
 
 let data = JSON.parse(window.localStorage.getItem(window.localStorage.key(1)));
