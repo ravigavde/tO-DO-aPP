@@ -1,0 +1,12 @@
+section{
+    width: 400px;
+    margin: auto;
+}
+
+input[type=text]{
+    border: none;
+    outline: none;
+}
+li{
+    list-style: none;
+}

@@ -6,24 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <!-- <script src="script/index.js"></script> -->
-    <script src="script/dashboard.js"></script>
+    <script src="script/dashboard.js" async defer></script>
+    <link rel="stylesheet" href="style/dashboard.css">
 </head>
-
-<style>
-    input[type=text]{
-        border: none;
-        outline: none;
-    }
-    li{
-        list-style: none;
-    }
-</style>
 
 <body>
     <section>
         <p id="head">  </p>
         <div class="profile_pic">
+            <span id="main_msg"></span>
             <img src="" alt="" id="profile">
+            <input type="file" name="" onchange="changePic();" id="profileChange">
         </div>
         <ul id="user_detailss">
             

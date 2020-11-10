@@ -28,15 +28,21 @@
     <section>
         <P>Sign Up</P>
         <div class="details">
-            
-                <input type="text" id="username" placeholder="Enter username/email">
+                <span id="gen_error"></span>
+                <input type="email" id="username" placeholder="Enter username/email"><span id="emaiError"></span>
                 <input type="text" id="Name" placeholder="Enter Name">
+                <span id="f_Error"></span>
                 <input type="text" id="Last-Name" placeholder="Enter Last Name">
+                <span id="l_Error"></span>
                 <input type="text" id="Gender" placeholder="Enter Gender">
+                <span id="g_Error"></span>
                 <input type="password" name="" placeholder="Enter Password" id="pass1">
                 <input type="password" name="" placeholder="Repeat Password" id="pass2">
+                <span id="p_Error"></span>
                 <textarea id="Address" cols="30" rows="10" placeholder="Enter Address"></textarea>
-                <input type="file" id="image" src="" alt="">
+                <span id="a_Error"></span>
+                <input type="file" id="image" onchange="imageee();" required alt="">
+                <span id="i_error"></span>
                 <button onclick="add_user()" >Submit</button>
                 <input type="reset" value="reset">
         

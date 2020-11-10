@@ -5,9 +5,6 @@ let current_user = localStorage.getItem("Current_user");
 // console.log(name_data);
 for(let i = 0; i< sessionStorage.length;i++)
 {
-    
-    // console.log(sessionStorage.getItem(`user${count}`));
-
     if(sessionStorage.getItem(`user${i}`) == current_user )
     {
         console.log("match");
@@ -21,34 +18,43 @@ if(!flag){
  }
  else{
     // window.location.href = "index.html";
-    document.write("Already logged in Session is active for "+current_user );
+    // alert("Already logged in Session is active for "+current_user );
+    let a = document.createElement('a');  
+    a.href = "dashboard.html";  
+    a.click();
 }
 
+try{
+        let data = JSON.parse(window.localStorage.getItem('user'));
 
-let data = JSON.parse(window.localStorage.getItem(window.localStorage.key(1)));
-for(let i=0; i< data.length ; i++)
-{
-    console.log(data[i].pass +" "+data[i].u_name);   
-}
+        for(let i=0; i< data.length ; i++)
+        {
+            console.log(data[i].pass +" "+data[i].u_name);   
+        }
 
-function verify(){
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("pass").value;
-    console.log("Clicked "+username+password);
-    
-    
-    for(let i=0; i< data.length ; i++)
-    {
-        if(username == data[i].u_name && password == data[i].pass ){
-            console.log("user found "+data[i].pass +" "+data[i].u_name);
-            name.push(data[i].u_name);
-            localStorage.setItem("Current_user",name);
-            let a = document.createElement('a');  
-            a.href = "dashboard.html";  
-            a.click();   
+        function verify(){
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("pass").value;
+            console.log("Clicked "+username+password);
+            
+            
+            for(let i=0; i< data.length ; i++)
+            {
+                if(username == data[i].u_name && password == data[i].pass ){
+                    console.log("user found "+data[i].pass +" "+data[i].u_name);
+                    name.push(data[i].u_name);
+                    localStorage.setItem("Current_user",name);
+                    let a = document.createElement('a');  
+                    a.href = "dashboard.html";  
+                    a.click();
+                }
+            }
         }
     }
-
-
-
-}
+    catch(Error)
+    {
+       document.write("No User is cureently registered please register");
+    }        
+    finally{
+        window.href = "index.html";
+    }
