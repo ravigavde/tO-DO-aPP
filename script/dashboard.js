@@ -3,6 +3,13 @@ let current_user = localStorage.getItem("Current_user");
 let count = 0;
 let flag = false;
 let name_count = 0;
+let pTodo;
+
+let taskname;
+let endDate;
+let category;
+let reminderDate;
+let public;
 
 
 console.log("the current user is "+ current_user);
@@ -82,6 +89,11 @@ try{
             return listItem;
 
         }
+        function showProfile()
+        {
+            let box = document.getElementById("userbox");
+            box.style.display = "inline-block";
+        }
 
         function reset(){
                     let a = document.getElementById("profileChange").files[0];
@@ -104,6 +116,8 @@ try{
                     // console.log(JSON.stringify(data));
                     window.localStorage.setItem('user',JSON.stringify(data));
                     document.getElementById("main_msg").innerText = "Profile Updated Successfully";
+                    let box = document.getElementById("userbox");
+                     box.style.display = "none";
                
         }
 
@@ -129,6 +143,45 @@ try{
                 Image.src = event.target.result;     
             }
         }
+        function display()
+        {
+            
+            let data = JSON.parse(window.localStorage.getItem("user"));
+            for(let i =0; i< data.length ; i++)
+            {
+                if(data[i].u_name == current_user)
+                {
+                    pTodo = data[i].pToDo;
+                }
+            }
+            console.log(pTodo.length);
+            if (pTodo.length == 0 ) 
+            {
+                document.getElementById("main_msg").innerHTML = "Please add To list";
+            }
+            else
+            {
+                    console.log(pTodo);
+                    taskname;
+                    endDate;
+                    category;
+                    reminderDate;
+                    public;
+
+
+
+
+            }
+
+            
+
+
+
+
+        }
+
+
+display();
 
 }
 catch(Error)

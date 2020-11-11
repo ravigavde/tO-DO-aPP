@@ -13,6 +13,11 @@ let today = new Date().toISOString().split('T')[0];
 let to_do = [];
 
 
+function resetVal()
+{
+    count_id = 0;
+    delete_counter = 0;
+}
 function remindDate(value)
 {
     console.log(value);
@@ -168,7 +173,16 @@ function Confirm()
             }
         }
         let temp = { name: taskname, endDate : enddate, category: categ,status:"pending",reminder:remindDate,public:publc };
-        new_todo.push(temp);
+        // new_todo.push(temp);
+        for(let i = 0 ; i < data.length ; i++)
+        {
+            if(data[i].u_name == current_user)
+            {
+                data[i].pToDo.push(temp);
+                // console.log(data[i].toDo);
+            }
+        }
+        
         console.log(row_counter++);
     }
         for(let i = 0 ; i < data.length ; i++)
@@ -176,11 +190,13 @@ function Confirm()
             if(data[i].u_name == current_user)
             {
                 data[i].toDo = [];
-                data[i].toDo.push(new_todo);
+                // data[i].pToDo.push(new_todo);
                 // console.log(data[i].toDo);
             }
         }
         console.log(data);
+        count_id =0;
+        delete_counter =0;
         window.localStorage.setItem('user',JSON.stringify(data));
         window.location = "dashboard.html";
 }
@@ -289,8 +305,7 @@ function display()
     let rowTable = "";
     for(let i =0 ; i< toDo_raw_data.length ; i++)
     {
-        // console.log( toDo_raw_data[i]);
-        // console.log("new data");
+
         taskInput.value = toDo_raw_data[i].name;
         endDate.value =  toDo_raw_data[i].endDate;
         tCategory.value = toDo_raw_data[i].category;
@@ -304,4 +319,3 @@ function display()
     }
     document.getElementById("list_t").innerHTML = rowTable;
 }
-display();

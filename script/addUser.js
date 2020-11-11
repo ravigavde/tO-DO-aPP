@@ -80,7 +80,8 @@ function add_user() {
                  img : image,
                  pass : password,
                  con_passwd: confirm_password,
-                 toDo:[]
+                 toDo:[],
+                 pToDo:[]
                 };
 
 

@@ -9,21 +9,39 @@
     <script src="script/dashboard.js" async defer></script>
     <link rel="stylesheet" href="style/dashboard.css">
 </head>
+<style>
+    #userbox {
+        display: none;
+    }
+</style>
 
-<body>
+<body onload="display()">
     <section>
-        <p id="head">  </p>
+        <p id="head"> </p>
         <div class="profile_pic">
-            <span id="main_msg"></span>
-            <img src="" alt="" id="profile">
-            <input type="file" name="" onchange="changePic();" id="profileChange">
+            <img src="" alt="" id="profile" style="height: 70px;width: 70px;border-radius: 50%;">
         </div>
-        <ul id="user_detailss">
-            
-        </ul>
-        <input type="button" value="Save" onclick="reset()"><br>
+        <div id="userbox">
+            <input type="file" name="" onchange="changePic();" id="profileChange">
+            <ul id="user_detailss">
+            </ul>
+            <input type="button" value="Save" onclick="reset()"><br>
+        </div>
+        
+        <input type="button" value="Edit Profile" onclick="showProfile()">
+        <span id="main_msg"></span>
+
 
         <a href="to-DO.html">Go to To-do List</a>
+        <div class="display">
+            <p>Category</p>
+            <label for="">Work</label> <input type="radio" name="cat" id=""> <br>
+            <label for="">Personal</label><input type="radio" name="cat" id="">
+            <table>
+
+            </table>
+
+        </div>
         <input type="button" value="Logout" onclick="logout()">
     </section>
 </body>
