@@ -71,6 +71,7 @@ function deletee()
         }    
         
     }
+    count_id=0;
 }
 
 function Confirm()

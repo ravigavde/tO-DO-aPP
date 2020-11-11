@@ -9,7 +9,7 @@ let taskname;
 let endDate;
 let category;
 let reminderDate;
-let public;
+let done_count=0;
 
 
 console.log("the current user is "+ current_user);
@@ -91,6 +91,8 @@ try{
         }
         function showProfile()
         {
+            document.getElementById("main_msg").innerText = "";
+
             let box = document.getElementById("userbox");
             box.style.display = "inline-block";
         }
@@ -101,7 +103,7 @@ try{
                     {
                         if(current_user == data[i].u_name)
                         {
-                            console.log("reset data found");
+                            // console.log("reset data found");
                             data[i].f_Name = first_name.children[1].value;
                             data[i].l_name = last_name.children[1].value  ;
                             data[i].addr = address.children[1].value ;
@@ -145,7 +147,8 @@ try{
         }
         function display()
         {
-            
+            document.getElementById("main_msg").innerText = "";
+   
             let data = JSON.parse(window.localStorage.getItem("user"));
             for(let i =0; i< data.length ; i++)
             {
@@ -154,31 +157,296 @@ try{
                     pTodo = data[i].pToDo;
                 }
             }
-            console.log(pTodo.length);
+            // console.log(pTodo.length);
             if (pTodo.length == 0 ) 
             {
                 document.getElementById("main_msg").innerHTML = "Please add To list";
             }
             else
             {
-                    console.log(pTodo);
+                    // console.log(pTodo);
                     taskname;
                     endDate;
                     category;
                     reminderDate;
-                    public;
-
-
-
-
+                    
+                    let table =  document.getElementById("display");
+                    let rows  = "<th>Task Name</th> <th>Category</th> <th>Status</th><th></th>";
+                    for(let i=0 ; i < pTodo.length ; i++  )
+                    {
+                        rows = rows + `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td><td><input onclick= "doneFun(this.id)" type="button" id=${done_count++} value="Done"></td></tr>`;
+                    }
+                    table.innerHTML = rows;
             }
-
-            
-
-
-
-
+            done_count=0;
         }
+
+function categ(value)
+{
+    document.getElementById("main_msg").innerText = "";
+    if(value=="Personal")
+    {   
+        let data = JSON.parse(window.localStorage.getItem("user"));
+            for(let i =0; i< data.length ; i++)
+            {
+                if(data[i].u_name == current_user)
+                {
+                    pTodo = data[i].pToDo;
+                }
+            }
+            // console.log(pTodo.length);
+            if (pTodo.length == 0 ) 
+            {
+                document.getElementById("main_msg").innerHTML = "Please add To list";
+            }
+            else
+            {
+                    // console.log(pTodo);
+                    taskname;
+                    endDate;
+                    category;
+                    reminderDate;
+                    
+                    let table =  document.getElementById("display");
+                    let rows  = "<th>Task Name</th> <th>Category</th> <th>Status</th><th></th>";
+                    for(let i=0 ; i < pTodo.length ; i++  )
+                    {
+                        if(pTodo[i].category == "Personal" || pTodo[i].category == "personal" )
+                        {
+                            rows = rows + `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td><td><input onclick= "doneFun(this.id)" type="button" id=${done_count++} value="Done"></td></tr>`;
+                        }
+                    }
+                    table.innerHTML = rows;
+            }
+            done_count=0;
+
+
+    }
+    else if(value =="work")
+    {
+        let data = JSON.parse(window.localStorage.getItem("user"));
+            for(let i =0; i< data.length ; i++)
+            {
+                if(data[i].u_name == current_user)
+                {
+                    pTodo = data[i].pToDo;
+                }
+            }
+            // console.log(pTodo.length);
+            if (pTodo.length == 0 ) 
+            {
+                document.getElementById("main_msg").innerHTML = "Please add To list";
+            }
+            else
+            {
+                    // console.log(pTodo);
+                    taskname;
+                    endDate;
+                    category;
+                    reminderDate;
+                    
+                    let table =  document.getElementById("display");
+                    let rows  = "<th>Task Name</th> <th>Category</th> <th>Status</th><th></th>";
+                    for(let i=0 ; i < pTodo.length ; i++  )
+                    {
+                        if(pTodo[i].category == "Work" || pTodo[i].category == "work" )
+                        {
+                            rows = rows + `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td><td><input onclick= "doneFun(this.id)" type="button" id=${done_count++} value="Done"></td></tr>`;
+                        }
+                    }
+                    table.innerHTML = rows;
+            }
+            done_count=0;
+
+    }
+    else if(value =="Pending")
+    {
+        let data = JSON.parse(window.localStorage.getItem("user"));
+            for(let i =0; i< data.length ; i++)
+            {
+                if(data[i].u_name == current_user)
+                {
+                    pTodo = data[i].pToDo;
+                }
+            }
+            // console.log(pTodo.length);
+            if (pTodo.length == 0 ) 
+            {
+                document.getElementById("main_msg").innerHTML = "Please add To list";
+            }
+            else
+            {
+                    // console.log(pTodo);
+                    taskname;
+                    endDate;
+                    category;
+                    reminderDate;
+                    
+                    let table =  document.getElementById("display");
+                    let rows  = "<th>Task Name</th> <th>Category</th> <th>Status</th><th></th>";
+                    for(let i=0 ; i < pTodo.length ; i++  )
+                    {
+                        if(pTodo[i].status == "Pending" || pTodo[i].status == "pending" )
+                        {
+                            rows = rows + `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td><td><input onclick= "doneFun(this.id)" type="button" id=${done_count++} value="Done"></td></tr>`;
+                        }
+                    }
+                    table.innerHTML = rows;
+            }
+            done_count=0;
+
+    }
+    else if(value =="Done")
+    {
+        let data = JSON.parse(window.localStorage.getItem("user"));
+            for(let i =0; i< data.length ; i++)
+            {
+                if(data[i].u_name == current_user)
+                {
+                    pTodo = data[i].pToDo;
+                }
+            }
+            // console.log(pTodo.length);
+            if (pTodo.length == 0 ) 
+            {
+                document.getElementById("main_msg").innerHTML = "Please add To list";
+            }
+            else
+            {
+                    // console.log(pTodo);
+                    taskname;
+                    endDate;
+                    category;
+                    reminderDate;
+                    
+                    let table =  document.getElementById("display");
+                    let rows  = "<th>Task Name</th> <th>Category</th> <th>Status</th><th></th>";
+                    for(let i=0 ; i < pTodo.length ; i++  )
+                    {
+                        if(pTodo[i].status == "Done" || pTodo[i].status == "done" )
+                        {
+                            rows = rows + `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td><td></td></tr>`;
+                        }
+                    }
+                    table.innerHTML = rows;
+            }
+            done_count=0;
+
+    }
+    else if(value =="Due")
+    {
+        let data = JSON.parse(window.localStorage.getItem("user"));
+        for(let i =0; i< data.length ; i++)
+        {
+            if(data[i].u_name == current_user)
+            {
+                pTodo = data[i].pToDo;
+            }
+        }
+        let today = new Date();
+        let table =  document.getElementById("display");
+        let rows  = "<th>Task Name</th> <th>Category</th> <th>Status</th><th></th>";
+        for(let i =0 ; i< pTodo.length ; i++)
+        {
+            // console.log( pTodo[i].endDate );
+            if( today > Date.parse( pTodo[i].endDate) )
+            {
+                    pTodo[i];
+                    rows = rows + `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td><td></td></tr>`;
+            }
+        }
+        table.innerHTML = rows;
+    }
+
+}
+function nameSeacrh()
+{
+    document.getElementById("main_msg").innerText = "";
+    let searchByNameCount = 0;
+    let name = document.getElementById("taskSearch").value;
+    if(name == "")
+    {
+        document.getElementById("main_msg").innerText = "Please enter a valid Task name";
+    }
+    else
+    {
+        let data = JSON.parse(window.localStorage.getItem("user"));
+            for(let i =0; i< data.length ; i++)
+            {
+                if(data[i].u_name == current_user)
+                {
+                    pTodo = data[i].pToDo;
+                }
+            }
+            // console.log(pTodo.length);
+            if (pTodo.length == 0 ) 
+            {
+                document.getElementById("main_msg").innerHTML = "Please add To list";
+            }
+            else
+            {
+                    // console.log(pTodo);
+                    taskname;
+                    endDate;
+                    category;
+                    reminderDate;
+                    
+                    let table =  document.getElementById("display");
+                    let rows  = "<th>Task Name</th> <th>Category</th> <th>Status</th><th></th>";
+                    for(let i=0 ; i < pTodo.length ; i++  )
+                    {
+                        if(pTodo[i].name == name)
+                        {
+                            searchByNameCount++;
+                            rows = rows + `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td><td><input onclick= "doneFun(this.id)" type="button" id=${done_count++} value="Done"></td></tr>`;
+                        }
+                    }
+                    table.innerHTML = rows;
+                    if(searchByNameCount == 0)
+                    {
+                        document.getElementById("main_msg").innerHTML = "Task not found";
+                    }
+            }
+            done_count=0;
+    }
+}
+
+function doneFun(value)
+{
+    let a;
+    let b;
+    let tempTodo;
+    let table = document.getElementById("display");
+    a = ++value;
+    for(let i =0 ; i < table.rows.length ; i++ )
+    {
+        if(i == a)
+        {
+            b = table.rows[i].cells[0].innerText;
+        }        
+    }
+    a=0;  
+    let data = JSON.parse(window.localStorage.getItem("user"));
+            for(let i =0; i< data.length ; i++)
+            {
+                if(data[i].u_name == current_user)
+                {
+                     for(let j =0 ; j < data[i].pToDo.length ; j++)
+                     {
+                         if( data[i].pToDo[j].name == b )
+                         {
+                            data[i].pToDo[j].status = "Done";
+                            // console.log(data[i].pToDo[j].status);
+
+                         }
+                     }
+                
+                }
+            }
+    window.localStorage.setItem('user',JSON.stringify(data));
+    location.reload();
+            // console.log( tempTodo );
+}
 
 
 display();

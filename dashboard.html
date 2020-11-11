@@ -9,35 +9,39 @@
     <script src="script/dashboard.js" async defer></script>
     <link rel="stylesheet" href="style/dashboard.css">
 </head>
-<style>
-    #userbox {
-        display: none;
-    }
-</style>
+
 
 <body onload="display()">
     <section>
         <p id="head"> </p>
         <div class="profile_pic">
-            <img src="" alt="" id="profile" style="height: 70px;width: 70px;border-radius: 50%;">
-        </div>
-        <div id="userbox">
-            <input type="file" name="" onchange="changePic();" id="profileChange">
-            <ul id="user_detailss">
-            </ul>
-            <input type="button" value="Save" onclick="reset()"><br>
+            <img src="" alt="" id="profile" style="">
+            <div id="userbox">
+                <input type="file" name="" class="btn" onchange="changePic();" id="profileChange">
+                <ul id="user_detailss">
+                </ul>
+                <input type="button" class="btn" value="Save" onclick="reset()"><br>
+            </div>
+            <input type="button" class="btn" value="Edit Profile" onclick="showProfile()">
         </div>
         
-        <input type="button" value="Edit Profile" onclick="showProfile()">
-        <span id="main_msg"></span>
-
-
-        <a href="to-DO.html">Go to To-do List</a>
         <div class="display">
-            <p>Category</p>
-            <label for="">Work</label> <input type="radio" name="cat" id=""> <br>
-            <label for="">Personal</label><input type="radio" name="cat" id="">
-            <table>
+            <span id="main_msg"></span><br>
+            <a href="to-DO.html">Add Task</a>
+
+
+            <p> Search by Task Name</p>
+             <input type="text" name="" id="taskSearch">
+            <input type="button" class="btn" value="Search" onclick="nameSeacrh()">
+            <p>Category</p> 
+            <label for="">Work</label> <input onclick="categ('work')" type="radio" name="cat" id="">
+            <label for="">Personal</label><input onclick="categ('Personal')" type="radio" name="cat" id="">
+            <label for="">Pending</label>  <input onclick="categ('Pending')" type="radio" name="cat" id="">
+            <label for="">Done</label>  <input onclick="categ('Done')" type="radio" name="cat" id="">
+
+            <label for="">Overdue</label>  <input onclick="categ('Due')" type="radio" name="cat" id="">
+
+            <table id="display">
 
             </table>
 

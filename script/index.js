@@ -1,6 +1,7 @@
 let name = [];
 let flag = false;
 let count = 0;
+
 let current_user = localStorage.getItem("Current_user");
 // console.log(name_data);
 for(let i = 0; i< sessionStorage.length;i++)
@@ -32,22 +33,46 @@ try{
             console.log(data[i].pass +" "+data[i].u_name);   
         }
 
-        function verify(){
+        function verify()
+        {
+           
             let username = document.getElementById("username").value;
             let password = document.getElementById("pass").value;
-            console.log("Clicked "+username+password);
             
+            if(username == "" && password =="")
+            {
+                document.getElementById("error").innerHTML = "Please enter username and password";
+            }
+            else if(username == "")
+            {
+                document.getElementById("error").innerHTML = "Please enter username";
+            }
+            else if(password == "")
+            {
+                document.getElementById("error").innerHTML = "Please enter password";
+            }
             
+            let a = false;
             for(let i=0; i< data.length ; i++)
             {
                 if(username == data[i].u_name && password == data[i].pass ){
-                    console.log("user found "+data[i].pass +" "+data[i].u_name);
+                    // console.log("user found "+data[i].pass +" "+data[i].u_name);
+                    a = true;
                     name.push(data[i].u_name);
                     localStorage.setItem("Current_user",name);
-                    let a = document.createElement('a');  
+                    
+                }
+            }
+            if(!a)
+            {
+                document.getElementById("error").innerHTML = "Cannot find account check username or password";
+   
+            }
+            else
+            {
+                let a = document.createElement('a');  
                     a.href = "dashboard.html";  
                     a.click();
-                }
             }
         }
     }

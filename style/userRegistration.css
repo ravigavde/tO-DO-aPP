@@ -1,0 +1,69 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: #00BFFF;
+}
+.details {
+    border: 2px solid black;
+    width: 300px;
+}
+
+input,
+textarea {
+    margin: 5px;
+}
+
+
+.details {
+    border: 2px solid grey;
+    width: 300px;
+}
+
+input,
+textarea {
+    margin: 5px;
+}
+
+.set {
+    text-align: center;
+    font-size: larger;
+    font-family: Verdana, Tahoma, sans-serif;
+}
+
+.add {
+    text-align: center;
+    font-size: larger;
+    font-family: Verdana, Tahoma, sans-serif;
+    color: white;
+}
+#heading{
+    text-align: center;
+}
+
+
+.details {
+    width: 300px;
+    margin: auto;
+    padding: 40px;
+    background: #F2EBAB;
+    text-align: center;
+    border: 2px solid;
+    display: block;
+    border-radius: 24px;
+    transition: 0.25s;
+    outline: none;
+    color: purple;
+    text-align: center;
+}
+
+.details input[type="email"]:focus,
+.details input[type="text"]:focus,
+.details input[type="password"]:focus,
+.details input[type="file"]:focus,
+.details input[type="reset"]:focus {
+    width: 280px;
+    border-color: #2ecc71;
+    border-radius: 0ex;
+    text-align: center;
+}
