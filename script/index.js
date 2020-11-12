@@ -37,7 +37,8 @@ try{
         {
            
             let username = document.getElementById("username").value;
-            let password = document.getElementById("pass").value;
+            let password = encrpyt(document.getElementById("pass").value);
+             
             
             if(username == "" && password =="")
             {
@@ -75,6 +76,18 @@ try{
                     a.click();
             }
         }
+
+        function encrpyt(value)
+        {
+        let enc = "";
+        for(let i = 0; i < value.length ; i++)
+        {
+            enc = enc + String.fromCharCode( (value.charCodeAt(i) + 3 ) ) ;
+        }
+        console.log(enc);
+        return enc;
+        }
+
     }
     catch(Error)
     {

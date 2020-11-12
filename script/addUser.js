@@ -37,7 +37,7 @@ function add_user() {
 
   let password = document.getElementById("pass1").value;    
   let confirm_password = document.getElementById("pass2").value;  
-
+  let enc_pass;
   let regPass =  /^[A-Z a-z 0-9 ]\w{7,14}$/;
 
   if( password != confirm_password )
@@ -52,6 +52,10 @@ function add_user() {
   else if(!regPass.test(password)){
     document.getElementById("p_Error").innerText = "Please password in between 7 to 16 characters which contain only characters, numeric digits, underscore and first character must be a letter";
     error_occured = true;
+  }
+  else
+  {
+    enc_pass = encrpyt(password);
   }
   
   let address = document.getElementById("Address").value;
@@ -69,24 +73,24 @@ function add_user() {
     error_occured = true;
   }
 
+  var user_obj = {
+                  f_Name: first_name,
+                  l_name: last_name,
+                  u_name: user_name,
+                  gen: gender,
+                  addr: address,
+                  img : image,
+                  pass : enc_pass,
+                  con_passwd: confirm_password,
+                  toDo:[],
+                  pToDo:[]
+                 };
    
      
- var user_obj = {
-                 f_Name: first_name,
-                 l_name: last_name,
-                 u_name: user_name,
-                 gen: gender,
-                 addr: address,
-                 img : image,
-                 pass : password,
-                 con_passwd: confirm_password,
-                 toDo:[],
-                 pToDo:[]
-                };
-
-
-    if(!error_occured)
-    {
+  
+  
+  if(!error_occured)
+  {
         if(window.localStorage.getItem("user") != null)
         {
             let confirm = false;
@@ -140,4 +144,14 @@ function imageee()
         Image.src = event.target.result;     
     }
     
+}
+function encrpyt(value)
+{
+  let enc = "";
+  for(let i = 0; i < value.length ; i++)
+  {
+    enc = enc + String.fromCharCode( (value.charCodeAt(i) + 3 ) ) ;
+  }
+  console.log(enc);
+  return enc;
 }
