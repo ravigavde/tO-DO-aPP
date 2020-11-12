@@ -1,4 +1,4 @@
-let current_user ;
+let current_user = localStorage.getItem("Current_user"); 
 let task_name ;
 let rem_radio;
 let rem_date;
@@ -13,11 +13,6 @@ let today = new Date().toISOString().split('T')[0];
 let to_do = [];
 
 
-function resetVal()
-{
-    count_id = 0;
-    delete_counter = 0;
-}
 function remindDate(value)
 {
     console.log(value);
@@ -53,25 +48,31 @@ function isPublic(value)
 
 function deletee()
 {
-    
-    let myTab = document.getElementById('list_t');
-    let deleteList = [];
-    let del_c = 0;
-   
-    for (let index = 0; index < count_id ; index++) 
+    if(document.getElementById(count_id - 1) != null)
     {
-        let a = document.getElementById(index);
-        if(a.checked)
+        let myTab = document.getElementById('list_t');
+        let deleteList = [];
+        let del_c = 0;
+        console.log(count_id);
+        for (let index = 0; index < count_id ; index++) 
         {
-            console.log("true");
-            deleteList.push(index);
-            myTab.deleteRow(index - del_c );
-            del_c++;
-            delete_counter++;
-        }    
-        
+            let a = document.getElementById(index);    
+            if(a.checked)
+            {
+                console.log("true");
+                deleteList.push(index);
+                myTab.deleteRow(index - del_c );
+                del_c++;
+                delete_counter++;
+            }     
+        }
+        count_id--;
+    }   
+    else
+    {
+        document.getElementById("errorMsg").innerText = "Select a Task";
     }
-    count_id=0;
+    
 }
 
 function Confirm()
@@ -275,16 +276,20 @@ function add()
 
 function display()
 {
+    count_id = 0;
+    console.log("In disp");
     let toDo_raw_data = [];
     let mainUl = document.getElementById("edit_unorderList");
     let data = JSON.parse(window.localStorage.getItem("user"));
     for(let i =0; i< data.length ; i++)
     {
+        console.log("In disp user find loop");
         if(data[i].u_name == current_user)
         {
             toDo_raw_data = data[i].toDo;
         }
     }
+    console.log(  current_user   );
 
     let checkBox = document.createElement("input"); 
     checkBox.type = "checkbox";
@@ -306,6 +311,7 @@ function display()
     let rowTable = "";
     for(let i =0 ; i< toDo_raw_data.length ; i++)
     {
+        
 
         taskInput.value = toDo_raw_data[i].name;
         endDate.value =  toDo_raw_data[i].endDate;

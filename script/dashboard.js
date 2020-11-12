@@ -127,11 +127,12 @@ try{
         
             for(let i = 0 ; i< sessionStorage.length ; i++)
             {
-                //sessionStorage.removeItem()
-                if(sessionStorage.getItem(`user${i}`) == current_user)
-                {
-                    sessionStorage.removeItem(`user${i}`);
-                }
+                sessionStorage.removeItem(`user${i}`);
+                
+                // if(sessionStorage.getItem(`user${i}`) == current_user)
+                // {
+                //     sessionStorage.removeItem(`user${i}`);
+                // }
                 window.location.href = "index.html";
             }
 

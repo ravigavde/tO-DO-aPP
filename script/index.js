@@ -11,18 +11,13 @@ for(let i = 0; i< sessionStorage.length;i++)
         console.log("match");
         flag = true;
     }
-    count++;
 }
 
 if(!flag){
-    sessionStorage.setItem(`user${count}`,current_user);
+    // sessionStorage.setItem(`user${count}`,current_user);
  }
  else{
-    // window.location.href = "index.html";
-    // alert("Already logged in Session is active for "+current_user );
-    let a = document.createElement('a');  
-    a.href = "dashboard.html";  
-    a.click();
+    document.getElementById("error").innerHTML =`Already logged in Session is active for ${current_user}`;
 }
 
 try{
