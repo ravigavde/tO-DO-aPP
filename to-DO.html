@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>to-DO</title>
+    <script src="script/to-DO.js" async defer></script>
+    <link rel="stylesheet" href="style/to-DO.css">
+</head>
+
+
+<body onload="display();">
+    <section>
+        <div class="main">
+            <div class="head">
+                <h1>Start adding tasks to your to-Do lists</h1>
+            </div>
+            <div id="errorMsg"></div>
+
+            <div class="addDetails">
+
+                <label for="add_task">Add task</label>
+                <input type="text" name="add_task" id="tasks">
+                <label for="end_date">End date</label>
+                <input type="date" name="end_date" id="e_date">
+                <select name="" id="priority">
+                    <option value="" selected disabled hidden>Please select the category of task</option>
+                    <option value="Work">Work</option>
+                    <option value="Personal">Personal</option>
+                </select> <br>
+                <label for="">Want a reminder date?</label>
+                <label for="">yes</label><input type="radio" onclick="remindDate('yes')" name="rem" id="">
+                <label for="">no</label><input type="radio" onclick="remindDate('no')" name="rem" id="">
+                <label for="" class="r_date" >Reminder Date</label> <input type="date" name="" class="r_date" id="remDate">
+                
+                <label for="">Show as public?</label>
+                <label for="">yes</label><input type="radio" onclick="isPublic('yes')" name="pub" id="">
+                <label for="">no</label><input type="radio" onclick="isPublic('no')" name="pub" id="">
+    
+                <input type="button" value="ADD" onclick="add()">
+            </div>
+
+
+
+            <div class="edit_list">
+                <p class="sec">Task Name</p>
+                <p class="sec">End date</p>
+                <p class="sec">Category</p>
+                <p class="sec">Reminder Date</p>
+                <p class="sec">Public View</p>
+
+
+                <div id="List">
+                    <table id="list_t" class="edit">
+                        <thead>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+
+
+                </div>
+                <div class="btns">
+                    <input type="button" value="Delete" onclick="deletee()">
+                    <input type="button" value="Save" onclick="Confirm()">
+                </div>
+
+            </div>
+            <div class="permanent_list">
+                    
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
