@@ -20,13 +20,20 @@ if(!flag){
     document.getElementById("error").innerHTML =`Already logged in Session is active for ${current_user}`;
 }
 
-try{
+
         let data = JSON.parse(window.localStorage.getItem('user'));
 
-        for(let i=0; i< data.length ; i++)
-        {
-            console.log(data[i].pass +" "+data[i].u_name);   
-        }
+       if(data != null )
+       {
+           for(let i=0; i< data.length ; i++)
+           {
+               console.log(data[i].pass +" "+data[i].u_name);   
+           }
+       }
+       else
+       {
+           document.getElementById("error").innerHTML = "No User is registered";
+       }
 
         function verify()
         {
@@ -83,11 +90,5 @@ try{
         return enc;
         }
 
-    }
-    catch(Error)
-    {
-       document.write("No User is cureently registered please register");
-    }        
-    finally{
-        window.href = "index.html";
-    }
+    
+    
