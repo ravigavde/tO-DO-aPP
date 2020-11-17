@@ -215,7 +215,9 @@ function add()
     e_date  =   document.getElementById("e_date").value;
     rem_radio = document.getElementsByClassName("r_date");
     rem_date = rem_radio[1].value;
-    // console.log(rem_date + "this is");
+    let rad = document.getElementsByName("rem");
+    let pub_rad  = document.getElementsByName("pub");
+    
    
     category = document.getElementById("priority").value;
     // console.log(task_name + e_date + category);
@@ -236,7 +238,21 @@ function add()
         document.getElementById("errorMsg").innerText = "Please enter category";
         correct = false;
     }
-
+    else if(rad[0].checked == false  && rad[1].checked == false)
+    {
+        document.getElementById("errorMsg").innerText = "Please select yes/no for reminder";
+        correct = false;
+    }
+    else if(pub_rad[0].checked == false  && pub_rad[1].checked == false)
+    {
+        document.getElementById("errorMsg").innerText = "Please select yes/no for public";
+        correct = false;
+    }
+    else if(rad[0].checked == true && rem_date == "" )
+    {
+        document.getElementById("errorMsg").innerText = "Please select reminder date";
+        correct = false;
+    }
 
     if(correct)
     {   

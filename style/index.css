@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Goldman&display=swap');
+*,p,h3,a,#error{
+    font-family: 'Goldman', cursive;
+}
 body {
     margin: 0;
     padding: 0;
@@ -6,20 +10,21 @@ body {
 }
 #error{
     color: whitesmoke;
+    font-size: 18px;
 }
 p{
     color: whitesmoke;
+    font-size: 18px;
 }
 
 .right {
     width: 300px;
     padding: 40px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     background: #191919;
     text-align: center;
+    margin: auto;
+    display: block;
+    border-radius: 10px;
 }
 
 .left h1 {
@@ -76,4 +81,24 @@ p{
 
 .create_account {
     color: antiquewhite;
+}
+header{
+    height: 100px;
+    width: 100%;
+    padding-top: 10px;
+    
+    clear: both;
+    background-color: rgba(0,0,0,.8);
+    color: whitesmoke;
+    margin-bottom: 65px;
+}
+#logo{
+    float: left;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+#head{
+    margin-left: 88px;
+    font-size: 30px;
 }

@@ -65,6 +65,8 @@ try{
             {
                 document.getElementById("other").selected = true;
             } 
+            public();
+            reminder();
         }
 
         function addTask(object){
@@ -273,7 +275,10 @@ function categ(value)
                     {
                         if(pTodo[i].category == "Personal" || pTodo[i].category == "personal" )
                         {
-                            rows = rows + `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td><td><input onclick= "doneFun(this.id)" type="button" id=${done_count++} value="Done"></td></tr>`;
+                            if(pTodo[i].status != "Done")
+                            {
+                                rows = rows + `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td><td><input onclick= "doneFun(this.id)" type="button" id=${done_count++} value="Done"></td></tr>`;
+                            }
                         }
                     }
                     table.innerHTML = rows;
@@ -309,9 +314,12 @@ function categ(value)
                     let rows  = "<th>Task Name</th> <th>Category</th> <th>Status</th><th></th>";
                     for(let i=0 ; i < pTodo.length ; i++  )
                     {
-                        if(pTodo[i].category == "Work" || pTodo[i].category == "work" )
+                        if(pTodo[i].category == "Work" || pTodo[i].category == "work")
                         {
-                            rows = rows + `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td><td><input onclick= "doneFun(this.id)" type="button" id=${done_count++} value="Done"></td></tr>`;
+                            if(pTodo[i].status != "Done")
+                            {
+                                rows = rows + `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td><td><input onclick= "doneFun(this.id)" type="button" id=${done_count++} value="Done"></td></tr>`;
+                            }
                         }
                     }
                     table.innerHTML = rows;
@@ -346,7 +354,7 @@ function categ(value)
                     let rows  = "<th>Task Name</th> <th>Category</th> <th>Status</th><th></th>";
                     for(let i=0 ; i < pTodo.length ; i++  )
                     {
-                        if(pTodo[i].status == "Pending" || pTodo[i].status == "pending" )
+                        if(pTodo[i].status == "Pending" || pTodo[i].status == "pending")
                         {
                             rows = rows + `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td><td><input onclick= "doneFun(this.id)" type="button" id=${done_count++} value="Done"></td></tr>`;
                         }
@@ -403,19 +411,53 @@ function categ(value)
                 pTodo = data[i].pToDo;
             }
         }
-        let today = new Date();
-        let table =  document.getElementById("display");
-        let rows  = "<th>Task Name</th> <th>Category</th> <th>Status</th><th></th>";
-        for(let i =0 ; i< pTodo.length ; i++)
+        if (pTodo.length == 0 ) 
         {
-            // console.log( pTodo[i].endDate );
-            if( today > Date.parse( pTodo[i].endDate) )
+            document.getElementById("main_msg").innerHTML = "Please add To list";
+        }
+        else
+        {
+            let today = new Date();
+            let table =  document.getElementById("display");
+            let rows  = "<th>Task Name</th> <th>Category</th> <th>Status</th><th></th>";
+            for(let i =0 ; i< pTodo.length ; i++)
             {
-                    pTodo[i];
-                    rows = rows + `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td><td></td></tr>`;
+                // console.log( pTodo[i].endDate );
+                if( today > Date.parse( pTodo[i].endDate) && pTodo[i].status != "Done" )
+                {
+                        pTodo[i];
+                        rows = rows + `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td><td></td></tr>`;
+                }
+            }
+            table.innerHTML = rows;
+        }
+
+    }
+    else if(value =="all")
+    {
+        let data = JSON.parse(window.localStorage.getItem("user"));
+        for(let i =0; i< data.length ; i++)
+        {
+            if(data[i].u_name == current_user)
+            {
+                pTodo = data[i].pToDo;
             }
         }
-        table.innerHTML = rows;
+        if (pTodo.length == 0 ) 
+        {
+            document.getElementById("main_msg").innerHTML = "Please add To list";
+        }
+        else
+        {
+            let table =  document.getElementById("display");
+            let rows  = "<th>Task Name</th> <th>Category</th> <th>Status</th><th></th>";
+            for(let i =0 ; i< pTodo.length ; i++)
+            {
+                rows = rows + `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td><td></td></tr>`; 
+            }
+            table.innerHTML = rows;
+        }
+
     }
 
 }
@@ -549,7 +591,7 @@ function reminder()
     }
 
 }
-reminder();
+
 
 function public()
 {
@@ -578,4 +620,3 @@ function public()
         publictable.innerHTML = rows;
     }
 }
-public();

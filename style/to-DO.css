@@ -69,7 +69,7 @@ li {
 }
 
 input{
-
+    cursor: pointer;
 }
 .r_date,input,select {
     border: 0;

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <script src="script/dashboard.js" async defer></script>
+    <link rel="stylesheet" href="style/reset.css">
     <link rel="stylesheet" href="style/dashboard.css">
 </head>
 
@@ -14,7 +15,7 @@
     <section>
         <p id="head"> </p>
         <div class="profile_pic">
-            <img src="" alt="" id="profile" style="">
+            <img src="" alt="" id="profile">
             <div id="userbox">
                 <input type="file" name="" class="btn" onchange="changePic();" id="profileChange">
                 <ul id="user_detailss">
@@ -36,6 +37,7 @@
             <input type="text" name="" id="taskSearch">
             <input type="button" class="btn" value="Search" onclick="nameSeacrh()">
             <p>Category</p>
+            <label for="">All</label> <input onclick="categ('all')" type="radio" name="cat" id="">
             <label for="">Work</label> <input onclick="categ('work')" type="radio" name="cat" id="">
             <label for="">Personal</label><input onclick="categ('Personal')" type="radio" name="cat" id="">
             <label for="">Pending</label> <input onclick="categ('Pending')" type="radio" name="cat" id="">
