@@ -8,7 +8,7 @@ for(let i = 0; i< sessionStorage.length;i++)
 {
     if(sessionStorage.getItem(`user${i}`) == current_user )
     {
-        console.log("match");
+        // console.log("match");
         flag = true;
     }
 }
@@ -27,12 +27,13 @@ if(!flag){
        {
            for(let i=0; i< data.length ; i++)
            {
-               console.log(data[i].pass +" "+data[i].u_name);   
+            //    console.log(data[i].pass +" "+data[i].u_name);   
            }
        }
        else
        {
-           document.getElementById("error").innerHTML = "No User is registered";
+           document.getElementById("error").innerHTML = "No User is registered, Please create your account";   
+
        }
 
         function verify()
@@ -40,7 +41,7 @@ if(!flag){
            
             let username = document.getElementById("username").value;
             let password = encrpyt(document.getElementById("pass").value);
-             
+            
             
             if(username == "" && password =="")
             {
@@ -54,30 +55,36 @@ if(!flag){
             {
                 document.getElementById("error").innerHTML = "Please enter password";
             }
-            
-            let a = false;
-            for(let i=0; i< data.length ; i++)
+            else if(data != null )
             {
-                if(username == data[i].u_name && password == data[i].pass ){
-                    // console.log("user found "+data[i].pass +" "+data[i].u_name);
-                    a = true;
-                    name.push(data[i].u_name);
-                    localStorage.setItem("Current_user",name);
-                    
-                }
-            }
-            if(!a)
-            {
-                document.getElementById("error").innerHTML = "Cannot find account check username or password";
-   
+                let a = false;
+                    for(let i=0; i< data.length ; i++)
+                    {
+                        if(username == data[i].u_name && password == data[i].pass ){
+                            // console.log("user found "+data[i].pass +" "+data[i].u_name);
+                            a = true;
+                            // name.push(data[i].u_name);
+                            localStorage.setItem("Current_user",data[i].u_name);      
+                        }
+                    }
+                    if(a == false)
+                    {
+                        document.getElementById("error").innerHTML = "User not found please check username/password";
+                    }
+                    else
+                    {
+                        let a = document.createElement('a');  
+                            a.href = "dashboard.html";  
+                            a.click();
+                    }
             }
             else
             {
-                let a = document.createElement('a');  
-                    a.href = "dashboard.html";  
-                    a.click();
+                document.getElementById("error").innerHTML = "No User is registered, Please create your account"; 
             }
+            a = false;
         }
+                
 
         function encrpyt(value)
         {
@@ -86,9 +93,5 @@ if(!flag){
         {
             enc = enc + String.fromCharCode( (value.charCodeAt(i) + 3 ) ) ;
         }
-        console.log(enc);
         return enc;
         }
-
-    
-    

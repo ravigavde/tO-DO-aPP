@@ -15,11 +15,11 @@ let to_do = [];
 
 function remindDate(value)
 {
-    console.log(value);
+    // console.log(value);
     if(value=="yes")
     {
         let a = document.getElementsByClassName("r_date");
-        console.log(a[0]);
+        // console.log(a[0]);
         a[0].style.display= "inline";
         a[1].style.display= "inline";
         rem_date = a[1].value;
@@ -27,7 +27,7 @@ function remindDate(value)
     }
     else{
         let a = document.getElementsByClassName("r_date");
-        console.log(a[0]);
+        // console.log(a[0]);
         a[0].style.display= "none";
         a[1].style.display= "none";
 
@@ -53,13 +53,13 @@ function deletee()
         let myTab = document.getElementById('list_t');
         let deleteList = [];
         let del_c = 0;
-        console.log(count_id);
+        // console.log(count_id);
         for (let index = 0; index < count_id ; index++) 
         {
             let a = document.getElementById(index);    
             if(a.checked)
             {
-                console.log("true");
+                // console.log("true");
                 deleteList.push(index);
                 myTab.deleteRow(index - del_c );
                 del_c++;
@@ -91,13 +91,13 @@ function Confirm()
     let deleteList = [];
     let userTodo;
     let editedTodo = [];
-    console.log("total count id" +count_id);
+    // console.log("total count id" +count_id);
     for (let index = 0; index < count_id ; index++) 
     {
         let a = document.getElementById(index);
         if(a.checked)
         {
-            console.log("true");
+            // console.log("true");
             deleteList.push(index);
         }    
     }
@@ -130,14 +130,14 @@ function Confirm()
             {
                 let a = tCells.item(j);
                 let b = a.childNodes[0].value;
-                console.log("name"+b);
+                // console.log("name"+b);
                 local_counter++;
             }
            else if(local_counter == 1 )
             {
                 let a = tCells.item(j);
                 let b = a.childNodes[0].value;
-                console.log("Task name"+b);
+                // console.log("Task name"+b);
                 taskname = b;
                 local_counter++;
             }
@@ -145,7 +145,7 @@ function Confirm()
             {
                 let a = tCells.item(j);
                 let b = a.childNodes[0].value;
-                console.log("End date"+b);
+                // console.log("End date"+b);
                 enddate = b;
                 local_counter++;
             }
@@ -153,7 +153,7 @@ function Confirm()
             {
                 let a = tCells.item(j);
                 let b = a.childNodes[0].value;
-                console.log("Category"+b);
+                // console.log("Category"+b);
                 categ = b;
                 local_counter++;
             }
@@ -161,7 +161,7 @@ function Confirm()
             {
                 let a = tCells.item(j);
                 let b = a.childNodes[0].value;
-                console.log("Reminder date"+b);
+                // console.log("Reminder date"+b);
                 remindDate = b;
                 local_counter++;
             }
@@ -169,7 +169,7 @@ function Confirm()
             {
                 let a = tCells.item(j);
                 let b = a.childNodes[0].value;
-                console.log("Is public"+b);
+                // console.log("Is public"+b);
                 publc = b;
                 local_counter++;
             }
@@ -185,7 +185,7 @@ function Confirm()
             }
         }
         
-        console.log(row_counter++);
+        // console.log(row_counter++);
     }
         for(let i = 0 ; i < data.length ; i++)
         {
@@ -196,7 +196,7 @@ function Confirm()
                 // console.log(data[i].toDo);
             }
         }
-        console.log(data);
+        // console.log(data);
         count_id =0;
         delete_counter =0;
         window.localStorage.setItem('user',JSON.stringify(data));
@@ -215,10 +215,10 @@ function add()
     e_date  =   document.getElementById("e_date").value;
     rem_radio = document.getElementsByClassName("r_date");
     rem_date = rem_radio[1].value;
-    console.log(rem_date + "this is");
+    // console.log(rem_date + "this is");
    
     category = document.getElementById("priority").value;
-    console.log(task_name + e_date + category);
+    // console.log(task_name + e_date + category);
 
     if(task_name == "")
     {
@@ -242,7 +242,7 @@ function add()
     {   
         let task = { name: task_name, endDate : e_date, category: category,status:"pending",reminder:rem_date,public:public };
         to_do.push(task);
-        console.log(current_user);
+        // console.log(current_user);
            for(let i = 0 ; i < data.length ; i++)
            {
                if(data[i].u_name == current_user)
@@ -277,19 +277,19 @@ function add()
 function display()
 {
     count_id = 0;
-    console.log("In disp");
+    // console.log("In disp");
     let toDo_raw_data = [];
     let mainUl = document.getElementById("edit_unorderList");
     let data = JSON.parse(window.localStorage.getItem("user"));
     for(let i =0; i< data.length ; i++)
     {
-        console.log("In disp user find loop");
+        // console.log("In disp user find loop");
         if(data[i].u_name == current_user)
         {
             toDo_raw_data = data[i].toDo;
         }
     }
-    console.log(  current_user   );
+    // console.log(  current_user   );
 
     let checkBox = document.createElement("input"); 
     checkBox.type = "checkbox";

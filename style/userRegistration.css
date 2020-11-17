@@ -20,10 +20,6 @@ textarea {
     width: 300px;
 }
 
-input,
-textarea {
-    margin: 5px;
-}
 
 .set {
     text-align: center;
@@ -66,4 +62,8 @@ textarea {
     border-color: #2ecc71;
     border-radius: 0ex;
     text-align: center;
+}
+#resetBtn{
+    width: 50px;
+    outline: none;
 }

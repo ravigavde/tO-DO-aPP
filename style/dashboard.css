@@ -23,6 +23,7 @@ body {
 }
 #user_detailss{
     color: aqua;
+    list-style-type: none;
 }
 input[type="text" i] {
     padding: 4px;
@@ -31,8 +32,11 @@ input[type="text" i] {
     outline: none;
 }
 .display{
+    padding: 10px;
     width: 449px;
     margin: auto;
+    border: 2px solid black;
+    border-radius: 5px;
 }
 table{
     border: 1px solid black;
@@ -103,4 +107,40 @@ input[type="button"] {
     margin: auto;
     text-align: center;
     outline: none;
+}
+label
+{
+    color: black;
+}
+#logout
+{
+    margin-top: 20px;
+    clear: both;
+}
+.Gender
+{
+    margin-left: 28px;
+    border-radius: 10px;
+}
+.Address
+{
+    margin-left: 21px;
+}
+.profile_pic
+{
+    border-radius: 10px;
+}
+.other{
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 800px;
+    margin: auto;
+    clear: both;
+    margin-bottom: 50px;
+}
+#reminder{
+    float: left;
+}
+#public{
+    float: right;
 }

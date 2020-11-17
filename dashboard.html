@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <!-- <script src="script/index.js"></script> -->
     <script src="script/dashboard.js" async defer></script>
     <link rel="stylesheet" href="style/dashboard.css">
 </head>
@@ -24,29 +23,43 @@
             </div>
             <input type="button" class="btn" value="Edit Profile" onclick="showProfile()">
         </div>
-        
+        <br>
+        <br>
         <div class="display">
             <span id="main_msg"></span><br>
+
+
             <a href="to-DO.html">Add Task</a>
 
 
             <p> Search by Task Name</p>
-             <input type="text" name="" id="taskSearch">
+            <input type="text" name="" id="taskSearch">
             <input type="button" class="btn" value="Search" onclick="nameSeacrh()">
-            <p>Category</p> 
+            <p>Category</p>
             <label for="">Work</label> <input onclick="categ('work')" type="radio" name="cat" id="">
             <label for="">Personal</label><input onclick="categ('Personal')" type="radio" name="cat" id="">
-            <label for="">Pending</label>  <input onclick="categ('Pending')" type="radio" name="cat" id="">
-            <label for="">Done</label>  <input onclick="categ('Done')" type="radio" name="cat" id="">
+            <label for="">Pending</label> <input onclick="categ('Pending')" type="radio" name="cat" id="">
+            <label for="">Done</label> <input onclick="categ('Done')" type="radio" name="cat" id="">
 
-            <label for="">Overdue</label>  <input onclick="categ('Due')" type="radio" name="cat" id="">
+            <label for="">Overdue</label> <input onclick="categ('Due')" type="radio" name="cat" id="">
 
             <table id="display">
 
             </table>
 
         </div>
-        <input type="button" value="Logout" onclick="logout()">
+        <br><br>
+        <div class="other">
+            <div id="reminder">
+                <h2>Reminder for tasks</h2>
+                <table id="reminTable"></table>
+            </div>
+            <div id="public">
+                <h2>Public View</h2>
+                <table id="pubTable"></table>
+            </div>
+        </div>
+        <input type="button" id="logout" value="Logout" onclick="logout()">
     </section>
 </body>
 

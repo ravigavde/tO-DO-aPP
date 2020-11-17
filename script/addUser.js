@@ -1,7 +1,7 @@
 let user_list = [];
 function add_user() {
    let error_occured = false; 
-   
+   let resetBtn = document.getElementById("resetBtn");
   let first_name = document.getElementById("Name").value;
   if(first_name == "")
   {
@@ -29,9 +29,9 @@ function add_user() {
 
 
   let gender = document.getElementById("Gender").value;
-  if(gender == "")
+  if(gender == "Select your Gender")
   {
-    document.getElementById("g_Error").innerText = "Enter Gender";
+    document.getElementById("g_Error").innerText = "Select Gender";
     error_occured = true;
   }
 
@@ -50,7 +50,7 @@ function add_user() {
     error_occured = true;
   }
   else if(!regPass.test(password)){
-    document.getElementById("p_Error").innerText = "Please password in between 7 to 16 characters which contain only characters, numeric digits, underscore and first character must be a letter";
+    document.getElementById("p_Error").innerText = "Please enter password in between 7 to 16 characters which contain only characters, numeric digits, underscore and first character must be a letter";
     error_occured = true;
   }
   else
@@ -108,7 +108,10 @@ function add_user() {
             {
                 data.push(user_obj);
                 window.localStorage.setItem('user',JSON.stringify(data));  
-                document.getElementById("gen_error").innerText = "User Rgistered Successfully"; 
+                
+                // document.getElementById("gen_error").innerText = "User Rgistered Successfully"; 
+                alert("User Rgistered Successfully");
+
             }
             else
             {
@@ -119,12 +122,15 @@ function add_user() {
         {
             user_list.push(user_obj);
             window.localStorage.setItem('user',JSON.stringify(user_list));
-            document.getElementById("gen_error").innerText = "User Rgistered Successfully"; 
             for (let i=0; i< window.localStorage.length;i++)
             {  
-                let res = window.localStorage.getItem("user");
-                console.log(res);
+              let res = window.localStorage.getItem("user");
+              console.log(res);
             }
+            
+            // document.getElementById("gen_error").innerText = "User Rgistered Successfully"; 
+            alert("User Rgistered Successfully");
+
         }
 
     }
