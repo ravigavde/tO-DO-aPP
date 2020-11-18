@@ -15,6 +15,7 @@
     <header>
         <img id = "logo"src="images/logo.jpg" alt="">
         <h3 id="head">Manage your Tasks </h3>
+        <a href="to-DO.html" class="Todobtn">Add Task</a>
     </header>
     <section>
         <p id="head"> </p>
@@ -32,27 +33,37 @@
         <br>
         <div class="display">
             <span id="main_msg"></span><br>
-
-
-            <a href="to-DO.html">Add Task</a>
-
-
-            <p> Search by Task Name</p>
-            <input type="text" name="" id="taskSearch">
-            <input type="button" class="btn" value="Search" onclick="nameSeacrh()">
-            <p>Category</p>
-            <label for="">All</label> <input onclick="categ('all')" type="radio" name="cat" id="">
-            <label for="">Work</label> <input onclick="categ('work')" type="radio" name="cat" id="">
-            <label for="">Personal</label><input onclick="categ('Personal')" type="radio" name="cat" id="">
-            <label for="">Pending</label> <input onclick="categ('Pending')" type="radio" name="cat" id="">
-            <label for="">Done</label> <input onclick="categ('Done')" type="radio" name="cat" id="">
-
-            <label for="">Overdue</label> <input onclick="categ('Due')" type="radio" name="cat" id="">
-
+            <div class="searchByName">
+                <p> Search by Task Name</p>
+                <input type="text" name="" id="taskSearch">
+                <input type="button" class="btnn" value="Search" onclick="nameSeacrh()">
+            </div>
+            <div class="radioCategory">
+                <p class="categoryHead">Category</p>
+                <ul class="ulradio">
+                    <li>
+                        <label for="">All</label> <input onclick="categ('all')" type="radio" name="cat" id="all">
+                    </li>
+                    <li>
+                        <label for="">Work</label> <input onclick="categ('work')" type="radio" name="cat" id="work">
+                    </li>
+                    <li>
+                        <label for="">Personal</label><input onclick="categ('Personal')" type="radio" name="cat" id="personal">
+                    </li>
+                    <li>
+                        <label for="">Pending</label> <input onclick="categ('Pending')" type="radio" name="cat" id="pending">
+                    </li>
+                    <li>
+                        <label for="">Done</label> <input onclick="categ('Done')" type="radio" name="cat" id="done">
+                    </li>
+                    <li>
+                        <label for="">Overdue</label> <input onclick="categ('Due')" type="radio" name="cat" id="">
+                    </li>
+                </ul>    
+            </div>
             <table id="display">
-
             </table>
-
+            <input type="button" value="Delete" id="delete" onclick="deletee();">
         </div>
         <br><br>
         <div class="other">
