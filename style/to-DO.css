@@ -16,6 +16,9 @@ section
     border: 2px solid black;
     width: 774px;
 }
+.add:hover {
+    background: aqua;
+}
 
 .sec {
     text-align: center;
