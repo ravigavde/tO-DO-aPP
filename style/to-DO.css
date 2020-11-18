@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Goldman&display=swap');
-*,p,h3,a,label,h1{
+*,p,h3,a,label,h1,#errorMsg{
     font-family: 'Goldman', cursive;
 }
 body {
