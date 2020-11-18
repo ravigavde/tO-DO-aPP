@@ -1,8 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Goldman&display=swap');
+*,p,h3,a,label,h1{
+    font-family: 'Goldman', cursive;
+}
 body {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
     background: #34495e;
+}
+section
+{
+    padding: 70px 30px 0px 30px;
 }
 
 .edit_list {
@@ -15,27 +22,13 @@ body {
 }
 
 
-/* 
-p {
-    display: inline-block;
-    margin-left: 83px;
-}
-
-ul,
-li {
-    list-style: none;
-}
-
-.r_date {
-    display: none;
-}*/
-
 .head h1 {
     color: whitesmoke;
     text-transform: capitalize;
     font-weight: 700;
     text-align: center;
-    font-family: Verdana, Tahoma, sans-serif;
+    margin-bottom: 10px;
+    font-size: 50px;
 }
 
 .sub {
@@ -118,13 +111,16 @@ input{
     background: aqua;
 }
 .addDetails{
-    width: 781px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    width: 847px;
     margin: auto;
 }
 
 .edit_list {
     border: 2px solid black;
-    width: 67%;
+    width: 82%;
     border: 0;
     background: none;
     display: block;
@@ -169,7 +165,7 @@ label{
 
 p {
     display: inline-block;
-    margin-left: 83px;
+    margin-left: 102px;
     color: black;
 }
 
@@ -186,4 +182,25 @@ input[type=text] {
 
 li {
     list-style: none;
+}
+
+header{
+    height: 100px;
+    width: 100%;
+    padding-top: 10px;
+    
+    clear: both;
+    background-color: rgba(0,0,0,.8);
+    color: whitesmoke;
+    margin-bottom: 65px;
+}
+#logo{
+    float: left;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+#head{
+    margin-left: 88px;
+    font-size: 30px;
 }

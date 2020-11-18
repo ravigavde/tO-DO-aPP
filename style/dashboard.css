@@ -4,7 +4,7 @@ a{
     color: black;
 }
 
-*,p,a,label,table,h2,#main_msg{
+*,p,a,label,table,h2,#main_msg,#head{
     font-family: 'Goldman', cursive;
     padding: 0px;
     margin: 0px;  
@@ -120,6 +120,7 @@ input[type="button"] {
 {
     margin-top: 20px;
     clear: both;
+    font-size: 18px;
 }
 .Gender
 {
@@ -142,10 +143,31 @@ input[type="button"] {
     clear: both;
     margin-bottom: 50px;
     height: 300px;
+    padding: 10px;
 }
 #reminder{
     float: left;
 }
 #public{
     float: right;
+}
+header{
+    height: 100px;
+    width: 100%;
+    padding-top: 10px;
+    
+    clear: both;
+    background-color: rgba(0,0,0,.8);
+    color: whitesmoke;
+    margin-bottom: 65px;
+}
+#logo{
+    float: left;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+#head{
+    margin-left: 88px;
+    font-size: 30px;
 }

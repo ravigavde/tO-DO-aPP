@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Goldman&display=swap');
+*,a,h1{
+    font-family: 'Goldman', cursive;
+}
 body {
     margin: 0;
     padding: 0;
@@ -13,8 +17,9 @@ input,
 textarea {
     margin: 5px;
 }
-
-
+section{
+    padding: 40px;
+}
 .details {
     border: 2px solid grey;
     width: 300px;
