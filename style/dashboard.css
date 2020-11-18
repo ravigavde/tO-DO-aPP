@@ -33,6 +33,10 @@ body {
 {
     width: 328px;
 }
+.profile_pic:hover .btn
+{
+    display: inline;
+}
 
 #user_detailss{
     color: aqua;
@@ -59,7 +63,8 @@ table{
     height: 28px;
     border-radius: 24px;
     padding: 5px;
-
+    display: none;
+    transition: display 1s;
 }
 td{
     border: 1px solid black;
