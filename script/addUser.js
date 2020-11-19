@@ -119,9 +119,8 @@ function add_user() {
             {
                 data.push(user_obj);
                 window.localStorage.setItem('user',JSON.stringify(data));  
-                
-                setTimeout(() => {  document.getElementById("gen_error").innerText = "User Rgistered Successfully";  }, 2000);
-                window.location = "index.html";
+                document.getElementById("gen_error").innerText = "User Rgistered Successfully";
+                setTimeout(() => { window.location = "index.html";   }, 2000);    
             }
             else
             {
@@ -137,8 +136,8 @@ function add_user() {
               let res = window.localStorage.getItem("user");
               console.log(res);
             }   
-            setTimeout(() => {  document.getElementById("gen_error").innerText = "User Rgistered Successfully";  }, 2000);
-            window.location = "index.html";
+            document.getElementById("gen_error").innerText = "User Rgistered Successfully";
+            setTimeout(() => { window.location = "index.html";   }, 2000);
         }
 
     }
