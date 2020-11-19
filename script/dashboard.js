@@ -132,35 +132,63 @@ if (session == null) {
     }
 
     function reset() {
-      let a = document.getElementById("profileChange").files[0];
-      let sex;
-      let g = gender.children[1].options.selectedIndex;
-      if (g == 0) {
-        sex = "Male";
-      } else if (g == 1) {
-        sex = "Female";
-      } else if (g == 2) {
-        sex = "Other";
-      }
-      console.log(sex);
-      for (let i = 0; i < data.length; i++) {
-        if (current_user == data[i].u_name) {
-          // console.log("reset data found");
-          data[i].f_Name = first_name.children[1].value;
-          data[i].l_name = last_name.children[1].value;
-          data[i].addr = address.children[1].value;
-          data[i].gen = sex;
-          if (a != undefined) {
-            data[i].img = document.getElementById("profileChange").src;
-          }
-        }
-      }
-      // console.log(JSON.stringify(data));
-      window.localStorage.setItem("user", JSON.stringify(data));
+     let f_Name = first_name.children[1].value;
+     let l_name = last_name.children[1].value;
+     let addr = address.children[1].value;
+
+     if(f_Name == ""  && l_name =="" && addr =="" )
+     {
       document.getElementById("main_msg").innerText =
-        "Profile Updated Successfully";
-      let box = document.getElementById("userbox");
-      box.style.display = "none";
+      "Please enter first name , last name and address";
+     }
+     else if(l_name == "")
+     {
+      document.getElementById("main_msg").innerText =
+      "last name cannot be empty";
+     }
+     else if(addr == "")
+     {
+      document.getElementById("main_msg").innerText =
+      "Address cannot be empty";
+     }
+     else if(f_Name =="")
+     {
+      document.getElementById("main_msg").innerText =
+      "Please enter first name";
+     }
+     else
+     {
+       let a = document.getElementById("profileChange").files[0];
+       let sex;
+       let g = gender.children[1].options.selectedIndex;
+       if (g == 0) {
+         sex = "Male";
+       } else if (g == 1) {
+         sex = "Female";
+       } else if (g == 2) {
+         sex = "Other";
+       }
+       console.log(sex);
+       for (let i = 0; i < data.length; i++) {
+         if (current_user == data[i].u_name) {
+           // console.log("reset data found");
+           data[i].f_Name = first_name.children[1].value;
+           data[i].l_name = last_name.children[1].value;
+           data[i].addr = address.children[1].value;
+           data[i].gen = sex;
+           if (a != undefined) {
+             data[i].img = document.getElementById("profileChange").src;
+           }
+         }
+       }
+       // console.log(JSON.stringify(data));
+       window.localStorage.setItem("user", JSON.stringify(data));
+       document.getElementById("main_msg").innerText =
+         "Profile Updated Successfully";
+       let box = document.getElementById("userbox");
+       box.style.display = "none";
+
+     }
     }
 
     function logout() {
@@ -352,7 +380,7 @@ if (session == null) {
             if (pTodo[i].status == "Done" || pTodo[i].status == "done") {
               rows =
                 rows +
-                `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td><td></td></tr>`;
+                `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td></tr>`;
             }
           }
           table.innerHTML = rows;
@@ -402,7 +430,7 @@ if (session == null) {
           for (let i = 0; i < pTodo.length; i++) {
             if(pTodo[i].name != undefined)
             {
-                rows = rows +`<tr><td><input type="checkbox" name="" id="${selectId++}"></td> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td><td></td></tr>`;
+                rows = rows +`<tr><td><input type="checkbox" name="" id="${selectId++}"></td> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td></tr>`;
             }
           }
           table.innerHTML = rows;
@@ -588,10 +616,11 @@ if (session == null) {
           }
         window.localStorage.setItem('user',JSON.stringify(data)); 
         document.getElementById("main_msg").innerHTML = "Deleted the selected tasks"; 
+        display();
     }
     else{
     document.getElementById("main_msg").innerHTML = "Please select all category to delete tasks";
     }
   }
-  
+  categ("all");
 }

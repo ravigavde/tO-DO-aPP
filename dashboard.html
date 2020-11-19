@@ -15,7 +15,10 @@
     <header>
         <img id = "logo"src="images/logo.jpg" alt="">
         <h3 id="head">Manage your Tasks </h3>
-        <a href="to-DO.html" class="Todobtn">Add Task</a>
+        <div class="nav">
+            <a href="to-DO.html" class="Todobtn">Add Task</a>
+            <input type="button" id="logout" value="Logout" onclick="logout()">
+        </div>
     </header>
     <section>
         <p id="head"> </p>
@@ -42,7 +45,7 @@
                 <p class="categoryHead">Category</p>
                 <ul class="ulradio">
                     <li>
-                        <label for="">All</label> <input onclick="categ('all')" type="radio" name="cat" id="all">
+                        <label for="">All</label> <input onclick="categ('all')" type="radio" name="cat" checked id="all">
                     </li>
                     <li>
                         <label for="">Work</label> <input onclick="categ('work')" type="radio" name="cat" id="work">
@@ -76,7 +79,7 @@
                 <table id="pubTable"></table>
             </div>
         </div>
-        <input type="button" id="logout" value="Logout" onclick="logout()">
+        
     </section>
 </body>
 

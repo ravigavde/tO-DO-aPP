@@ -15,17 +15,14 @@
     <header>
         <img id = "logo"src="images/logo.jpg" alt="">
         <h3 id="head">Start Adding your Tasks </h3>
+        <a class="dashboard" href="dashboard.html">Dashboard</a>
     </header>
     <section>
-        <div class="main">
-            <div class="head">
-                <h1>Start adding tasks to your to-Do lists</h1>
-            </div>
-            
+        <div class="main"> 
             <div class="addDetails">
                 <div id="errorMsg"></div>
 
-                <label for="add_task">Add task</label>
+                <label for="add_task">Task Name</label>
                 <input type="text" name="add_task" id="tasks">
                 <label for="end_date">End date</label>
                 <input type="date" name="end_date" id="e_date">
@@ -39,10 +36,10 @@
                 <label for="">no</label><input type="radio" onclick="remindDate('no')" name="rem" id="">
                 <label for="" class="r_date" >Reminder Date</label> <input type="date" name="" class="r_date" id="remDate">
                 
-                <label for="">Show as public?</label>
+                <label class="labelPub" for="">Show as public?</label>
                 <label for="">yes</label><input type="radio" onclick="isPublic('yes')" name="pub" id="">
                 <label for="">no</label><input type="radio" onclick="isPublic('no')" name="pub" id="">
-    
+                <br>
                 <input type="button" class="add" value="ADD" onclick="add()">
             </div>
 
