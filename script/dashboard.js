@@ -85,7 +85,7 @@ if (session == null) {
         editInput.className = "LastName";
         name_count++;
       } else if (name_count == 2) {
-        editInput = document.createElement("input"); //text
+        editInput = document.createElement("TEXTAREA"); //text
         editInput.type = "text";
         editInput.value = object;
 
