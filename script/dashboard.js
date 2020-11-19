@@ -199,13 +199,24 @@ if (session == null) {
       window.location.href = "index.html";
     }
     function changePic() {
+      let imageReg = /.(gif|jpe?g|png|webp|bmp)$/i;
       let changePicInput = document.getElementById("profileChange");
-      let reader = new FileReader();
-      reader.readAsDataURL(changePicInput.files[0]);
-      reader.onloadend = function (event) {
-        let Image = document.getElementById("profileChange");
-        Image.src = event.target.result;
-      };
+      if(imageReg.test(changePicInput.value))
+      {
+        let reader = new FileReader();
+        reader.readAsDataURL(changePicInput.files[0]);
+        reader.onloadend = function (event) {
+          let Image = document.getElementById("profileChange");
+          Image.src = event.target.result;
+        };
+      }
+      else
+      {
+        document.getElementById("main_msg").innerText =
+         "Select image with jpeg ,jpg ,png etc extions only";
+
+      }
+
     }
     function display() {
       document.getElementById("main_msg").innerText = "";
@@ -218,7 +229,7 @@ if (session == null) {
       }
       // console.log(pTodo.length);
       if (pTodo.length == 0) {
-        document.getElementById("main_msg").innerHTML = "Please add To list";
+        document.getElementById("main_msg").innerHTML = "Please add task To the list";
       } else {
         // console.log(pTodo);
         taskname;
