@@ -38,7 +38,10 @@ function add_user() {
   let password = document.getElementById("pass1").value;    
   let confirm_password = document.getElementById("pass2").value;  
   let enc_pass;
-  let regPass =  /^[A-Z a-z 0-9 ]\w{7,14}$/;
+  let capital = /[A-Z]/g;
+  let small = /[a-z]/g;
+  let number = /[0-9]/g;
+  let symbol = /[!@#$%^&*]/g;
 
   if( password != confirm_password )
   {
@@ -49,8 +52,9 @@ function add_user() {
     document.getElementById("p_Error").innerText = "Please enter password";
     error_occured = true;
   }
-  else if(!regPass.test(password)){
-    document.getElementById("p_Error").innerText = "Please enter password in between 7 to 16 characters which contain only characters, numeric digits, underscore and first character must be a letter";
+  else if(!(capital.test(password) && small.test(password) && number.test(password) && symbol.test(password)  && password.length>6 && password.length<17))
+  {
+    document.getElementById("p_Error").innerText = "Please enter password in between 7 to 16 characters which contain one upper and one lower case characters, numeric digits, any special symbol and first character must be a letter";
     error_occured = true;
   }
   else
@@ -67,11 +71,18 @@ function add_user() {
 
 
   let image = document.getElementById("image").src;
+  let imageReg = /.(gif|jpe?g|png|webp|bmp)$/i;
   if( image == "" || image == null )
   {
     document.getElementById("i_error").innerText = "please select a image";   
     error_occured = true;
   }
+  else if((imageReg.test(document.getElementById("image").value)) == false)
+  {
+    document.getElementById("i_error").innerText = "cannot select document other than images";   
+    error_occured = true;
+  }
+
 
   var user_obj = {
                   f_Name: first_name,
@@ -109,9 +120,8 @@ function add_user() {
                 data.push(user_obj);
                 window.localStorage.setItem('user',JSON.stringify(data));  
                 
-                // document.getElementById("gen_error").innerText = "User Rgistered Successfully"; 
-                alert("User Rgistered Successfully");
-
+                setTimeout(() => {  document.getElementById("gen_error").innerText = "User Rgistered Successfully";  }, 2000);
+                window.location = "index.html";
             }
             else
             {
@@ -126,11 +136,9 @@ function add_user() {
             {  
               let res = window.localStorage.getItem("user");
               console.log(res);
-            }
-            
-            // document.getElementById("gen_error").innerText = "User Rgistered Successfully"; 
-            alert("User Rgistered Successfully");
-
+            }   
+            setTimeout(() => {  document.getElementById("gen_error").innerText = "User Rgistered Successfully";  }, 2000);
+            window.location = "index.html";
         }
 
     }
@@ -160,4 +168,15 @@ function encrpyt(value)
   }
   console.log(enc);
   return enc;
+}
+function remove()
+{
+  document.getElementById("emaiError").innerText ="";
+  document.getElementById("f_Error").innerText ="";
+  document.getElementById("l_Error").innerText ="";
+  document.getElementById("g_Error").innerText ="";
+  document.getElementById("p_Error").innerText ="";
+  document.getElementById("a_Error").innerText ="";
+  document.getElementById("i_error").innerText ="";
+  document.getElementById("gen_error").innerText ="";
 }

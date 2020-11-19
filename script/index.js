@@ -33,7 +33,7 @@ if(session == null)
            }
            else
            {
-               document.getElementById("error").innerHTML = "No User is registered, Please create your account";   
+            //    document.getElementById("error").innerHTML = "No User is registered, Please create your account";   
     
            }
     
@@ -82,7 +82,7 @@ if(session == null)
                 }
                 else
                 {
-                    document.getElementById("error").innerHTML = "No User is registered, Please create your account"; 
+                    document.getElementById("error").innerHTML = "Please create your account first"; 
                 }
                 a = false;
             }
