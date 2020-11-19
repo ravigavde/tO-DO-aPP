@@ -111,6 +111,9 @@ p{
 .nav{
     float: right;
 }
+input[type="button"] {
+    cursor: pointer;
+}
 
 .Todobtn{
     color: black;
