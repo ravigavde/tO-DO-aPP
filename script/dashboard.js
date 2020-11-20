@@ -183,12 +183,11 @@ if (session == null) {
        }
        // console.log(JSON.stringify(data));
        window.localStorage.setItem("user", JSON.stringify(data));
-       document.getElementById("main_msg").innerText =
-         "Profile Updated Successfully";
-       let box = document.getElementById("userbox");
-       box.style.display = "none";
-
+       document.getElementById("userbox").style.display = "none";
      }
+     location.reload();
+     document.getElementById("main_msg").innerText =
+         "Profile Updated Successfully";
     }
 
     function logout() {
@@ -253,12 +252,15 @@ if (session == null) {
         table.innerHTML = rows;
       }
       done_count = 0;
+      categ("all");
     }
 
     function categ(value) {
         let selectId = 0;
       document.getElementById("main_msg").innerText = "";
       if (value == "Personal") {
+        let hide = document.getElementById("delete").style.display="none";
+
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
           if (data[i].u_name == current_user) {
@@ -298,6 +300,7 @@ if (session == null) {
         }
         done_count = 0;
       } else if (value == "work") {
+        let hide = document.getElementById("delete").style.display="none";
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
           if (data[i].u_name == current_user) {
@@ -334,6 +337,7 @@ if (session == null) {
         }
         done_count = 0;
       } else if (value == "Pending") {
+        let hide = document.getElementById("delete").style.display="none";
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
           if (data[i].u_name == current_user) {
@@ -368,6 +372,8 @@ if (session == null) {
         }
         done_count = 0;
       } else if (value == "Done") {
+        let hide = document.getElementById("delete").style.display="none";
+
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
           if (data[i].u_name == current_user) {
@@ -398,6 +404,8 @@ if (session == null) {
         }
         done_count = 0;
       } else if (value == "Due") {
+        let hide = document.getElementById("delete").style.display="none";
+
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
           if (data[i].u_name == current_user) {
@@ -426,6 +434,7 @@ if (session == null) {
           table.innerHTML = rows;
         }
       } else if (value == "all") {
+        let hide = document.getElementById("delete").style.display="block";
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
           if (data[i].u_name == current_user) {

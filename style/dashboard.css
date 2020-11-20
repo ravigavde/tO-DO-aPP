@@ -9,8 +9,11 @@ a{
     padding: 0px;
     margin: 0px;  
 }
+label{
+    color: black;
+}
 body {
-    background: #34495e;
+    background: #c8dcef;
 }
 #profile{
     height: 70px;
@@ -23,11 +26,14 @@ body {
     width: 80px;
     padding: 22px;
      margin: auto;
-    background: #191919;
+    background: #584b4b59;
     border-radius: 10px;
     transition: width 1s;
     overflow: hidden;
     z-index: 10;
+}
+.display{
+    z-index: 1;
 }
 
 .profile_pic:hover
@@ -124,11 +130,6 @@ input[type="button"] {
     text-decoration: none;
     border-radius: 20px;
 }
-.btnn{
-    height: 28px;
-    border-radius: 24px;
-    padding: 5px;
-}
 
 td{
     border: 1px solid black;
@@ -193,6 +194,11 @@ input[type="button"] {
     outline: none;
     padding: 10px;
     border-radius: 20px;
+}
+.btnn{
+    height: 28px;
+    border-radius: 24px;
+    padding: 0px;
 }
 
 #logout
