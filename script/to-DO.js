@@ -43,6 +43,7 @@ if (session == null) {
   }
 
   function deletee() {
+    console.log("start "+count_id);
     let selectBox = false;
     if (document.getElementById(count_id - 1) != null) {
       let myTab = document.getElementById("list_t");
@@ -51,8 +52,11 @@ if (session == null) {
       // console.log(count_id);
       for (let index = 0; index < count_id; index++) {
         let a = document.getElementById(index);
-        if (a.checked) {
-          selectBox = true;
+        if(a != null)
+        {
+          if (a.checked) {
+            selectBox = true;
+          }
         }
       }
       if (selectBox) {
@@ -63,15 +67,15 @@ if (session == null) {
             if (a.checked) {
               deleteList.push(index);
               myTab.deleteRow(index - del_c);
-              del_c++;
+              del_c++; 
               delete_counter++;
             }
           }
+          count_id--;
         } else {
           location.reload();
         }
       }
-      count_id--;
     } else {
       document.getElementById("errorMsg").innerText = "Select a Task";
       document.getElementById("errorMsg").style.backgroundColor = "red";
@@ -80,6 +84,7 @@ if (session == null) {
         document.getElementById("errorMsg").style.backgroundColor = "";
       }, 1500);
     }
+    console.log("end"+ count_id);
   }
 
   function Confirm() {
