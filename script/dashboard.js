@@ -43,9 +43,8 @@ if (session == null) {
         active_user = data[i].u_name;
       }
     }
-    
+
     window.onload = function () {
-     
       document.getElementById("profile").src = profile;
       let unorderedList = document.getElementById("user_detailss");
       unorderedList.appendChild(first_name);
@@ -64,10 +63,9 @@ if (session == null) {
       public();
       reminder();
     };
-  
-    searchBox.addEventListener("keyup",function(event){
-      if(event.keyCode == 13)
-      {
+
+    searchBox.addEventListener("keyup", function (event) {
+      if (event.keyCode == 13) {
         event.preventDefault();
         document.getElementById("searchBtn").click();
       }
@@ -135,8 +133,6 @@ if (session == null) {
       return listItem;
     }
     function showProfile() {
-       
-
       let box = document.getElementById("userbox");
       box.style.display = "inline-block";
       document.getElementById("editBtn").style.display = "none";
@@ -247,8 +243,6 @@ if (session == null) {
       }
     }
     function display() {
-       
-
       let data = JSON.parse(window.localStorage.getItem("user"));
       for (let i = 0; i < data.length; i++) {
         if (data[i].u_name == current_user) {
@@ -293,7 +287,7 @@ if (session == null) {
 
     function categ(value) {
       let selectId = 0;
-       
+
       if (value == "Personal") {
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
@@ -516,7 +510,6 @@ if (session == null) {
       }
     }
     function nameSeacrh() {
-     
       let searchByNameCount = 0;
       let name = document.getElementById("taskSearch").value;
       let nameReg = new RegExp(name, "gi");
