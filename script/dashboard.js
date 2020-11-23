@@ -140,21 +140,41 @@ if (session == null) {
      {
       document.getElementById("main_msg").innerText =
       "Please enter first name , last name and address";
+      document.getElementById("main_msg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("main_msg").innerHTML = "";
+                        document.getElementById("main_msg").style.backgroundColor = "";
+                    }, 1500);
      }
      else if(l_name == "")
      {
       document.getElementById("main_msg").innerText =
       "last name cannot be empty";
+      document.getElementById("main_msg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("main_msg").innerHTML = "";
+                        document.getElementById("main_msg").style.backgroundColor = "";
+                    }, 1500);
      }
      else if(addr == "")
      {
       document.getElementById("main_msg").innerText =
       "Address cannot be empty";
+      document.getElementById("main_msg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("main_msg").innerHTML = "";
+                        document.getElementById("main_msg").style.backgroundColor = "";
+                    }, 1500);
      }
      else if(f_Name =="")
      {
       document.getElementById("main_msg").innerText =
       "Please enter first name";
+      document.getElementById("main_msg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("main_msg").innerHTML = "";
+                        document.getElementById("main_msg").style.backgroundColor = "";
+                    }, 1500);
      }
      else
      {
@@ -188,6 +208,11 @@ if (session == null) {
      location.reload();
      document.getElementById("main_msg").innerText =
          "Profile Updated Successfully";
+         document.getElementById("main_msg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("main_msg").innerHTML = "";
+                        document.getElementById("main_msg").style.backgroundColor = "";
+                    }, 1500);
     }
 
     function logout() {
@@ -213,6 +238,11 @@ if (session == null) {
       {
         document.getElementById("main_msg").innerText =
          "Select image with jpeg ,jpg ,png etc extions only";
+         document.getElementById("main_msg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("main_msg").innerHTML = "";
+                        document.getElementById("main_msg").style.backgroundColor = "";
+                    }, 1500);
 
       }
 
@@ -229,6 +259,11 @@ if (session == null) {
       // console.log(pTodo.length);
       if (pTodo.length == 0) {
         document.getElementById("main_msg").innerHTML = "Please add task To the list";
+        document.getElementById("main_msg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("main_msg").innerHTML = "";
+                        document.getElementById("main_msg").style.backgroundColor = "";
+                    }, 1500);
       } else {
         // console.log(pTodo);
         taskname;
@@ -259,7 +294,7 @@ if (session == null) {
         let selectId = 0;
       document.getElementById("main_msg").innerText = "";
       if (value == "Personal") {
-        let hide = document.getElementById("delete").style.display="none";
+
 
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
@@ -270,6 +305,11 @@ if (session == null) {
         // console.log(pTodo.length);
         if (pTodo.length == 0) {
           document.getElementById("main_msg").innerHTML = "Please add To list";
+          document.getElementById("main_msg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("main_msg").innerHTML = "";
+                        document.getElementById("main_msg").style.backgroundColor = "";
+                    }, 1500);
         } else {
           // console.log(pTodo);
           taskname;
@@ -300,7 +340,7 @@ if (session == null) {
         }
         done_count = 0;
       } else if (value == "work") {
-        let hide = document.getElementById("delete").style.display="none";
+
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
           if (data[i].u_name == current_user) {
@@ -310,6 +350,11 @@ if (session == null) {
         // console.log(pTodo.length);
         if (pTodo.length == 0) {
           document.getElementById("main_msg").innerHTML = "Please add To list";
+          document.getElementById("main_msg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("main_msg").innerHTML = "";
+                        document.getElementById("main_msg").style.backgroundColor = "";
+                    }, 1500);
         } else {
           // console.log(pTodo);
           taskname;
@@ -337,7 +382,7 @@ if (session == null) {
         }
         done_count = 0;
       } else if (value == "Pending") {
-        let hide = document.getElementById("delete").style.display="none";
+     
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
           if (data[i].u_name == current_user) {
@@ -347,6 +392,11 @@ if (session == null) {
         // console.log(pTodo.length);
         if (pTodo.length == 0) {
           document.getElementById("main_msg").innerHTML = "Please add To list";
+          document.getElementById("main_msg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("main_msg").innerHTML = "";
+                        document.getElementById("main_msg").style.backgroundColor = "";
+                    }, 1500);
         } else {
           // console.log(pTodo);
           taskname;
@@ -372,7 +422,7 @@ if (session == null) {
         }
         done_count = 0;
       } else if (value == "Done") {
-        let hide = document.getElementById("delete").style.display="none";
+
 
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
@@ -383,6 +433,11 @@ if (session == null) {
         // console.log(pTodo.length);
         if (pTodo.length == 0) {
           document.getElementById("main_msg").innerHTML = "Please add To list";
+          document.getElementById("main_msg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("main_msg").innerHTML = "";
+                        document.getElementById("main_msg").style.backgroundColor = "";
+                    }, 1500);
         } else {
           // console.log(pTodo);
           taskname;
@@ -404,7 +459,7 @@ if (session == null) {
         }
         done_count = 0;
       } else if (value == "Due") {
-        let hide = document.getElementById("delete").style.display="none";
+    
 
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
@@ -414,6 +469,11 @@ if (session == null) {
         }
         if (pTodo.length == 0) {
           document.getElementById("main_msg").innerHTML = "Please add To list";
+          document.getElementById("main_msg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("main_msg").innerHTML = "";
+                        document.getElementById("main_msg").style.backgroundColor = "";
+                    }, 1500);
         } else {
           let today = new Date();
           let table = document.getElementById("display");
@@ -434,7 +494,7 @@ if (session == null) {
           table.innerHTML = rows;
         }
       } else if (value == "all") {
-        let hide = document.getElementById("delete").style.display="block";
+       
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
           if (data[i].u_name == current_user) {
@@ -443,14 +503,19 @@ if (session == null) {
         }
         if (pTodo.length == 0) {
           document.getElementById("main_msg").innerHTML = "Please add To list";
+          document.getElementById("main_msg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("main_msg").innerHTML = "";
+                        document.getElementById("main_msg").style.backgroundColor = "";
+                    }, 1500);
         } else {
           let table = document.getElementById("display");
           let rows =
-            "<th>Select</th> <th>Task Name</th> <th>Category</th> <th>Status</th><th></th>";
+            "<th>Task Name</th> <th>Category</th> <th>Status</th><th></th>";
           for (let i = 0; i < pTodo.length; i++) {
             if(pTodo[i].name != undefined)
             {
-                rows = rows +`<tr><td><input type="checkbox" name="" id="${selectId++}"></td> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td></tr>`;
+                rows = rows +`<tr><td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td></tr>`;
             }
           }
           table.innerHTML = rows;
@@ -464,6 +529,11 @@ if (session == null) {
       if (name == "") {
         document.getElementById("main_msg").innerText =
           "Please enter a valid Task name";
+          document.getElementById("main_msg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("main_msg").innerHTML = "";
+                        document.getElementById("main_msg").style.backgroundColor = "";
+                    }, 1500);
       } else {
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
@@ -474,6 +544,11 @@ if (session == null) {
         // console.log(pTodo.length);
         if (pTodo.length == 0) {
           document.getElementById("main_msg").innerHTML = "Please add To list";
+          document.getElementById("main_msg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("main_msg").innerHTML = "";
+                        document.getElementById("main_msg").style.backgroundColor = "";
+                    }, 1500);
         } else {
           // console.log(pTodo);
           taskname;
@@ -481,6 +556,7 @@ if (session == null) {
           category;
           reminderDate;
 
+          let nameRegEx = /`${name}`/g;
           let table = document.getElementById("display");
           let rows =
             "<th>Task Name</th> <th>Category</th> <th>Status</th><th></th>";
@@ -499,6 +575,11 @@ if (session == null) {
           table.innerHTML = rows;
           if (searchByNameCount == 0) {
             document.getElementById("main_msg").innerHTML = "Task not found";
+            document.getElementById("main_msg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("main_msg").innerHTML = "";
+                        document.getElementById("main_msg").style.backgroundColor = "";
+                    }, 1500);
           }
         }
         done_count = 0;
@@ -586,60 +667,6 @@ if (session == null) {
         }
       }
       publictable.innerHTML = rows;
-    }
-  }
-  function deletee()
-  {
-    let all = document.getElementById("all");
-    let temp = [];
-    let delet = [];
-    let data = JSON.parse(window.localStorage.getItem("user"));
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].u_name == current_user) {
-        pTodo = data[i].pToDo;
-      }
-    }
-  
-    if(all.checked)
-    {
-        for(let i =0 ; i < pTodo.length ; i++)
-        {
-            let task = document.getElementById(i);
-            if(task !=null)
-            {
-                if(task.checked && task != null)
-                {
-                    delet.push(i);
-                }
-            }
-        }
-        for(let i=0,k=0; i < pTodo.length ; i++)
-        {
-            let flag = false;
-            for(let j=0; j < delet.length; j++ )
-            {
-                if(i == delet[j])
-                {
-                    flag = true;
-                }
-            }
-            if(flag == false)
-            {
-                temp[k] = pTodo[i];
-                k++;
-            }
-        }
-        for (let i = 0; i < data.length; i++) {
-            if (data[i].u_name == current_user) {
-               data[i].pToDo = temp;
-            }
-          }
-        window.localStorage.setItem('user',JSON.stringify(data)); 
-        document.getElementById("main_msg").innerHTML = "Deleted the selected tasks"; 
-        display();
-    }
-    else{
-    document.getElementById("main_msg").innerHTML = "Please select all category to delete tasks";
     }
   }
   categ("all");

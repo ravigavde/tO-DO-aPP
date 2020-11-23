@@ -80,7 +80,12 @@ else
         }   
         else
         {
-            document.getElementById("errorMsg").innerText = "Select a Task";
+            document.getElementById("errorMsg").innerText = "Select a Task";               
+            document.getElementById("errorMsg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("errorMsg").innerHTML = "";
+                        document.getElementById("errorMsg").style.backgroundColor = "";
+                    }, 1500);
         }
         
     }
@@ -223,6 +228,7 @@ else
     
         task_name = document.getElementById("tasks").value;
         e_date  =   document.getElementById("e_date").value;
+        let today = new Date();
         rem_radio = document.getElementsByClassName("r_date");
         rem_date = rem_radio[1].value;
         let rad = document.getElementsByName("rem");
@@ -235,34 +241,100 @@ else
         if(task_name == "")
         {
             document.getElementById("errorMsg").innerText = "Please enter task name";
+            document.getElementById("errorMsg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("errorMsg").innerHTML = "";
+                        document.getElementById("errorMsg").style.backgroundColor = "";
+                    }, 1500);
+            document.getElementById("errorMsg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("errorMsg").innerHTML = "";
+                        document.getElementById("errorMsg").style.backgroundColor = "";
+                    }, 1500);
             correct = false;
     
         }
         else if (e_date == "")
         {
             document.getElementById("errorMsg").innerText = "Please select date";
+            document.getElementById("errorMsg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("errorMsg").innerHTML = "";
+                        document.getElementById("errorMsg").style.backgroundColor = "";
+                    }, 1500);
+            correct = false;   
+        }
+        else if( Date.parse(e_date) <= today)
+        {
+            document.getElementById("errorMsg").innerText = "Please select date greater tha today";
+            document.getElementById("errorMsg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("errorMsg").innerHTML = "";
+                        document.getElementById("errorMsg").style.backgroundColor = "";
+                    }, 1500);
             correct = false;   
         }
         else if(category == "")
         {
             document.getElementById("errorMsg").innerText = "Please enter category";
+            document.getElementById("errorMsg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("errorMsg").innerHTML = "";
+                        document.getElementById("errorMsg").style.backgroundColor = "";
+                    }, 1500);
             correct = false;
         }
         else if(rad[0].checked == false  && rad[1].checked == false)
         {
             document.getElementById("errorMsg").innerText = "Please select yes/no for reminder";
+            document.getElementById("errorMsg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("errorMsg").innerHTML = "";
+                        document.getElementById("errorMsg").style.backgroundColor = "";
+                    }, 1500);
             correct = false;
         }
         else if(pub_rad[0].checked == false  && pub_rad[1].checked == false)
         {
             document.getElementById("errorMsg").innerText = "Please select yes/no for public";
+            document.getElementById("errorMsg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("errorMsg").innerHTML = "";
+                        document.getElementById("errorMsg").style.backgroundColor = "";
+                    }, 1500);
             correct = false;
         }
         else if(rad[0].checked == true && rem_date == "" )
         {
             document.getElementById("errorMsg").innerText = "Please select reminder date";
+            document.getElementById("errorMsg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("errorMsg").innerHTML = "";
+                        document.getElementById("errorMsg").style.backgroundColor = "";
+                    }, 1500);
             correct = false;
         }
+        else if(rad[0].checked == true && Date.parse(rem_date) < today)
+        {
+            document.getElementById("errorMsg").innerText = "Please select reminder date greater tha today";
+            document.getElementById("errorMsg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("errorMsg").innerHTML = "";
+                        document.getElementById("errorMsg").style.backgroundColor = "";
+                    }, 1500);
+            correct = false;
+        }
+        else if(rad[0].checked == true && Date.parse(rem_date) >= Date.parse(e_date))
+        {
+            document.getElementById("errorMsg").innerText = "Please select reminder date less than end date";
+            document.getElementById("errorMsg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("errorMsg").innerHTML = "";
+                        document.getElementById("errorMsg").style.backgroundColor = "";
+                    }, 1500);
+            correct = false;
+        }
+
     
         if(correct)
         {   
@@ -283,6 +355,11 @@ else
                window.localStorage.setItem('user',JSON.stringify(data));
                
             document.getElementById("errorMsg").innerText = "Sucessfully Added Task";
+            document.getElementById("errorMsg").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("errorMsg").innerHTML = "";
+                        document.getElementById("errorMsg").style.backgroundColor = "";
+                    }, 1500);
             document.getElementById("remDate").value="";
             document.getElementById("e_date").value="";
     

@@ -11,6 +11,12 @@ section
 {
     padding: 70px 30px 0px 30px;
 }
+#errorMsg{
+    color: antiquewhite;
+    display: block;
+    width: 400px;
+    margin: auto;
+}
 
 .edit_list {
     border: 2px solid black;
@@ -134,7 +140,7 @@ input{
 
 .edit_list {
     border: 2px solid black;
-    width: 82%;
+    width: 91%;
     border: 0;
     background: none;
     display: block;
@@ -146,6 +152,12 @@ input{
     color: whitesmoke;
     border-radius: 24px;
     transition: 0.25s;
+}
+#select{
+    margin-left: 0px;
+}
+input[type="checkbox"]{
+    margin-right: 62px;
 }
 
 .sub input[type="text"]:focus,

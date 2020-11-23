@@ -83,10 +83,7 @@ input[type="text" i] {
 th{
     font-size: 24px;
 }
-td{
-    padding: 10px;
-    font-size: 18px;
-}
+
 h2{
     font-size: 30px;
 }
@@ -106,6 +103,7 @@ table{
     width: 400px;
     margin: auto;
     font-size: 18px;
+    color: antiquewhite;
 }
 .searchByName,.radioCategory{
     margin: 20px 20px 20px 0px;
@@ -139,6 +137,9 @@ input[type="button"] {
 
 td{
     border: 1px solid black;
+    padding: 10px;
+    font-size: 18px;
+    TEXT-ALIGN: center;
 }
 
 .right input[type="button"],

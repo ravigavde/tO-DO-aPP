@@ -47,14 +47,30 @@ if(session == null)
                 if(username == "" && password =="")
                 {
                     document.getElementById("error").innerHTML = "Please enter username and password";
+                    document.getElementById("error").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("error").innerHTML = "";
+                        document.getElementById("error").style.backgroundColor = "";
+                    }, 1500);
+
                 }
                 else if(username == "")
                 {
                     document.getElementById("error").innerHTML = "Please enter username";
+                    document.getElementById("error").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("error").innerHTML = "";
+                        document.getElementById("error").style.backgroundColor = "";
+                    }, 1500);
                 }
                 else if(password == "")
                 {
                     document.getElementById("error").innerHTML = "Please enter password";
+                    document.getElementById("error").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("error").innerHTML = "";
+                        document.getElementById("error").style.backgroundColor = "";
+                    }, 1500);
                 }
                 else if(data != null )
                 {
@@ -72,7 +88,12 @@ if(session == null)
                         if(a == false)
                         {
                             document.getElementById("error").innerHTML = "User not found please check username/password";
-                        }
+                            document.getElementById("error").style.backgroundColor = "red";
+                            setTimeout(() => {
+                                document.getElementById("error").innerHTML = "";
+                                document.getElementById("error").style.backgroundColor = "";
+                            }, 1500);
+                                }
                         else
                         {
                             let a = document.createElement('a');  
@@ -83,6 +104,11 @@ if(session == null)
                 else
                 {
                     document.getElementById("error").innerHTML = "Please create your account first"; 
+                    document.getElementById("error").style.backgroundColor = "red";
+                    setTimeout(() => {
+                        document.getElementById("error").innerHTML = "";
+                        document.getElementById("error").style.backgroundColor = "";
+                    }, 1500);
                 }
                 a = false;
             }
@@ -107,4 +133,3 @@ else
     a.href = "dashboard.html";  
     a.click();
 }
-

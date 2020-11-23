@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
- 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,12 +13,12 @@
 
 <body onload="display();">
     <header>
-        <img id = "logo"src="images/logo.jpg" alt="">
+        <img id="logo" src="images/logo.jpg" alt="">
         <h3 id="head">Start Adding your Tasks </h3>
         <a class="dashboard" href="dashboard.html">Dashboard</a>
     </header>
     <section>
-        <div class="main"> 
+        <div class="main">
             <div class="addDetails">
                 <div id="errorMsg"></div>
 
@@ -34,45 +34,37 @@
                 <label for="">Want a reminder date?</label>
                 <label for="">yes</label><input type="radio" onclick="remindDate('yes')" name="rem" id="">
                 <label for="">no</label><input type="radio" onclick="remindDate('no')" name="rem" id="">
-                <label for="" class="r_date" >Reminder Date</label> <input type="date" name="" class="r_date" id="remDate">
-                
+                <label for="" class="r_date">Reminder Date</label> <input type="date" name="" class="r_date"
+                    id="remDate">
+
                 <label class="labelPub" for="">Show as public?</label>
                 <label for="">yes</label><input type="radio" onclick="isPublic('yes')" name="pub" id="">
                 <label for="">no</label><input type="radio" onclick="isPublic('no')" name="pub" id="">
                 <br>
                 <input type="button" class="add" value="ADD" onclick="add()">
             </div>
-
-
-
-            <div class="edit_list">
-                <p class="sec">Task Name</p>
-                <p class="sec">End date</p>
-                <p class="sec">Category</p>
-                <p class="sec">Reminder Date</p>
-                <p class="sec">Public View</p>
-
-
-                <div id="List">
-                    <table id="list_t" class="edit">
-                        <thead>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
-
-
-                </div>
-                <div class="btns">
-                    <input type="button" value="Delete" onclick="deletee()">
-                    <input type="button" value="Save" onclick="Confirm()">
-                </div>
-
-            </div>
-            <div class="permanent_list">
-                    
-            </div>
+                    <div class="edit_list">
+                        <p class="sec" id="select">Select</p>
+                        <p class="sec">Task Name</p>
+                        <p class="sec">End date</p>
+                        <p class="sec">Category</p>
+                        <p class="sec">Reminder Date</p>
+                        <p class="sec">Public View</p>
+    
+    
+                        <div id="List">
+                            <table id="list_t" class="edit">
+                                <thead>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="btns">
+                            <input type="button" value="Delete" onclick="deletee()">
+                            <input type="button" value="Save" onclick="Confirm()">
+                        </div>
+                    </div>
         </div>
     </section>
 
