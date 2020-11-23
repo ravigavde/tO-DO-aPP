@@ -129,6 +129,7 @@ if (session == null) {
 
       let box = document.getElementById("userbox");
       box.style.display = "inline-block";
+      document.getElementById("editBtn").style.display="none";
     }
 
     function reset() {
@@ -188,7 +189,7 @@ if (session == null) {
        } else if (g == 2) {
          sex = "Other";
        }
-       console.log(sex);
+       
        for (let i = 0; i < data.length; i++) {
          if (current_user == data[i].u_name) {
            // console.log("reset data found");
@@ -204,15 +205,17 @@ if (session == null) {
        // console.log(JSON.stringify(data));
        window.localStorage.setItem("user", JSON.stringify(data));
        document.getElementById("userbox").style.display = "none";
-     }
-     location.reload();
-     document.getElementById("main_msg").innerText =
+       document.getElementById("main_msg").innerText =
          "Profile Updated Successfully";
          document.getElementById("main_msg").style.backgroundColor = "red";
                     setTimeout(() => {
                         document.getElementById("main_msg").innerHTML = "";
                         document.getElementById("main_msg").style.backgroundColor = "";
                     }, 1500);
+        setTimeout(() => {
+          location.reload();            
+        }, 1500);            
+     }
     }
 
     function logout() {

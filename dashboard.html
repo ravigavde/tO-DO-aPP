@@ -30,7 +30,7 @@
                 </ul>
                 <input type="button" class="btn" value="Save" onclick="reset()"><br>
             </div>
-            <input type="button" class="btn" value="Edit Profile" onclick="showProfile()">
+            <input type="button" class="btn" id="editBtn" value="Edit Profile" onclick="showProfile()">
         </div>
         <br>
         <br>
@@ -45,22 +45,22 @@
                 <p class="categoryHead">Category</p>
                 <ul class="ulradio">
                     <li>
-                        <label for="">All</label> <input onclick="categ('all')" type="radio" name="cat" checked id="all">
+                        <label class="tableLabel" for="">All</label> <input onclick="categ('all')" type="radio" name="cat" checked id="all">
                     </li>
                     <li>
-                        <label for="">Work</label> <input onclick="categ('work')" type="radio" name="cat" id="work">
+                        <label class="tableLabel" for="">Work</label> <input onclick="categ('work')" type="radio" name="cat" id="work">
                     </li>
                     <li>
-                        <label for="">Personal</label><input onclick="categ('Personal')" type="radio" name="cat" id="personal">
+                        <label class="tableLabel" for="">Personal</label><input onclick="categ('Personal')" type="radio" name="cat" id="personal">
                     </li>
                     <li>
-                        <label for="">Pending</label> <input onclick="categ('Pending')" type="radio" name="cat" id="pending">
+                        <label class="tableLabel" for="">Pending</label> <input onclick="categ('Pending')" type="radio" name="cat" id="pending">
                     </li>
                     <li>
-                        <label for="">Done</label> <input onclick="categ('Done')" type="radio" name="cat" id="done">
+                        <label class="tableLabel" for="">Done</label> <input onclick="categ('Done')" type="radio" name="cat" id="done">
                     </li>
                     <li>
-                        <label for="">Overdue</label> <input onclick="categ('Due')" type="radio" name="cat" id="">
+                        <label class="tableLabel" for="">Overdue</label> <input onclick="categ('Due')" type="radio" name="cat" id="">
                     </li>
                 </ul>    
             </div>

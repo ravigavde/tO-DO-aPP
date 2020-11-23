@@ -9,8 +9,11 @@ a{
     padding: 0px;
     margin: 0px;  
 }
-label{
+.tableLabel{
     color: black;
+}
+label{
+    color: whitesmoke;
 }
 body {
     background: #c8dcef;
@@ -41,6 +44,7 @@ body {
 {
     width: 328px;
     background-color: #191919;
+
 }
 .profile_pic:hover .btn
 {
@@ -49,6 +53,10 @@ body {
 .profile_pic:hover #profile
 {
     opacity: 1;
+}
+.btn
+{
+    display: inline;
 }
 
 #user_detailss{
