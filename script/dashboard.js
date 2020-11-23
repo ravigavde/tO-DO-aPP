@@ -6,6 +6,7 @@ if (session == null) {
 } else {
   // console.log("Hello this is dash borad");
   let current_user = localStorage.getItem("Current_user");
+  let searchBox = document.getElementById("taskSearch");
   let count = 0;
   let flag = false;
   let name_count = 0;
@@ -42,8 +43,9 @@ if (session == null) {
         active_user = data[i].u_name;
       }
     }
-
+    
     window.onload = function () {
+     
       document.getElementById("profile").src = profile;
       let unorderedList = document.getElementById("user_detailss");
       unorderedList.appendChild(first_name);
@@ -62,6 +64,14 @@ if (session == null) {
       public();
       reminder();
     };
+  
+    searchBox.addEventListener("keyup",function(event){
+      if(event.keyCode == 13)
+      {
+        event.preventDefault();
+        document.getElementById("searchBtn").click();
+      }
+    });
 
     function addTask(object) {
       // console.log("workjing"+object);
@@ -125,97 +135,88 @@ if (session == null) {
       return listItem;
     }
     function showProfile() {
-      document.getElementById("main_msg").innerText = "";
+       
 
       let box = document.getElementById("userbox");
       box.style.display = "inline-block";
-      document.getElementById("editBtn").style.display="none";
+      document.getElementById("editBtn").style.display = "none";
     }
 
     function reset() {
-     let f_Name = first_name.children[1].value;
-     let l_name = last_name.children[1].value;
-     let addr = address.children[1].value;
+      let f_Name = first_name.children[1].value;
+      let l_name = last_name.children[1].value;
+      let addr = address.children[1].value;
 
-     if(f_Name == ""  && l_name =="" && addr =="" )
-     {
-      document.getElementById("main_msg").innerText =
-      "Please enter first name , last name and address";
-      document.getElementById("main_msg").style.backgroundColor = "red";
-                    setTimeout(() => {
-                        document.getElementById("main_msg").innerHTML = "";
-                        document.getElementById("main_msg").style.backgroundColor = "";
-                    }, 1500);
-     }
-     else if(l_name == "")
-     {
-      document.getElementById("main_msg").innerText =
-      "last name cannot be empty";
-      document.getElementById("main_msg").style.backgroundColor = "red";
-                    setTimeout(() => {
-                        document.getElementById("main_msg").innerHTML = "";
-                        document.getElementById("main_msg").style.backgroundColor = "";
-                    }, 1500);
-     }
-     else if(addr == "")
-     {
-      document.getElementById("main_msg").innerText =
-      "Address cannot be empty";
-      document.getElementById("main_msg").style.backgroundColor = "red";
-                    setTimeout(() => {
-                        document.getElementById("main_msg").innerHTML = "";
-                        document.getElementById("main_msg").style.backgroundColor = "";
-                    }, 1500);
-     }
-     else if(f_Name =="")
-     {
-      document.getElementById("main_msg").innerText =
-      "Please enter first name";
-      document.getElementById("main_msg").style.backgroundColor = "red";
-                    setTimeout(() => {
-                        document.getElementById("main_msg").innerHTML = "";
-                        document.getElementById("main_msg").style.backgroundColor = "";
-                    }, 1500);
-     }
-     else
-     {
-       let a = document.getElementById("profileChange").files[0];
-       let sex;
-       let g = gender.children[1].options.selectedIndex;
-       if (g == 0) {
-         sex = "Male";
-       } else if (g == 1) {
-         sex = "Female";
-       } else if (g == 2) {
-         sex = "Other";
-       }
-       
-       for (let i = 0; i < data.length; i++) {
-         if (current_user == data[i].u_name) {
-           // console.log("reset data found");
-           data[i].f_Name = first_name.children[1].value;
-           data[i].l_name = last_name.children[1].value;
-           data[i].addr = address.children[1].value;
-           data[i].gen = sex;
-           if (a != undefined) {
-             data[i].img = document.getElementById("profileChange").src;
-           }
-         }
-       }
-       // console.log(JSON.stringify(data));
-       window.localStorage.setItem("user", JSON.stringify(data));
-       document.getElementById("userbox").style.display = "none";
-       document.getElementById("main_msg").innerText =
-         "Profile Updated Successfully";
-         document.getElementById("main_msg").style.backgroundColor = "red";
-                    setTimeout(() => {
-                        document.getElementById("main_msg").innerHTML = "";
-                        document.getElementById("main_msg").style.backgroundColor = "";
-                    }, 1500);
+      if (f_Name == "" && l_name == "" && addr == "") {
+        document.getElementById("main_msg").innerText =
+          "Please enter first name , last name and address";
+        document.getElementById("main_msg").style.backgroundColor = "red";
         setTimeout(() => {
-          location.reload();            
-        }, 1500);            
-     }
+          document.getElementById("main_msg").innerHTML = "";
+          document.getElementById("main_msg").style.backgroundColor = "";
+        }, 1500);
+      } else if (l_name == "") {
+        document.getElementById("main_msg").innerText =
+          "last name cannot be empty";
+        document.getElementById("main_msg").style.backgroundColor = "red";
+        setTimeout(() => {
+          document.getElementById("main_msg").innerHTML = "";
+          document.getElementById("main_msg").style.backgroundColor = "";
+        }, 1500);
+      } else if (addr == "") {
+        document.getElementById("main_msg").innerText =
+          "Address cannot be empty";
+        document.getElementById("main_msg").style.backgroundColor = "red";
+        setTimeout(() => {
+          document.getElementById("main_msg").innerHTML = "";
+          document.getElementById("main_msg").style.backgroundColor = "";
+        }, 1500);
+      } else if (f_Name == "") {
+        document.getElementById("main_msg").innerText =
+          "Please enter first name";
+        document.getElementById("main_msg").style.backgroundColor = "red";
+        setTimeout(() => {
+          document.getElementById("main_msg").innerHTML = "";
+          document.getElementById("main_msg").style.backgroundColor = "";
+        }, 1500);
+      } else {
+        let a = document.getElementById("profileChange").files[0];
+        let sex;
+        let g = gender.children[1].options.selectedIndex;
+        if (g == 0) {
+          sex = "Male";
+        } else if (g == 1) {
+          sex = "Female";
+        } else if (g == 2) {
+          sex = "Other";
+        }
+
+        for (let i = 0; i < data.length; i++) {
+          if (current_user == data[i].u_name) {
+            // console.log("reset data found");
+            data[i].f_Name = first_name.children[1].value;
+            data[i].l_name = last_name.children[1].value;
+            data[i].addr = address.children[1].value;
+            data[i].gen = sex;
+            if (a != undefined) {
+              data[i].img = document.getElementById("profileChange").src;
+            }
+          }
+        }
+        // console.log(JSON.stringify(data));
+        window.localStorage.setItem("user", JSON.stringify(data));
+        document.getElementById("userbox").style.display = "none";
+        document.getElementById("main_msg").innerText =
+          "Profile Updated Successfully";
+        document.getElementById("main_msg").style.backgroundColor = "red";
+        setTimeout(() => {
+          document.getElementById("main_msg").innerHTML = "";
+          document.getElementById("main_msg").style.backgroundColor = "";
+        }, 1500);
+        setTimeout(() => {
+          location.reload();
+        }, 1500);
+      }
     }
 
     function logout() {
@@ -228,30 +229,25 @@ if (session == null) {
     function changePic() {
       let imageReg = /.(gif|jpe?g|png|webp|bmp)$/i;
       let changePicInput = document.getElementById("profileChange");
-      if(imageReg.test(changePicInput.value))
-      {
+      if (imageReg.test(changePicInput.value)) {
         let reader = new FileReader();
         reader.readAsDataURL(changePicInput.files[0]);
         reader.onloadend = function (event) {
           let Image = document.getElementById("profileChange");
           Image.src = event.target.result;
         };
-      }
-      else
-      {
+      } else {
         document.getElementById("main_msg").innerText =
-         "Select image with jpeg ,jpg ,png etc extions only";
-         document.getElementById("main_msg").style.backgroundColor = "red";
-                    setTimeout(() => {
-                        document.getElementById("main_msg").innerHTML = "";
-                        document.getElementById("main_msg").style.backgroundColor = "";
-                    }, 1500);
-
+          "Select image with jpeg ,jpg ,png etc extions only";
+        document.getElementById("main_msg").style.backgroundColor = "red";
+        setTimeout(() => {
+          document.getElementById("main_msg").innerHTML = "";
+          document.getElementById("main_msg").style.backgroundColor = "";
+        }, 1500);
       }
-
     }
     function display() {
-      document.getElementById("main_msg").innerText = "";
+       
 
       let data = JSON.parse(window.localStorage.getItem("user"));
       for (let i = 0; i < data.length; i++) {
@@ -261,12 +257,13 @@ if (session == null) {
       }
       // console.log(pTodo.length);
       if (pTodo.length == 0) {
-        document.getElementById("main_msg").innerHTML = "Please add task To the list";
+        document.getElementById("main_msg").innerHTML =
+          "Please add task To the list";
         document.getElementById("main_msg").style.backgroundColor = "red";
-                    setTimeout(() => {
-                        document.getElementById("main_msg").innerHTML = "";
-                        document.getElementById("main_msg").style.backgroundColor = "";
-                    }, 1500);
+        setTimeout(() => {
+          document.getElementById("main_msg").innerHTML = "";
+          document.getElementById("main_msg").style.backgroundColor = "";
+        }, 1500);
       } else {
         // console.log(pTodo);
         taskname;
@@ -278,14 +275,15 @@ if (session == null) {
         let rows =
           "<th>Task Name</th> <th>Category</th> <th>Status</th><th></th>";
         for (let i = 0; i < pTodo.length; i++) {
-            if(pTodo[i].name != undefined)
-            {
-                rows =
-                  rows +
-                  `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${
-                    pTodo[i].status
-                  }</td><td><input onclick= "doneFun(this.id)" type="button" id=${done_count++} value="Done"></td></tr>`;
-            }
+          if (pTodo[i].name != undefined) {
+            rows =
+              rows +
+              `<tr> <td>${pTodo[i].name}</td><td>${
+                pTodo[i].category
+              }</td> <td>${
+                pTodo[i].status
+              }</td><td><input onclick= "doneFun(this.id)" type="button" id=${done_count++} value="Done"></td></tr>`;
+          }
         }
         table.innerHTML = rows;
       }
@@ -294,11 +292,9 @@ if (session == null) {
     }
 
     function categ(value) {
-        let selectId = 0;
-      document.getElementById("main_msg").innerText = "";
+      let selectId = 0;
+       
       if (value == "Personal") {
-
-
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
           if (data[i].u_name == current_user) {
@@ -309,10 +305,10 @@ if (session == null) {
         if (pTodo.length == 0) {
           document.getElementById("main_msg").innerHTML = "Please add To list";
           document.getElementById("main_msg").style.backgroundColor = "red";
-                    setTimeout(() => {
-                        document.getElementById("main_msg").innerHTML = "";
-                        document.getElementById("main_msg").style.backgroundColor = "";
-                    }, 1500);
+          setTimeout(() => {
+            document.getElementById("main_msg").innerHTML = "";
+            document.getElementById("main_msg").style.backgroundColor = "";
+          }, 1500);
         } else {
           // console.log(pTodo);
           taskname;
@@ -322,7 +318,7 @@ if (session == null) {
 
           let table = document.getElementById("display");
           let rows =
-          "<th>Task Name</th> <th>Category</th> <th>Status</th><th>End Date</th><th></th>";
+            "<th>Task Name</th> <th>Category</th> <th>Status</th><th>End Date</th><th></th>";
           for (let i = 0; i < pTodo.length; i++) {
             if (
               pTodo[i].category == "Personal" ||
@@ -330,12 +326,12 @@ if (session == null) {
             ) {
               if (pTodo[i].status != "Done") {
                 rows =
-                rows +
-                `<tr> <td>${pTodo[i].name}</td><td>${
-                  pTodo[i].category
-                }</td> <td>${
-                  pTodo[i].status
-                }</td><td>${pTodo[i].endDate}</td><td><input onclick= "doneFun(this.id)" type="button" id=${done_count++} value="Done"></td></tr>`;
+                  rows +
+                  `<tr> <td>${pTodo[i].name}</td><td>${
+                    pTodo[i].category
+                  }</td> <td>${pTodo[i].status}</td><td>${
+                    pTodo[i].endDate
+                  }</td><td><input onclick= "doneFun(this.id)" type="button" id=${done_count++} value="Done"></td></tr>`;
               }
             }
           }
@@ -343,7 +339,6 @@ if (session == null) {
         }
         done_count = 0;
       } else if (value == "work") {
-
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
           if (data[i].u_name == current_user) {
@@ -354,10 +349,10 @@ if (session == null) {
         if (pTodo.length == 0) {
           document.getElementById("main_msg").innerHTML = "Please add To list";
           document.getElementById("main_msg").style.backgroundColor = "red";
-                    setTimeout(() => {
-                        document.getElementById("main_msg").innerHTML = "";
-                        document.getElementById("main_msg").style.backgroundColor = "";
-                    }, 1500);
+          setTimeout(() => {
+            document.getElementById("main_msg").innerHTML = "";
+            document.getElementById("main_msg").style.backgroundColor = "";
+          }, 1500);
         } else {
           // console.log(pTodo);
           taskname;
@@ -375,9 +370,9 @@ if (session == null) {
                   rows +
                   `<tr> <td>${pTodo[i].name}</td><td>${
                     pTodo[i].category
-                  }</td> <td>${
-                    pTodo[i].status
-                  }</td><td>${pTodo[i].endDate}</td><td><input onclick= "doneFun(this.id)" type="button" id=${done_count++} value="Done"></td></tr>`;
+                  }</td> <td>${pTodo[i].status}</td><td>${
+                    pTodo[i].endDate
+                  }</td><td><input onclick= "doneFun(this.id)" type="button" id=${done_count++} value="Done"></td></tr>`;
               }
             }
           }
@@ -385,7 +380,6 @@ if (session == null) {
         }
         done_count = 0;
       } else if (value == "Pending") {
-     
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
           if (data[i].u_name == current_user) {
@@ -396,10 +390,10 @@ if (session == null) {
         if (pTodo.length == 0) {
           document.getElementById("main_msg").innerHTML = "Please add To list";
           document.getElementById("main_msg").style.backgroundColor = "red";
-                    setTimeout(() => {
-                        document.getElementById("main_msg").innerHTML = "";
-                        document.getElementById("main_msg").style.backgroundColor = "";
-                    }, 1500);
+          setTimeout(() => {
+            document.getElementById("main_msg").innerHTML = "";
+            document.getElementById("main_msg").style.backgroundColor = "";
+          }, 1500);
         } else {
           // console.log(pTodo);
           taskname;
@@ -409,24 +403,22 @@ if (session == null) {
 
           let table = document.getElementById("display");
           let rows =
-          "<th>Task Name</th> <th>Category</th> <th>Status</th><th>End Date</th><th></th>";
+            "<th>Task Name</th> <th>Category</th> <th>Status</th><th>End Date</th><th></th>";
           for (let i = 0; i < pTodo.length; i++) {
             if (pTodo[i].status == "Pending" || pTodo[i].status == "pending") {
-                rows =
+              rows =
                 rows +
                 `<tr> <td>${pTodo[i].name}</td><td>${
                   pTodo[i].category
-                }</td> <td>${
-                  pTodo[i].status
-                }</td><td>${pTodo[i].endDate}</td><td><input onclick= "doneFun(this.id)" type="button" id=${done_count++} value="Done"></td></tr>`;
+                }</td> <td>${pTodo[i].status}</td><td>${
+                  pTodo[i].endDate
+                }</td><td><input onclick= "doneFun(this.id)" type="button" id=${done_count++} value="Done"></td></tr>`;
             }
           }
           table.innerHTML = rows;
         }
         done_count = 0;
       } else if (value == "Done") {
-
-
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
           if (data[i].u_name == current_user) {
@@ -437,10 +429,10 @@ if (session == null) {
         if (pTodo.length == 0) {
           document.getElementById("main_msg").innerHTML = "Please add To list";
           document.getElementById("main_msg").style.backgroundColor = "red";
-                    setTimeout(() => {
-                        document.getElementById("main_msg").innerHTML = "";
-                        document.getElementById("main_msg").style.backgroundColor = "";
-                    }, 1500);
+          setTimeout(() => {
+            document.getElementById("main_msg").innerHTML = "";
+            document.getElementById("main_msg").style.backgroundColor = "";
+          }, 1500);
         } else {
           // console.log(pTodo);
           taskname;
@@ -462,8 +454,6 @@ if (session == null) {
         }
         done_count = 0;
       } else if (value == "Due") {
-    
-
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
           if (data[i].u_name == current_user) {
@@ -473,10 +463,10 @@ if (session == null) {
         if (pTodo.length == 0) {
           document.getElementById("main_msg").innerHTML = "Please add To list";
           document.getElementById("main_msg").style.backgroundColor = "red";
-                    setTimeout(() => {
-                        document.getElementById("main_msg").innerHTML = "";
-                        document.getElementById("main_msg").style.backgroundColor = "";
-                    }, 1500);
+          setTimeout(() => {
+            document.getElementById("main_msg").innerHTML = "";
+            document.getElementById("main_msg").style.backgroundColor = "";
+          }, 1500);
         } else {
           let today = new Date();
           let table = document.getElementById("display");
@@ -497,7 +487,6 @@ if (session == null) {
           table.innerHTML = rows;
         }
       } else if (value == "all") {
-       
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
           if (data[i].u_name == current_user) {
@@ -507,18 +496,19 @@ if (session == null) {
         if (pTodo.length == 0) {
           document.getElementById("main_msg").innerHTML = "Please add To list";
           document.getElementById("main_msg").style.backgroundColor = "red";
-                    setTimeout(() => {
-                        document.getElementById("main_msg").innerHTML = "";
-                        document.getElementById("main_msg").style.backgroundColor = "";
-                    }, 1500);
+          setTimeout(() => {
+            document.getElementById("main_msg").innerHTML = "";
+            document.getElementById("main_msg").style.backgroundColor = "";
+          }, 1500);
         } else {
           let table = document.getElementById("display");
           let rows =
             "<th>Task Name</th> <th>Category</th> <th>Status</th><th></th>";
           for (let i = 0; i < pTodo.length; i++) {
-            if(pTodo[i].name != undefined)
-            {
-                rows = rows +`<tr><td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td></tr>`;
+            if (pTodo[i].name != undefined) {
+              rows =
+                rows +
+                `<tr><td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td></tr>`;
             }
           }
           table.innerHTML = rows;
@@ -526,18 +516,18 @@ if (session == null) {
       }
     }
     function nameSeacrh() {
-      document.getElementById("main_msg").innerText = "";
+     
       let searchByNameCount = 0;
       let name = document.getElementById("taskSearch").value;
-      let nameReg = new RegExp(name,"gi");
+      let nameReg = new RegExp(name, "gi");
       if (name == "") {
         document.getElementById("main_msg").innerText =
           "Please enter a valid Task name";
-          document.getElementById("main_msg").style.backgroundColor = "red";
-                    setTimeout(() => {
-                        document.getElementById("main_msg").innerHTML = "";
-                        document.getElementById("main_msg").style.backgroundColor = "";
-                    }, 1500);
+        document.getElementById("main_msg").style.backgroundColor = "red";
+        setTimeout(() => {
+          document.getElementById("main_msg").innerHTML = "";
+          document.getElementById("main_msg").style.backgroundColor = "";
+        }, 1500);
       } else {
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
@@ -549,10 +539,10 @@ if (session == null) {
         if (pTodo.length == 0) {
           document.getElementById("main_msg").innerHTML = "Please add To list";
           document.getElementById("main_msg").style.backgroundColor = "red";
-                    setTimeout(() => {
-                        document.getElementById("main_msg").innerHTML = "";
-                        document.getElementById("main_msg").style.backgroundColor = "";
-                    }, 1500);
+          setTimeout(() => {
+            document.getElementById("main_msg").innerHTML = "";
+            document.getElementById("main_msg").style.backgroundColor = "";
+          }, 1500);
         } else {
           // console.log(pTodo);
           taskname;
@@ -580,10 +570,10 @@ if (session == null) {
           if (searchByNameCount == 0) {
             document.getElementById("main_msg").innerHTML = "Task not found";
             document.getElementById("main_msg").style.backgroundColor = "red";
-                    setTimeout(() => {
-                        document.getElementById("main_msg").innerHTML = "";
-                        document.getElementById("main_msg").style.backgroundColor = "";
-                    }, 1500);
+            setTimeout(() => {
+              document.getElementById("main_msg").innerHTML = "";
+              document.getElementById("main_msg").style.backgroundColor = "";
+            }, 1500);
           }
         }
         done_count = 0;
@@ -641,7 +631,7 @@ if (session == null) {
       let reminTable = document.getElementById("reminTable");
       let rows = "";
       for (let i = 0; i < pTodo.length; i++) {
-        if (pTodo[i].reminder != "" && pTodo[i].reminder != undefined ) {
+        if (pTodo[i].reminder != "" && pTodo[i].reminder != undefined) {
           rows =
             rows +
             `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].reminder}</td></tr>`;

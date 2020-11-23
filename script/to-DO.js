@@ -91,6 +91,10 @@ else
                              
                     }
                 }
+                else
+                {
+                    location.reload();
+                }
             }
                 count_id--;   
         }   
