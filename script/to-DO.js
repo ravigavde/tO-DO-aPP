@@ -58,25 +58,41 @@ else
     
     function deletee()
     {
-        if(document.getElementById(count_id - 1) != null)
+        let selectBox = false;
+     if(document.getElementById(count_id - 1) != null)
         {
             let myTab = document.getElementById('list_t');
             let deleteList = [];
             let del_c = 0;
             // console.log(count_id);
-            for (let index = 0; index < count_id ; index++) 
+            for(let index = 0; index < count_id ; index++)
             {
-                let a = document.getElementById(index);    
+                let a = document.getElementById(index);
                 if(a.checked)
                 {
-                    // console.log("true");
-                    deleteList.push(index);
-                    myTab.deleteRow(index - del_c );
-                    del_c++;
-                    delete_counter++;
-                }     
+                    selectBox = true;
+                }
             }
-            count_id--;
+            if(selectBox)
+            {
+                let conVal = confirm("Are you sure to delete ?");
+                if(conVal)
+                {
+                    for (let index = 0; index < count_id ; index++) 
+                    {
+                        let a = document.getElementById(index);    
+                            if(a.checked)
+                            {
+                                deleteList.push(index);
+                                myTab.deleteRow(index - del_c );
+                                del_c++;
+                                delete_counter++;
+                            }
+                             
+                    }
+                }
+            }
+                count_id--;   
         }   
         else
         {
@@ -220,6 +236,7 @@ else
     
     function add()
     {
+        
         let mainUl = document.getElementById("edit_unorderList");
     
         current_user = localStorage.getItem("Current_user");
@@ -228,6 +245,8 @@ else
     
         task_name = document.getElementById("tasks").value;
         e_date  =   document.getElementById("e_date").value;
+        document.getElementById("e_date").setAttribute("min",new Date());
+        
         let today = new Date();
         rem_radio = document.getElementsByClassName("r_date");
         rem_date = rem_radio[1].value;

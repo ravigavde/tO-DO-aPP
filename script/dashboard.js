@@ -529,6 +529,7 @@ if (session == null) {
       document.getElementById("main_msg").innerText = "";
       let searchByNameCount = 0;
       let name = document.getElementById("taskSearch").value;
+      let nameReg = new RegExp(name,"gi");
       if (name == "") {
         document.getElementById("main_msg").innerText =
           "Please enter a valid Task name";
@@ -564,7 +565,7 @@ if (session == null) {
           let rows =
             "<th>Task Name</th> <th>Category</th> <th>Status</th><th></th>";
           for (let i = 0; i < pTodo.length; i++) {
-            if (pTodo[i].name == name) {
+            if (nameReg.test(pTodo[i].name)) {
               searchByNameCount++;
               rows =
                 rows +
