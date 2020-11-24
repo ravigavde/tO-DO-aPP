@@ -391,12 +391,14 @@ if (session == null) {
 
     let tCategory = document.createElement("input");
     tCategory.type = "text";
+    tCategory.title = "Please enter only Personal or Work";
 
     let remDate = document.createElement("input");
     remDate.type = "date";
 
     let pubSelect = document.createElement("input");
     pubSelect.type = "text";
+    pubSelect.title = "Please Enter yes or no";
     let rowTable = "";
     for (let i = 0; i < toDo_raw_data.length; i++) {
       taskInput.value = toDo_raw_data[i].name;
