@@ -92,7 +92,7 @@ function add_user() {
     if (window.localStorage.getItem("user") != null) {
       let confirm = false;
       let data = JSON.parse(window.localStorage.getItem("user"));
-      console.log(data);
+      // console.log(data);
       for (let i = 0; i < data.length; i++) {
         var u1 = data[i].u_name;
         if (u1.toLowerCase() == user_name.toLowerCase()) {
@@ -116,7 +116,7 @@ function add_user() {
       window.localStorage.setItem("user", JSON.stringify(user_list));
       for (let i = 0; i < window.localStorage.length; i++) {
         let res = window.localStorage.getItem("user");
-        console.log(res);
+        // console.log(res);
       }
       document.getElementById("gen_error").innerText =
         "User Rgistered Successfully";
@@ -143,7 +143,7 @@ function encrpyt(value) {
   for (let i = 0; i < value.length; i++) {
     enc = enc + String.fromCharCode(value.charCodeAt(i) + 3);
   }
-  console.log(enc);
+  // console.log(enc);
   return enc;
 }
 function remove() {
