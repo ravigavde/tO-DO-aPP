@@ -84,7 +84,6 @@ function add_user() {
     addr: address,
     img: image,
     pass: enc_pass,
-    con_passwd: enc_pass,
     toDo: [],
     pToDo: [],
   };
