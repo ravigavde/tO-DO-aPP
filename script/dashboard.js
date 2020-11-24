@@ -677,7 +677,7 @@ if (session == null) {
     if (pTodo.length > 0) {
       // reminTable
       let reminTable = document.getElementById("reminTable");
-      let rows = "";
+      let rows = "  <th>Task Name</th> <th>Reminder Date</th>";
       for (let i = 0; i < pTodo.length; i++) {
         if (pTodo[i].reminder != "" && pTodo[i].reminder != undefined) {
           rows =
@@ -686,6 +686,10 @@ if (session == null) {
         }
       }
       reminTable.innerHTML = rows;
+      if(rows.length == 43)
+      {
+        reminTable.innerHTML = "<tr><td>No data to show</td></tr>";
+      }
     }
   }
 
@@ -700,7 +704,7 @@ if (session == null) {
       }
     }
     if (pTodo.length > 0) {
-      let rows = "";
+      let rows = "  <th>Task Name</th> <th>Category</th> <th>Status </th>";
       for (let i = 0; i < pTodo.length; i++) {
         if (pTodo[i].public == "yes" || pTodo[i].public == "Yes") {
           rows =
@@ -709,6 +713,10 @@ if (session == null) {
         }
       }
       publictable.innerHTML = rows;
+      if(rows.length == 55)
+      {
+        publictable.innerHTML = "<tr><td>No data to show</td></tr>";
+      }
     }
   }
   categ("all");
