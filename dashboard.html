@@ -13,7 +13,7 @@
 
 <body onload="display()">
     <header>
-        <img id = "logo"src="images/logo.jpg" alt="">
+        <img id="logo" src="images/logo.jpg" alt="">
         <h3 id="head">Manage your Tasks </h3>
         <div class="nav">
             <a href="to-DO.html" class="Todobtn">Add Task</a>
@@ -45,24 +45,30 @@
                 <p class="categoryHead">Category</p>
                 <ul class="ulradio">
                     <li>
-                        <label class="tableLabel" for="">All</label> <input onclick="categ('all')" type="radio" name="cat" checked id="all">
+                        <label class="tableLabel" for="">All</label> <input onclick="categ('all')" type="radio"
+                            name="cat" checked id="all">
                     </li>
                     <li>
-                        <label class="tableLabel" for="">Work</label> <input onclick="categ('work')" type="radio" name="cat" id="work">
+                        <label class="tableLabel" for="">Work</label> <input onclick="categ('work')" type="radio"
+                            name="cat" id="work">
                     </li>
                     <li>
-                        <label class="tableLabel" for="">Personal</label><input onclick="categ('Personal')" type="radio" name="cat" id="personal">
+                        <label class="tableLabel" for="">Personal</label><input onclick="categ('Personal')" type="radio"
+                            name="cat" id="personal">
                     </li>
                     <li>
-                        <label class="tableLabel" for="">Pending</label> <input onclick="categ('Pending')" type="radio" name="cat" id="pending">
+                        <label class="tableLabel" for="">Pending</label> <input onclick="categ('Pending')" type="radio"
+                            name="cat" id="pending">
                     </li>
                     <li>
-                        <label class="tableLabel" for="">Done</label> <input onclick="categ('Done')" type="radio" name="cat" id="done">
+                        <label class="tableLabel" for="">Done</label> <input onclick="categ('Done')" type="radio"
+                            name="cat" id="done">
                     </li>
                     <li>
-                        <label class="tableLabel" for="">Overdue</label> <input onclick="categ('Due')" type="radio" name="cat" id="">
+                        <label class="tableLabel" for="">Overdue</label> <input onclick="categ('Due')" type="radio"
+                            name="cat" id="">
                     </li>
-                </ul>    
+                </ul>
             </div>
             <table id="display">
             </table>
@@ -75,7 +81,7 @@
             <div id="reminder">
                 <h2>Reminder for tasks</h2>
                 <table id="reminTable">
-                  
+
                 </table>
             </div>
             <div id="public">
@@ -83,8 +89,35 @@
                 <table id="pubTable"></table>
             </div>
         </div>
-        
+
     </section>
+    <footer>
+        <ul class="social-network social-circle">
+            <li>
+                <a title="Linkedln" href="https://www.linkedin.com" class="icoLinkedin"><img src="" alt=""><img
+                        src="images/linkedin.png" alt=""></a>
+            </li>
+            <li>
+                <a href="https://twitter.com" title='Twitter' class="icoTwitter"><img src="images/twitter.png"
+                        alt=""></a>
+            </li>
+            <li>
+                <a href="https://medium.com" title="Medium" class="icoMedium"><img src="images/medium.png" alt=""></a>
+            </li>
+            <li>
+                <a href='https://www.quora.com' , title='Quora' class="icoQuora"><img src="images/quora.png" alt=""></a>
+
+            </li>
+            <li>
+                <a href='https://www.facebook.com' , title='Facebook' class="icoFacebook"><img src="images/facebook.png"
+                        alt=""></a>
+            </li>
+            <li>
+                <a href='https://www.instagram.com' , title='Instagram' class="icoInstagram"><img
+                        src="images/instagram.png" alt=""></a>
+            </li>
+        </ul>
+    </footer>
 </body>
 
 </html>
