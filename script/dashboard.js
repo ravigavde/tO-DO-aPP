@@ -287,7 +287,7 @@ if (session == null) {
 
     function categ(value) {
       let selectId = 0;
-
+      document.getElementById("nothing").innerText = "";
       if (value == "Personal") {
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
@@ -297,6 +297,11 @@ if (session == null) {
         }
         // console.log(pTodo.length);
         if (pTodo.length == 0) {
+          let table = document.getElementById("display");
+          let rows =
+            "<th>Task Name</th> <th>Category</th> <th>Status</th><th>End Date</th><th></th>";
+            table.innerHTML = rows;
+            document.getElementById("nothing").innerText = "No data to show";
           document.getElementById("main_msg").innerHTML = "Please add To list";
           document.getElementById("main_msg").style.backgroundColor = "red";
           setTimeout(() => {
@@ -329,6 +334,10 @@ if (session == null) {
               }
             }
           }
+          if(rows.length == 78)
+          {
+            document.getElementById("nothing").innerText = "No data to show";
+          }
           table.innerHTML = rows;
         }
         done_count = 0;
@@ -341,6 +350,11 @@ if (session == null) {
         }
         // console.log(pTodo.length);
         if (pTodo.length == 0) {
+          let table = document.getElementById("display");
+          let rows =
+            "<th>Task Name</th> <th>Category</th> <th>Status</th><th>End Date</th><th></th>";
+            table.innerHTML = rows;
+            document.getElementById("nothing").innerText = "No data to show";
           document.getElementById("main_msg").innerHTML = "Please add To list";
           document.getElementById("main_msg").style.backgroundColor = "red";
           setTimeout(() => {
@@ -370,6 +384,14 @@ if (session == null) {
               }
             }
           }
+          if(rows.length == 78)
+          {
+            document.getElementById("nothing").innerText = "No data to show";
+          }
+          if(rows.length == 78)
+          {
+            document.getElementById("nothing").innerText = "No data to show";
+          }
           table.innerHTML = rows;
         }
         done_count = 0;
@@ -382,6 +404,11 @@ if (session == null) {
         }
         // console.log(pTodo.length);
         if (pTodo.length == 0) {
+          let table = document.getElementById("display");
+          let rows =
+            "<th>Task Name</th> <th>Category</th> <th>Status</th><th>End Date</th><th></th>";
+            table.innerHTML = rows;
+            document.getElementById("nothing").innerText = "No data to show";
           document.getElementById("main_msg").innerHTML = "Please add To list";
           document.getElementById("main_msg").style.backgroundColor = "red";
           setTimeout(() => {
@@ -409,6 +436,10 @@ if (session == null) {
                 }</td><td><input onclick= "doneFun(this.id)" type="button" id=${done_count++} value="Done"></td></tr>`;
             }
           }
+          if(rows.length == 78)
+          {
+            document.getElementById("nothing").innerText = "No data to show";
+          }
           table.innerHTML = rows;
         }
         done_count = 0;
@@ -421,6 +452,11 @@ if (session == null) {
         }
         // console.log(pTodo.length);
         if (pTodo.length == 0) {
+          let rows =
+            "<th>Task Name</th> <th>Category</th> <th>Status</th><th></th>";
+            let table = document.getElementById("display");
+            table.innerHTML = rows;
+            document.getElementById("nothing").innerText = "No data to show";
           document.getElementById("main_msg").innerHTML = "Please add To list";
           document.getElementById("main_msg").style.backgroundColor = "red";
           setTimeout(() => {
@@ -444,6 +480,11 @@ if (session == null) {
                 `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td></tr>`;
             }
           }
+          console.log(rows.length);
+          if(rows.length == 61)
+          {
+            document.getElementById("nothing").innerText = "No data to show";
+          }
           table.innerHTML = rows;
         }
         done_count = 0;
@@ -455,6 +496,7 @@ if (session == null) {
           }
         }
         if (pTodo.length == 0) {
+          document.getElementById("nothing").innerText = "No data to show";
           document.getElementById("main_msg").innerHTML = "Please add To list";
           document.getElementById("main_msg").style.backgroundColor = "red";
           setTimeout(() => {
@@ -478,6 +520,10 @@ if (session == null) {
                 `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td><td>${pTodo[i].endDate}</td></tr>`;
             }
           }
+          if(rows.length == 69)
+          {
+            document.getElementById("nothing").innerText = "No data to show";
+          }
           table.innerHTML = rows;
         }
       } else if (value == "all") {
@@ -488,12 +534,17 @@ if (session == null) {
           }
         }
         if (pTodo.length == 0) {
+          let table = document.getElementById("display");
+          let rows =
+            "<th>Task Name</th> <th>Category</th> <th>Status</th><th></th>";
+            table.innerHTML = rows;
           document.getElementById("main_msg").innerHTML = "Please add To list";
           document.getElementById("main_msg").style.backgroundColor = "red";
           setTimeout(() => {
             document.getElementById("main_msg").innerHTML = "";
             document.getElementById("main_msg").style.backgroundColor = "";
           }, 1500);
+          document.getElementById("nothing").innerText = "No data to show";
         } else {
           let table = document.getElementById("display");
           let rows =
@@ -504,6 +555,10 @@ if (session == null) {
                 rows +
                 `<tr><td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td></tr>`;
             }
+          }
+          if(rows.length == 78)
+          {
+            document.getElementById("nothing").innerText = "No data to show";
           }
           table.innerHTML = rows;
         }

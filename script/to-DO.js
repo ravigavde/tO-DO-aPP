@@ -95,6 +95,7 @@ if (session == null) {
     let categ;
     let remindate;
     let publc;
+    let confirm ;
 
     let row_counter = 0;
     let data = JSON.parse(window.localStorage.getItem("user"));
@@ -179,6 +180,7 @@ if (session == null) {
         if (data[i].u_name == current_user) {
           data[i].pToDo.push(temp);
           // console.log(data[i].toDo);
+          confirm = data[i].pToDo;
         }
       }
 
@@ -187,15 +189,25 @@ if (session == null) {
     for (let i = 0; i < data.length; i++) {
       if (data[i].u_name == current_user) {
         data[i].toDo = [];
-        // data[i].pToDo.push(new_todo);
-        // console.log(data[i].toDo);
       }
     }
-    // console.log(data);
+    if(confirm != undefined)
+    {
+      alert("Succesfully saved data");
+      window.location = "dashboard.html";
+    }
+    else
+    {
+      document.getElementById("errorMsg").innerText = "Nothing to save, Please add some task first";
+      document.getElementById("errorMsg").style.backgroundColor = "red";
+      setTimeout(() => {
+        document.getElementById("errorMsg").innerHTML = "";
+        document.getElementById("errorMsg").style.backgroundColor = "";
+      }, 1500);
+    }
     count_id = 0;
     delete_counter = 0;
     window.localStorage.setItem("user", JSON.stringify(data));
-    window.location = "dashboard.html";
   }
 
   function add() {
