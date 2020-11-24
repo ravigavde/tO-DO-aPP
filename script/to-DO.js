@@ -43,8 +43,8 @@ if (session == null) {
   }
 
   function deletee() {
-    console.log("start "+count_id);
     let selectBox = false;
+    let start = count_id;
     if (document.getElementById(count_id - 1) != null) {
       let myTab = document.getElementById("list_t");
       let deleteList = [];
@@ -84,7 +84,15 @@ if (session == null) {
         document.getElementById("errorMsg").style.backgroundColor = "";
       }, 1500);
     }
-    console.log("end"+ count_id);
+    if(start == count_id)
+    {
+      document.getElementById("errorMsg").innerText = "Select a Task to delete";
+      document.getElementById("errorMsg").style.backgroundColor = "red";
+      setTimeout(() => {
+        document.getElementById("errorMsg").innerHTML = "";
+        document.getElementById("errorMsg").style.backgroundColor = "";
+      }, 1500);
+    }
   }
 
   function Confirm() {

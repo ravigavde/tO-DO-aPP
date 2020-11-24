@@ -33,14 +33,13 @@
                 </select> <br>
                 <label for="">Want a reminder date?</label>
                 <label for="">yes</label><input type="radio" onclick="remindDate('yes')" name="rem" id="">
-                <label for="">no</label><input type="radio" onclick="remindDate('no')" name="rem" id="">
+                <label for="">no</label><input type="radio" checked onclick="remindDate('no')" name="rem" id="">
                 <label for="" class="r_date">Reminder Date</label> <input type="date" name="" class="r_date"
                     id="remDate">
 
                 <label class="labelPub" for="">Show as public?</label>
                 <label for="">yes</label><input type="radio" onclick="isPublic('yes')" name="pub" id="">
-                <label for="">no</label><input type="radio" onclick="isPublic('no')" name="pub" id="">
-                <br>
+                <label for="">no</label><input type="radio" checked onclick="isPublic('no')" name="pub" id="">
                 <input type="button" class="add" value="ADD" onclick="add()">
             </div>
             <div class="edit_list">

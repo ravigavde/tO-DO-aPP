@@ -5,23 +5,19 @@
 body {
     margin: 0;
     padding: 0;
-    background: #c8dcef;
 }
 section
 {
     padding: 70px 30px 0px 30px;
 }
 #errorMsg{
-    color: antiquewhite;
+    color: black;
     display: block;
     width: 400px;
     margin: auto;
+    text-align: center;
 }
 
-.edit_list {
-    border: 2px solid black;
-    width: 774px;
-}
 .add:hover {
     background: aqua;
 }
@@ -120,11 +116,10 @@ input{
     background: aqua;
 }
 .addDetails{
-    border: 2px solid black;
+    
     border-radius: 10px;
     padding: 10px;
-    width: 1045px;
-    margin: auto;
+    background-color: #64f9dca8;
 }
 .labelPub{
     margin-left: 20px;
@@ -139,14 +134,12 @@ input{
 }
 
 .edit_list {
-    border: 2px solid black;
+    background-color: #64f9dca8;
     width: 91%;
     border: 0;
-    background: none;
     display: block;
     margin: 20px auto;
     text-align: left;
-    border: 2px solid black;
     padding: 14px 10px;
     outline: none;
     color: whitesmoke;
