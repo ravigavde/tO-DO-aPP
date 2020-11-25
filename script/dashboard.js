@@ -5,40 +5,40 @@ if (session == null) {
   a.click();
 } else {
   // console.log("Hello this is dash borad");
-  let current_user = localStorage.getItem("Current_user");
+  let currentUser = localStorage.getItem("Current_user");
   let searchBox = document.getElementById("taskSearch");
   let count = 0;
   let flag = false;
-  let name_count = 0;
+  let nameCount = 0;
   let pTodo;
 
-  let taskname;
+  let taskName;
   let endDate;
   let category;
   let reminderDate;
-  let done_count = 0;
+  let doneCount = 0;
 
-  // console.log("the current user is "+ current_user);
-  let greet = `Welcome ${current_user}`;
+  // console.log("the current user is "+ currentUser);
+  let greet = `Welcome ${currentUser}`;
 
   try {
     let data = JSON.parse(window.localStorage.getItem("user"));
     // console.log("In dashboard page");
 
-    let first_name;
-    let last_name;
+    let firstName;
+    let lastName;
     let address;
     let gender;
     let profile;
-    let temp_gender;
+    let tempGender;
 
     for (let i = 0; i < data.length; i++) {
-      if (current_user == data[i].u_name) {
-        first_name = addTask(data[i].f_Name);
-        last_name = addTask(data[i].l_name);
+      if (currentUser == data[i].u_name) {
+        firstName = addTask(data[i].f_Name);
+        lastName = addTask(data[i].l_name);
         address = addTask(data[i].addr);
         gender = addTask(data[i].gen);
-        temp_gender = data[i].gen;
+        tempGender = data[i].gen;
         profile = data[i].img;
         active_user = data[i].u_name;
       }
@@ -47,17 +47,17 @@ if (session == null) {
     window.onload = function () {
       document.getElementById("profile").src = profile;
       let unorderedList = document.getElementById("user_detailss");
-      unorderedList.appendChild(first_name);
-      unorderedList.appendChild(last_name);
+      unorderedList.appendChild(firstName);
+      unorderedList.appendChild(lastName);
       unorderedList.appendChild(gender);
       unorderedList.appendChild(address);
 
       document.getElementById("taskSearch").value = "";
-      if (temp_gender == "Male") {
+      if (tempGender == "Male") {
         document.getElementById("male").selected = true;
-      } else if (temp_gender == "Female") {
+      } else if (tempGender == "Female") {
         document.getElementById("female").selected = true;
-      } else if (temp_gender == "Other") {
+      } else if (tempGender == "Other") {
         document.getElementById("other").selected = true;
       }
       public();
@@ -76,31 +76,32 @@ if (session == null) {
       let editInput;
       let label = document.createElement("label");
 
-      if (name_count == 0) {
+      if (nameCount == 0) {
         editInput = document.createElement("input"); //text
         editInput.type = "text";
         editInput.value = object;
 
         label.innerText = "First Name ";
         editInput.className = "FirstName";
-        name_count++;
-      } else if (name_count == 1) {
+        nameCount++;
+      } else if (nameCount == 1) {
         editInput = document.createElement("input"); //text
         editInput.type = "text";
         editInput.value = object;
 
         label.innerText = "Last Name ";
         editInput.className = "LastName";
-        name_count++;
-      } else if (name_count == 2) {
+        nameCount++;
+      } else if (nameCount == 2) {
         editInput = document.createElement("TEXTAREA"); //text
         editInput.type = "text";
         editInput.value = object;
 
         label.innerText = "Address ";
+        label.id="addressLabel";
         editInput.className = "Address";
-        name_count++;
-      } else if (name_count == 3) {
+        nameCount++;
+      } else if (nameCount == 3) {
         editInput = document.createElement("select"); //text
         let option1 = document.createElement("option");
         let option2 = document.createElement("option");
@@ -123,7 +124,7 @@ if (session == null) {
         editInput.add(option3);
 
         label.innerText = "Gender ";
-        name_count++;
+        nameCount++;
         editInput.className = "Gender";
       }
 
@@ -139,11 +140,11 @@ if (session == null) {
     }
 
     function reset() {
-      let f_Name = first_name.children[1].value;
-      let l_name = last_name.children[1].value;
+      let fName = firstName.children[1].value;
+      let lName = lastName.children[1].value;
       let addr = address.children[1].value;
 
-      if (f_Name == "" && l_name == "" && addr == "") {
+      if (fName == "" && lName == "" && addr == "") {
         document.getElementById("main_msg").innerText =
           "Please enter first name , last name and address";
         document.getElementById("main_msg").style.backgroundColor = "red";
@@ -151,7 +152,7 @@ if (session == null) {
           document.getElementById("main_msg").innerHTML = "";
           document.getElementById("main_msg").style.backgroundColor = "";
         }, 1500);
-      } else if (l_name == "") {
+      } else if (lName == "") {
         document.getElementById("main_msg").innerText =
           "last name cannot be empty";
         document.getElementById("main_msg").style.backgroundColor = "red";
@@ -167,7 +168,7 @@ if (session == null) {
           document.getElementById("main_msg").innerHTML = "";
           document.getElementById("main_msg").style.backgroundColor = "";
         }, 1500);
-      } else if (f_Name == "") {
+      } else if (fName == "") {
         document.getElementById("main_msg").innerText =
           "Please enter first name";
         document.getElementById("main_msg").style.backgroundColor = "red";
@@ -188,10 +189,10 @@ if (session == null) {
         }
 
         for (let i = 0; i < data.length; i++) {
-          if (current_user == data[i].u_name) {
+          if (currentUser == data[i].u_name) {
             // console.log("reset data found");
-            data[i].f_Name = first_name.children[1].value;
-            data[i].l_name = last_name.children[1].value;
+            data[i].f_Name = firstName.children[1].value;
+            data[i].l_name = lastName.children[1].value;
             data[i].addr = address.children[1].value;
             data[i].gen = sex;
             if (a != undefined) {
@@ -245,7 +246,7 @@ if (session == null) {
     function display() {
       let data = JSON.parse(window.localStorage.getItem("user"));
       for (let i = 0; i < data.length; i++) {
-        if (data[i].u_name == current_user) {
+        if (data[i].u_name == currentUser) {
           pTodo = data[i].pToDo;
         }
       }
@@ -260,7 +261,7 @@ if (session == null) {
         }, 1500);
       } else {
         // console.log(pTodo);
-        taskname;
+        taskName;
         endDate;
         category;
         reminderDate;
@@ -276,12 +277,12 @@ if (session == null) {
                 pTodo[i].category
               }</td> <td>${
                 pTodo[i].status
-              }</td><td><input onclick= "doneFun(this.id)" type="button" id=${done_count++} value="Done"></td></tr>`;
+              }</td><td><input onclick= "doneFun(this.id)" type="button" id=${doneCount++} value="Done"></td></tr>`;
           }
         }
         table.innerHTML = rows;
       }
-      done_count = 0;
+      doneCount = 0;
       categ("all");
     }
 
@@ -291,7 +292,7 @@ if (session == null) {
       if (value == "Personal") {
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
-          if (data[i].u_name == current_user) {
+          if (data[i].u_name == currentUser) {
             pTodo = data[i].pToDo;
           }
         }
@@ -310,7 +311,7 @@ if (session == null) {
           }, 1500);
         } else {
           // console.log(pTodo);
-          taskname;
+          taskName;
           endDate;
           category;
           reminderDate;
@@ -330,7 +331,7 @@ if (session == null) {
                     pTodo[i].category
                   }</td> <td>${pTodo[i].status}</td><td>${
                     pTodo[i].endDate
-                  }</td><td><input onclick= "doneFun(this.id)" type="button" id=${done_count++} value="Done"></td></tr>`;
+                  }</td><td><input onclick= "doneFun(this.id)" type="button" id=${doneCount++} value="Done"></td></tr>`;
               }
             }
           }
@@ -340,11 +341,11 @@ if (session == null) {
           }
           table.innerHTML = rows;
         }
-        done_count = 0;
+        doneCount = 0;
       } else if (value == "work") {
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
-          if (data[i].u_name == current_user) {
+          if (data[i].u_name == currentUser) {
             pTodo = data[i].pToDo;
           }
         }
@@ -363,7 +364,7 @@ if (session == null) {
           }, 1500);
         } else {
           // console.log(pTodo);
-          taskname;
+          taskName;
           endDate;
           category;
           reminderDate;
@@ -380,7 +381,7 @@ if (session == null) {
                     pTodo[i].category
                   }</td> <td>${pTodo[i].status}</td><td>${
                     pTodo[i].endDate
-                  }</td><td><input onclick= "doneFun(this.id)" type="button" id=${done_count++} value="Done"></td></tr>`;
+                  }</td><td><input onclick= "doneFun(this.id)" type="button" id=${doneCount++} value="Done"></td></tr>`;
               }
             }
           }
@@ -394,11 +395,11 @@ if (session == null) {
           }
           table.innerHTML = rows;
         }
-        done_count = 0;
+        doneCount = 0;
       } else if (value == "Pending") {
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
-          if (data[i].u_name == current_user) {
+          if (data[i].u_name == currentUser) {
             pTodo = data[i].pToDo;
           }
         }
@@ -417,7 +418,7 @@ if (session == null) {
           }, 1500);
         } else {
           // console.log(pTodo);
-          taskname;
+          taskName;
           endDate;
           category;
           reminderDate;
@@ -433,7 +434,7 @@ if (session == null) {
                   pTodo[i].category
                 }</td> <td>${pTodo[i].status}</td><td>${
                   pTodo[i].endDate
-                }</td><td><input onclick= "doneFun(this.id)" type="button" id=${done_count++} value="Done"></td></tr>`;
+                }</td><td><input onclick= "doneFun(this.id)" type="button" id=${doneCount++} value="Done"></td></tr>`;
             }
           }
           if(rows.length == 78)
@@ -442,11 +443,11 @@ if (session == null) {
           }
           table.innerHTML = rows;
         }
-        done_count = 0;
+        doneCount = 0;
       } else if (value == "Done") {
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
-          if (data[i].u_name == current_user) {
+          if (data[i].u_name == currentUser) {
             pTodo = data[i].pToDo;
           }
         }
@@ -465,7 +466,7 @@ if (session == null) {
           }, 1500);
         } else {
           // console.log(pTodo);
-          taskname;
+          taskName;
           endDate;
           category;
           reminderDate;
@@ -487,11 +488,11 @@ if (session == null) {
           }
           table.innerHTML = rows;
         }
-        done_count = 0;
+        doneCount = 0;
       } else if (value == "Due") {
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
-          if (data[i].u_name == current_user) {
+          if (data[i].u_name == currentUser) {
             pTodo = data[i].pToDo;
           }
         }
@@ -529,7 +530,7 @@ if (session == null) {
       } else if (value == "all") {
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
-          if (data[i].u_name == current_user) {
+          if (data[i].u_name == currentUser) {
             pTodo = data[i].pToDo;
           }
         }
@@ -579,7 +580,7 @@ if (session == null) {
       } else {
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
-          if (data[i].u_name == current_user) {
+          if (data[i].u_name == currentUser) {
             pTodo = data[i].pToDo;
           }
         }
@@ -593,7 +594,7 @@ if (session == null) {
           }, 1500);
         } else {
           // console.log(pTodo);
-          taskname;
+          taskName;
           endDate;
           category;
           reminderDate;
@@ -611,11 +612,11 @@ if (session == null) {
                   pTodo[i].category
                 }</td> <td>${
                   pTodo[i].status
-                }</td><td><input onclick= "doneFun(this.id)" type="button" id=${done_count++} value="Done"></td></tr>`;
+                }</td><td><input onclick= "doneFun(this.id)" type="button" id=${doneCount++} value="Done"></td></tr>`;
             }
           }
           table.innerHTML = rows;
-          if (searchByNameCount == 0) {
+          if (rows.length == 61) {
             document.getElementById("main_msg").innerHTML = "Task not found";
             document.getElementById("main_msg").style.backgroundColor = "red";
             setTimeout(() => {
@@ -624,7 +625,7 @@ if (session == null) {
             }, 1500);
           }
         }
-        done_count = 0;
+        doneCount = 0;
       }
     }
 
@@ -642,7 +643,7 @@ if (session == null) {
       a = 0;
       let data = JSON.parse(window.localStorage.getItem("user"));
       for (let i = 0; i < data.length; i++) {
-        if (data[i].u_name == current_user) {
+        if (data[i].u_name == currentUser) {
           for (let j = 0; j < data[i].pToDo.length; j++) {
             if (data[i].pToDo[j].name == b) {
               data[i].pToDo[j].status = "Done";
@@ -670,7 +671,7 @@ if (session == null) {
     let div = document.getElementById("reminder");
     let data = JSON.parse(window.localStorage.getItem("user"));
     for (let i = 0; i < data.length; i++) {
-      if (data[i].u_name == current_user) {
+      if (data[i].u_name == currentUser) {
         pTodo = data[i].pToDo;
       }
     }
@@ -699,7 +700,7 @@ if (session == null) {
 
     let data = JSON.parse(window.localStorage.getItem("user"));
     for (let i = 0; i < data.length; i++) {
-      if (data[i].u_name == current_user) {
+      if (data[i].u_name == currentUser) {
         pTodo = data[i].pToDo;
       }
     }

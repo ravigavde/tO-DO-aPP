@@ -1,36 +1,36 @@
-let user_list = [];
+let userList = [];
 function add_user() {
-  let error_occured = false;
+  let errorOccured = false;
   let resetBtn = document.getElementById("resetBtn");
-  let first_name = document.getElementById("Name").value;
-  if (first_name == "") {
+  let firstName = document.getElementById("Name").value;
+  if (firstName == "") {
     document.getElementById("f_Error").innerText = "Enter first Name";
-    error_occured = true;
+    errorOccured = true;
   }
 
-  let user_name = document.getElementById("username").value;
-  let reg_email = /^[a-z A-Z 0-9 _ -]+@[a-zA-Z]+\.com$/gi;
+  let userName = document.getElementById("username").value;
+  let regEmail = /^[a-z A-Z 0-9 _ -]+@[a-zA-Z]+\.com$/gi;
 
-  if (!reg_email.test(user_name)) {
+  if (!regEmail.test(userName)) {
     document.getElementById("emaiError").innerText = "wrong email";
-    error_occured = true;
+    errorOccured = true;
   }
 
-  let last_name = document.getElementById("Last-Name").value;
-  if (last_name == "") {
+  let lastName = document.getElementById("Last-Name").value;
+  if (lastName == "") {
     document.getElementById("l_Error").innerText = "Enter Last name";
-    error_occured = true;
+    errorOccured = true;
   }
 
   let gender = document.getElementById("Gender").value;
   if (gender == "Select your Gender") {
     document.getElementById("g_Error").innerText = "Select Gender";
-    error_occured = true;
+    errorOccured = true;
   }
 
   let password = document.getElementById("pass1").value;
   let confirm_password = document.getElementById("pass2").value;
-  let enc_pass;
+  let encPass;
   let capital = /[A-Z]/g;
   let small = /[a-z]/g;
   let number = /[0-9]/g;
@@ -38,10 +38,10 @@ function add_user() {
 
   if (password != confirm_password) {
     document.getElementById("p_Error").innerText = "Password does not match";
-    error_occured = true;
+    errorOccured = true;
   } else if (password == "" || confirm_password == "") {
     document.getElementById("p_Error").innerText = "Please enter password";
-    error_occured = true;
+    errorOccured = true;
   } else if (
     !(
       capital.test(password) &&
@@ -54,53 +54,53 @@ function add_user() {
   ) {
     document.getElementById("p_Error").innerText =
       "Please enter password in between 7 to 16 characters which contain one upper and one lower case characters, numeric digits, any special symbol and first character must be a letter";
-    error_occured = true;
+    errorOccured = true;
   } else {
-    enc_pass = encrpyt(password);
+    encPass = encrpyt(password);
   }
 
   let address = document.getElementById("Address").value;
   if (address == "") {
     document.getElementById("a_Error").innerText = "Enter address";
-    error_occured = true;
+    errorOccured = true;
   }
 
   let image = document.getElementById("image").src;
   let imageReg = /.(gif|jpe?g|png|webp|bmp)$/i;
   if (image == "" || image == null) {
     document.getElementById("i_error").innerText = "please select a image";
-    error_occured = true;
+    errorOccured = true;
   } else if (imageReg.test(document.getElementById("image").value) == false) {
     document.getElementById("i_error").innerText =
       "cannot select document other than images";
-    error_occured = true;
+    errorOccured = true;
   }
 
-  var user_obj = {
-    f_Name: first_name,
-    l_name: last_name,
-    u_name: user_name,
+  var userObj = {
+    f_Name: firstName,
+    l_name: lastName,
+    u_name: userName,
     gen: gender,
     addr: address,
     img: image,
-    pass: enc_pass,
+    pass: encPass,
     toDo: [],
     pToDo: [],
   };
 
-  if (!error_occured) {
+  if (!errorOccured) {
     if (window.localStorage.getItem("user") != null) {
       let confirm = false;
       let data = JSON.parse(window.localStorage.getItem("user"));
       // console.log(data);
       for (let i = 0; i < data.length; i++) {
         var u1 = data[i].u_name;
-        if (u1.toLowerCase() == user_name.toLowerCase()) {
+        if (u1.toLowerCase() == userName.toLowerCase()) {
           confirm = true;
         }
       }
       if (!confirm) {
-        data.push(user_obj);
+        data.push(userObj);
         window.localStorage.setItem("user", JSON.stringify(data));
         document.getElementById("gen_error").innerText =
           "User Rgistered Successfully";
@@ -112,8 +112,8 @@ function add_user() {
           "Username already registered";
       }
     } else {
-      user_list.push(user_obj);
-      window.localStorage.setItem("user", JSON.stringify(user_list));
+      userList.push(userObj);
+      window.localStorage.setItem("user", JSON.stringify(userList));
       for (let i = 0; i < window.localStorage.length; i++) {
         let res = window.localStorage.getItem("user");
         // console.log(res);

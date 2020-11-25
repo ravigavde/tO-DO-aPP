@@ -4,19 +4,19 @@ if (session == null) {
   a.href = "index.html";
   a.click();
 } else {
-  let current_user = localStorage.getItem("Current_user");
-  let task_name;
-  let rem_radio;
-  let rem_date;
+  let currentUser = localStorage.getItem("CurrentUser");
+  let taskName;
+  let remRadio;
+  let remDate;
   let public;
-  let e_date;
+  let endDate;
   let category;
-  let count_id = 0;
-  let delete_counter = 0;
+  let countId = 0;
+  let deleteCounter = 0;
 
   let today = new Date().toISOString().split("T")[0];
 
-  let to_do = [];
+  let toDo = [];
 
   function remindDate(value) {
     // console.log(value);
@@ -25,7 +25,7 @@ if (session == null) {
       // console.log(a[0]);
       a[0].style.display = "inline";
       a[1].style.display = "inline";
-      rem_date = a[1].value;
+      remDate = a[1].value;
     } else {
       let a = document.getElementsByClassName("r_date");
       // console.log(a[0]);
@@ -44,13 +44,13 @@ if (session == null) {
 
   function deletee() {
     let selectBox = false;
-    let start = count_id;
-    if (document.getElementById(count_id - 1) != null) {
+    let start = countId;
+    if (document.getElementById(countId - 1) != null) {
       let myTab = document.getElementById("list_t");
       let deleteList = [];
-      let del_c = 0;
-      // console.log(count_id);
-      for (let index = 0; index < count_id; index++) {
+      let delC = 0;
+      // console.log(countId);
+      for (let index = 0; index < countId; index++) {
         let a = document.getElementById(index);
         if(a != null)
         {
@@ -62,16 +62,16 @@ if (session == null) {
       if (selectBox) {
         let conVal = confirm("Are you sure to delete ?");
         if (conVal) {
-          for (let index = 0; index < count_id; index++) {
+          for (let index = 0; index < countId; index++) {
             let a = document.getElementById(index);
             if (a.checked) {
               deleteList.push(index);
-              myTab.deleteRow(index - del_c);
-              del_c++; 
-              delete_counter++;
+              myTab.deleteRow(index - delC);
+              delC++; 
+              deleteCounter++;
             }
           }
-          count_id--;
+          countId--;
         } else {
           location.reload();
         }
@@ -84,7 +84,7 @@ if (session == null) {
         document.getElementById("errorMsg").style.backgroundColor = "";
       }, 1500);
     }
-    if(start == count_id)
+    if(start == countId)
     {
       document.getElementById("errorMsg").innerText = "Select a Task to delete";
       document.getElementById("errorMsg").style.backgroundColor = "red";
@@ -96,8 +96,8 @@ if (session == null) {
   }
 
   function Confirm() {
-    count_id = count_id - delete_counter;
-    let new_todo = [];
+    countId = countId - deleteCounter;
+    let newTodo = [];
     let taskname;
     let enddate;
     let categ;
@@ -105,13 +105,13 @@ if (session == null) {
     let publc;
     let confirm ;
 
-    let row_counter = 0;
+    let rowCounter = 0;
     let data = JSON.parse(window.localStorage.getItem("user"));
     let deleteList = [];
     let userTodo;
     let editedTodo = [];
-    // console.log("total count id" +count_id);
-    for (let index = 0; index < count_id; index++) {
+    // console.log("total count id" +countId);
+    for (let index = 0; index < countId; index++) {
       let a = document.getElementById(index);
       if (a.checked) {
         // console.log("true");
@@ -121,7 +121,7 @@ if (session == null) {
     console.log(deleteList);
 
     for (let i = 0; i < data.length; i++) {
-      if (data[i].u_name == current_user) {
+      if (data[i].u_name == currentUser) {
         userTodo = data[i].toDo;
       }
     }
@@ -135,44 +135,44 @@ if (session == null) {
     for (let i = 0; i < myTab.rows.length; i++) {
       // console.log(myTab.rows[i]);
 
-      let local_counter = 0;
+      let localCounter = 0;
       let tCells = myTab.rows.item(i).cells;
       for (let j = 0; j < tCells.length; j++) {
-        if (local_counter == 0) {
+        if (localCounter == 0) {
           let a = tCells.item(j);
           let b = a.childNodes[0].value;
           // console.log("name"+b);
-          local_counter++;
-        } else if (local_counter == 1) {
+          localCounter++;
+        } else if (localCounter == 1) {
           let a = tCells.item(j);
           let b = a.childNodes[0].value;
           // console.log("Task name"+b);
           taskname = b;
-          local_counter++;
-        } else if (local_counter == 2) {
+          localCounter++;
+        } else if (localCounter == 2) {
           let a = tCells.item(j);
           let b = a.childNodes[0].value;
           // console.log("End date"+b);
           enddate = b;
-          local_counter++;
-        } else if (local_counter == 3) {
+          localCounter++;
+        } else if (localCounter == 3) {
           let a = tCells.item(j);
           let b = a.childNodes[0].value;
           // console.log("Category"+b);
           categ = b;
-          local_counter++;
-        } else if (local_counter == 4) {
+          localCounter++;
+        } else if (localCounter == 4) {
           let a = tCells.item(j);
           let b = a.childNodes[0].value;
           // console.log("Reminder date"+b);
           remindDate = b;
-          local_counter++;
-        } else if (local_counter == 5) {
+          localCounter++;
+        } else if (localCounter == 5) {
           let a = tCells.item(j);
           let b = a.childNodes[0].value;
           // console.log("Is public"+b);
           publc = b;
-          local_counter++;
+          localCounter++;
         }
       }
       let temp = {
@@ -183,19 +183,19 @@ if (session == null) {
         reminder: remindDate,
         public: publc,
       };
-      // new_todo.push(temp);
+      // newTodo.push(temp);
       for (let i = 0; i < data.length; i++) {
-        if (data[i].u_name == current_user) {
+        if (data[i].u_name == currentUser) {
           data[i].pToDo.push(temp);
           // console.log(data[i].toDo);
           confirm = data[i].pToDo;
         }
       }
 
-      // console.log(row_counter++);
+      // console.log(rowCounter++);
     }
     for (let i = 0; i < data.length; i++) {
-      if (data[i].u_name == current_user) {
+      if (data[i].u_name == currentUser) {
         data[i].toDo = [];
       }
     }
@@ -213,32 +213,32 @@ if (session == null) {
         document.getElementById("errorMsg").style.backgroundColor = "";
       }, 1500);
     }
-    count_id = 0;
-    delete_counter = 0;
+    countId = 0;
+    deleteCounter = 0;
     window.localStorage.setItem("user", JSON.stringify(data));
   }
 
   function add() {
     let mainUl = document.getElementById("edit_unorderList");
 
-    current_user = localStorage.getItem("Current_user");
+    currentUser = localStorage.getItem("currentUser");
     let data = JSON.parse(window.localStorage.getItem("user"));
     let correct = true;
 
-    task_name = document.getElementById("tasks").value;
-    e_date = document.getElementById("e_date").value;
+    taskName = document.getElementById("tasks").value;
+    endDate = document.getElementById("e_date").value;
     document.getElementById("e_date").setAttribute("min", new Date());
 
     let today = new Date();
-    rem_radio = document.getElementsByClassName("r_date");
-    rem_date = rem_radio[1].value;
+    remRadio = document.getElementsByClassName("r_date");
+    remDate = remRadio[1].value;
     let rad = document.getElementsByName("rem");
-    let pub_rad = document.getElementsByName("pub");
+    let pubRadio = document.getElementsByName("pub");
 
     category = document.getElementById("priority").value;
-    // console.log(task_name + e_date + category);
+    // console.log(taskName + endDate + category);
 
-    if (task_name == "") {
+    if (taskName == "") {
       document.getElementById("errorMsg").innerText = "Please enter task name";
       document.getElementById("errorMsg").style.backgroundColor = "red";
       setTimeout(() => {
@@ -251,7 +251,7 @@ if (session == null) {
         document.getElementById("errorMsg").style.backgroundColor = "";
       }, 1500);
       correct = false;
-    } else if (e_date == "") {
+    } else if (endDate == "") {
       document.getElementById("errorMsg").innerText = "Please select date";
       document.getElementById("errorMsg").style.backgroundColor = "red";
       setTimeout(() => {
@@ -259,7 +259,7 @@ if (session == null) {
         document.getElementById("errorMsg").style.backgroundColor = "";
       }, 1500);
       correct = false;
-    } else if (Date.parse(e_date) <= today) {
+    } else if (Date.parse(endDate) <= today) {
       document.getElementById("errorMsg").innerText =
         "Please select date greater tha today";
       document.getElementById("errorMsg").style.backgroundColor = "red";
@@ -285,7 +285,7 @@ if (session == null) {
         document.getElementById("errorMsg").style.backgroundColor = "";
       }, 1500);
       correct = false;
-    } else if (pub_rad[0].checked == false && pub_rad[1].checked == false) {
+    } else if (pubRadio[0].checked == false && pubRadio[1].checked == false) {
       document.getElementById("errorMsg").innerText =
         "Please select yes/no for public";
       document.getElementById("errorMsg").style.backgroundColor = "red";
@@ -294,7 +294,7 @@ if (session == null) {
         document.getElementById("errorMsg").style.backgroundColor = "";
       }, 1500);
       correct = false;
-    } else if (rad[0].checked == true && rem_date == "") {
+    } else if (rad[0].checked == true && remDate == "") {
       document.getElementById("errorMsg").innerText =
         "Please select reminder date";
       document.getElementById("errorMsg").style.backgroundColor = "red";
@@ -303,7 +303,7 @@ if (session == null) {
         document.getElementById("errorMsg").style.backgroundColor = "";
       }, 1500);
       correct = false;
-    } else if (rad[0].checked == true && Date.parse(rem_date) < today) {
+    } else if (rad[0].checked == true && Date.parse(remDate) < today) {
       document.getElementById("errorMsg").innerText =
         "Please select reminder date greater tha today";
       document.getElementById("errorMsg").style.backgroundColor = "red";
@@ -314,7 +314,7 @@ if (session == null) {
       correct = false;
     } else if (
       rad[0].checked == true &&
-      Date.parse(rem_date) >= Date.parse(e_date)
+      Date.parse(remDate) >= Date.parse(endDate)
     ) {
       document.getElementById("errorMsg").innerText =
         "Please select reminder date less than end date";
@@ -328,17 +328,17 @@ if (session == null) {
 
     if (correct) {
       let task = {
-        name: task_name,
-        endDate: e_date,
+        name: taskName,
+        endDate: endDate,
         category: category,
         status: "pending",
-        reminder: rem_date,
+        reminder: remDate,
         public: public,
       };
-      to_do.push(task);
-      // console.log(current_user);
+      toDo.push(task);
+      // console.log(currentUser);
       for (let i = 0; i < data.length; i++) {
-        if (data[i].u_name == current_user) {
+        if (data[i].u_name == currentUser) {
           data[i].toDo.push(task);
           // console.log(data[i].toDo);
         }
@@ -358,7 +358,7 @@ if (session == null) {
 
       let sendData = [];
       for (let i = 0; i < data.length; i++) {
-        if (data[i].u_name == current_user) {
+        if (data[i].u_name == currentUser) {
           sendData = data[i].toDo;
         }
       }
@@ -367,18 +367,18 @@ if (session == null) {
   }
 
   function display() {
-    count_id = 0;
+    countId = 0;
     // console.log("In disp");
-    let toDo_raw_data = [];
+    let toDoRawData = [];
     let mainUl = document.getElementById("edit_unorderList");
     let data = JSON.parse(window.localStorage.getItem("user"));
     for (let i = 0; i < data.length; i++) {
       // console.log("In disp user find loop");
-      if (data[i].u_name == current_user) {
-        toDo_raw_data = data[i].toDo;
+      if (data[i].u_name == currentUser) {
+        toDoRawData = data[i].toDo;
       }
     }
-    // console.log(  current_user   );
+    // console.log(  currentUser   );
 
     let checkBox = document.createElement("input");
     checkBox.type = "checkbox";
@@ -400,18 +400,18 @@ if (session == null) {
     pubSelect.type = "text";
     pubSelect.title = "Please Enter yes or no";
     let rowTable = "";
-    for (let i = 0; i < toDo_raw_data.length; i++) {
-      taskInput.value = toDo_raw_data[i].name;
-      endDate.value = toDo_raw_data[i].endDate;
-      tCategory.value = toDo_raw_data[i].category;
-      remDate.value = toDo_raw_data[i].reminder;
-      pubSelect.value = toDo_raw_data[i].public;
+    for (let i = 0; i < toDoRawData.length; i++) {
+      taskInput.value = toDoRawData[i].name;
+      endDate.value = toDoRawData[i].endDate;
+      tCategory.value = toDoRawData[i].category;
+      remDate.value = toDoRawData[i].reminder;
+      pubSelect.value = toDoRawData[i].public;
 
-      // console.log(toDo_raw_data[i].name+toDo_raw_data[i].endDate+toDo_raw_data[i].category+toDo_raw_data[i].reminder+toDo_raw_data[i].public);
-      // rowTable  = rowTable + `<tr><td><input type="checkbox" name="" id="${count_id}"> </td> <td>${taskInput.value}</td> <td>${endDate}</td> <td>${tCategory}</td> <td>${remDate}</td> <td>${pubSelect}</td></tr>`;
+      // console.log(toDoRawData[i].name+toDoRawData[i].endDate+toDoRawData[i].category+toDoRawData[i].reminder+toDoRawData[i].public);
+      // rowTable  = rowTable + `<tr><td><input type="checkbox" name="" id="${countId}"> </td> <td>${taskInput.value}</td> <td>${endDate}</td> <td>${tCategory}</td> <td>${remDate}</td> <td>${pubSelect}</td></tr>`;
       rowTable =
         rowTable +
-        `<tr><td><input type="checkbox" name="" id="${count_id++}"> </td>  <td><input type="text" class="name" value="${
+        `<tr><td><input type="checkbox" name="" id="${countId++}"> </td>  <td><input type="text" class="name" value="${
           taskInput.value
         }" name="" id=""></td>  <td><input type="date" class="name" value="${
           endDate.value

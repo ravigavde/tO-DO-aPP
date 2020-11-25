@@ -74,6 +74,11 @@ input[type="text" i] {
     border-radius: 20px;
     outline: none;
 }
+#addressLabel{
+    display: block;
+    margin-left: 10px;
+}
+
 .display{
     padding: 10px;
     width: 90%;
@@ -235,7 +240,7 @@ input[type="button"] {
 }
 .Address
 {
-    margin-left: 21px;
+    margin-left: 109px;
 }
 
 .other{
@@ -289,11 +294,10 @@ ul.social-network {
     display: inline;
     margin: auto;
     float: right;
-  
 }
 li{
 display: inline;
-margin: 0 10px;
+margin: 10px 10px;
 width: 0px;
 }
 

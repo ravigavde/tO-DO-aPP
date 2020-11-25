@@ -2,7 +2,7 @@ let name = [];
 let flag = false;
 let count = 0;
 
-let current_user = localStorage.getItem("Current_user");
+let currentUser = localStorage.getItem("Current_user");
 
 let session = localStorage.getItem("loggedIn");
 if (session == null) {
@@ -56,7 +56,7 @@ if (session == null) {
           // console.log("user found "+data[i].pass +" "+data[i].u_name);
           a = true;
           // name.push(data[i].u_name);
-          localStorage.setItem("Current_user", data[i].u_name);
+          localStorage.setItem("currentUser", data[i].u_name);
           localStorage.setItem("loggedIn", data[i].u_name);
         }
       }
@@ -93,7 +93,7 @@ if (session == null) {
     return enc;
   }
 } else {
-  current_user = session;
+  currentUser = session;
   let a = document.createElement("a");
   a.href = "dashboard.html";
   a.click();
