@@ -69,6 +69,8 @@ section{
     border-color: #2ecc71;
     border-radius: 0ex;
     text-align: center;
+    outline: none;
+    border-radius: 24px;
 }
 #resetBtn{
     width: 50px;

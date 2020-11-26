@@ -98,7 +98,7 @@ if (session == null) {
         editInput.value = object;
 
         label.innerText = "Address ";
-        label.id="addressLabel";
+        label.id = "addressLabel";
         editInput.className = "Address";
         nameCount++;
       } else if (nameCount == 3) {
@@ -286,9 +286,96 @@ if (session == null) {
       categ("all");
     }
 
-    function categ(value) {
-      let selectId = 0;
+    function stat() {
+      let radio = document.getElementsByName("cat");
+      let checkBox = document.getElementsByName("status");
+      let table = document.getElementById("display");
+      let rows =
+        "<th>Task Name</th> <th>Category</th> <th>Status</th><th>End Date</th><th></th>";
+      let data = JSON.parse(window.localStorage.getItem("user"));
+      let doneCount = 0;
+      let today = new Date();
+      let fetch = false;
+
       document.getElementById("nothing").innerText = "";
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].u_name == currentUser) {
+          pTodo = data[i].pToDo;
+        }
+        for (let i = 0; i < radio.length; i++) {
+          radio[i].checked = false;
+        }
+      }
+      if (pTodo.length == 0) {
+        let table = document.getElementById("display");
+        let rows =
+          "<th>Task Name</th> <th>Category</th> <th>Status</th><th>End Date</th><th></th>";
+        table.innerHTML = rows;
+        document.getElementById("nothing").innerText = "No data to show";
+        document.getElementById("main_msg").innerHTML = "Please add To list";
+        document.getElementById("main_msg").style.backgroundColor = "red";
+        setTimeout(() => {
+          document.getElementById("main_msg").innerHTML = "";
+          document.getElementById("main_msg").style.backgroundColor = "";
+        }, 1500);
+      } else {
+        for (let i = 0; i < checkBox.length; i++) {
+          if (checkBox[i].checked) {
+            if (checkBox[i].id == "pending") {
+              for (let i = 0; i < pTodo.length; i++) {
+                if (
+                  pTodo[i].status == "Pending" ||
+                  pTodo[i].status == "pending"
+                ) {
+                  rows =
+                    rows +
+                    `<tr> <td>${pTodo[i].name}</td><td>${
+                      pTodo[i].category
+                    }</td> <td>${pTodo[i].status}</td><td>${
+                      pTodo[i].endDate
+                    }</td><td><input onclick= "doneFun(this.id)" type="button" id=${doneCount++} value="Done"></td></tr>`;
+                }
+              }
+            } else if (checkBox[i].id == "done") {
+              for (let i = 0; i < pTodo.length; i++) {
+                if (pTodo[i].status == "done" || pTodo[i].status == "Done") {
+                  rows =
+                    rows +
+                    `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td><td>${pTodo[i].endDate}</td><td></td></tr>`;
+                }
+              }
+            } else if (checkBox[i].id == "due") {
+              for (let i = 0; i < pTodo.length; i++) {
+                if (
+                  today > Date.parse(pTodo[i].endDate) &&
+                  pTodo[i].status != "Done"
+                ) {
+                  pTodo[i];
+                  rows =
+                    rows +
+                    `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td><td>${pTodo[i].endDate}</td></tr>`;
+                }
+              }
+            }
+          }
+        }
+        table.innerHTML = rows;
+        if (rows.length == 78) {
+          document.getElementById("nothing").innerText = "No data to show";
+        }
+      }
+
+      //
+      //
+    }
+    function categ(value) {
+      let checkBox = document.getElementsByName("status");
+      let selectId = 0;
+
+      document.getElementById("nothing").innerText = "";
+      for (let o = 0; o < checkBox.length; o++) {
+        checkBox[o].checked = false;
+      }
       if (value == "Personal") {
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
@@ -301,8 +388,8 @@ if (session == null) {
           let table = document.getElementById("display");
           let rows =
             "<th>Task Name</th> <th>Category</th> <th>Status</th><th>End Date</th><th></th>";
-            table.innerHTML = rows;
-            document.getElementById("nothing").innerText = "No data to show";
+          table.innerHTML = rows;
+          document.getElementById("nothing").innerText = "No data to show";
           document.getElementById("main_msg").innerHTML = "Please add To list";
           document.getElementById("main_msg").style.backgroundColor = "red";
           setTimeout(() => {
@@ -335,8 +422,7 @@ if (session == null) {
               }
             }
           }
-          if(rows.length == 78)
-          {
+          if (rows.length == 78) {
             document.getElementById("nothing").innerText = "No data to show";
           }
           table.innerHTML = rows;
@@ -354,8 +440,8 @@ if (session == null) {
           let table = document.getElementById("display");
           let rows =
             "<th>Task Name</th> <th>Category</th> <th>Status</th><th>End Date</th><th></th>";
-            table.innerHTML = rows;
-            document.getElementById("nothing").innerText = "No data to show";
+          table.innerHTML = rows;
+          document.getElementById("nothing").innerText = "No data to show";
           document.getElementById("main_msg").innerHTML = "Please add To list";
           document.getElementById("main_msg").style.backgroundColor = "red";
           setTimeout(() => {
@@ -385,148 +471,15 @@ if (session == null) {
               }
             }
           }
-          if(rows.length == 78)
-          {
+          if (rows.length == 78) {
             document.getElementById("nothing").innerText = "No data to show";
           }
-          if(rows.length == 78)
-          {
-            document.getElementById("nothing").innerText = "No data to show";
-          }
-          table.innerHTML = rows;
-        }
-        doneCount = 0;
-      } else if (value == "Pending") {
-        let data = JSON.parse(window.localStorage.getItem("user"));
-        for (let i = 0; i < data.length; i++) {
-          if (data[i].u_name == currentUser) {
-            pTodo = data[i].pToDo;
-          }
-        }
-        // console.log(pTodo.length);
-        if (pTodo.length == 0) {
-          let table = document.getElementById("display");
-          let rows =
-            "<th>Task Name</th> <th>Category</th> <th>Status</th><th>End Date</th><th></th>";
-            table.innerHTML = rows;
-            document.getElementById("nothing").innerText = "No data to show";
-          document.getElementById("main_msg").innerHTML = "Please add To list";
-          document.getElementById("main_msg").style.backgroundColor = "red";
-          setTimeout(() => {
-            document.getElementById("main_msg").innerHTML = "";
-            document.getElementById("main_msg").style.backgroundColor = "";
-          }, 1500);
-        } else {
-          // console.log(pTodo);
-          taskName;
-          endDate;
-          category;
-          reminderDate;
-
-          let table = document.getElementById("display");
-          let rows =
-            "<th>Task Name</th> <th>Category</th> <th>Status</th><th>End Date</th><th></th>";
-          for (let i = 0; i < pTodo.length; i++) {
-            if (pTodo[i].status == "Pending" || pTodo[i].status == "pending") {
-              rows =
-                rows +
-                `<tr> <td>${pTodo[i].name}</td><td>${
-                  pTodo[i].category
-                }</td> <td>${pTodo[i].status}</td><td>${
-                  pTodo[i].endDate
-                }</td><td><input onclick= "doneFun(this.id)" type="button" id=${doneCount++} value="Done"></td></tr>`;
-            }
-          }
-          if(rows.length == 78)
-          {
+          if (rows.length == 78) {
             document.getElementById("nothing").innerText = "No data to show";
           }
           table.innerHTML = rows;
         }
         doneCount = 0;
-      } else if (value == "Done") {
-        let data = JSON.parse(window.localStorage.getItem("user"));
-        for (let i = 0; i < data.length; i++) {
-          if (data[i].u_name == currentUser) {
-            pTodo = data[i].pToDo;
-          }
-        }
-        // console.log(pTodo.length);
-        if (pTodo.length == 0) {
-          let rows =
-            "<th>Task Name</th> <th>Category</th> <th>Status</th><th></th>";
-            let table = document.getElementById("display");
-            table.innerHTML = rows;
-            document.getElementById("nothing").innerText = "No data to show";
-          document.getElementById("main_msg").innerHTML = "Please add To list";
-          document.getElementById("main_msg").style.backgroundColor = "red";
-          setTimeout(() => {
-            document.getElementById("main_msg").innerHTML = "";
-            document.getElementById("main_msg").style.backgroundColor = "";
-          }, 1500);
-        } else {
-          // console.log(pTodo);
-          taskName;
-          endDate;
-          category;
-          reminderDate;
-
-          let table = document.getElementById("display");
-          let rows =
-            "<th>Task Name</th> <th>Category</th> <th>Status</th><th></th>";
-          for (let i = 0; i < pTodo.length; i++) {
-            if (pTodo[i].status == "Done" || pTodo[i].status == "done") {
-              rows =
-                rows +
-                `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td></tr>`;
-            }
-          }
-          console.log(rows.length);
-          if(rows.length == 61)
-          {
-            document.getElementById("nothing").innerText = "No data to show";
-          }
-          table.innerHTML = rows;
-        }
-        doneCount = 0;
-      } else if (value == "Due") {
-        let data = JSON.parse(window.localStorage.getItem("user"));
-        for (let i = 0; i < data.length; i++) {
-          if (data[i].u_name == currentUser) {
-            pTodo = data[i].pToDo;
-          }
-        }
-        if (pTodo.length == 0) {
-          document.getElementById("nothing").innerText = "No data to show";
-          document.getElementById("main_msg").innerHTML = "Please add To list";
-          document.getElementById("main_msg").style.backgroundColor = "red";
-          setTimeout(() => {
-            document.getElementById("main_msg").innerHTML = "";
-            document.getElementById("main_msg").style.backgroundColor = "";
-          }, 1500);
-        } else {
-          let today = new Date();
-          let table = document.getElementById("display");
-          let rows =
-            "<th>Task Name</th> <th>Category</th> <th>Status</th><th>End Date</th>";
-          for (let i = 0; i < pTodo.length; i++) {
-            // console.log( pTodo[i].endDate );
-            if (
-              today > Date.parse(pTodo[i].endDate) &&
-              pTodo[i].status != "Done"
-            ) {
-              pTodo[i];
-              rows =
-                rows +
-                `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td><td>${pTodo[i].endDate}</td></tr>`;
-            }
-          }
-          if(rows.length == 69)
-          {
-            document.getElementById("nothing").innerText = "No data to show";
-          }
-          table.innerHTML = rows;
-        }
       } else if (value == "all") {
         let data = JSON.parse(window.localStorage.getItem("user"));
         for (let i = 0; i < data.length; i++) {
@@ -538,7 +491,7 @@ if (session == null) {
           let table = document.getElementById("display");
           let rows =
             "<th>Task Name</th> <th>Category</th> <th>Status</th><th></th>";
-            table.innerHTML = rows;
+          table.innerHTML = rows;
           document.getElementById("main_msg").innerHTML = "Please add To list";
           document.getElementById("main_msg").style.backgroundColor = "red";
           setTimeout(() => {
@@ -557,8 +510,7 @@ if (session == null) {
                 `<tr><td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td></tr>`;
             }
           }
-          if(rows.length == 78)
-          {
+          if (rows.length == 78) {
             document.getElementById("nothing").innerText = "No data to show";
           }
           table.innerHTML = rows;
@@ -667,7 +619,7 @@ if (session == null) {
     let date = new Date().getDate();
     let month = new Date().getMonth();
     let year = new Date().getYear();
-
+    let reminTable = document.getElementById("reminTable");
     let div = document.getElementById("reminder");
     let data = JSON.parse(window.localStorage.getItem("user"));
     for (let i = 0; i < data.length; i++) {
@@ -677,7 +629,7 @@ if (session == null) {
     }
     if (pTodo.length > 0) {
       // reminTable
-      let reminTable = document.getElementById("reminTable");
+
       let rows = "  <th>Task Name</th> <th>Reminder Date</th>";
       for (let i = 0; i < pTodo.length; i++) {
         if (pTodo[i].reminder != "" && pTodo[i].reminder != undefined) {
@@ -687,17 +639,122 @@ if (session == null) {
         }
       }
       reminTable.innerHTML = rows;
-      if(rows.length == 43)
-      {
+      if (rows.length == 43) {
         reminTable.innerHTML = "<tr><td>No data to show</td></tr>";
       }
+    } else {
+      rows =
+        "<th>Task Name</th> <th>Category</th> <th>Status</th><th>End Date</th><th></th>";
+        reminTable.innerHTML = rows;
+      reminTable.innerHTML = "<tr><td>No data to show</td></tr>";
     }
+  }
+  function find() {
+    let radio = document.getElementsByName("cat");
+    let checkBox = document.getElementsByName("status");
+    document.getElementById("nothing").innerText = "";
+    let startDate = document.getElementById("start").value;
+    let endDate = document.getElementById("end").value;
+    let data = JSON.parse(window.localStorage.getItem("user"));
+    let todo;
+    let table = document.getElementById("display");
+    let doneCount = 0;
+  
+    for(let i=0 ; i < radio.length ; i++)
+    {
+      radio[i].checked = false;
+      checkBox[i].checked = false;
+
+    }
+
+
+    if(startDate =="" && endDate=="")
+    {
+      document.getElementById("main_msg").innerHTML = "Please select start date and end date";
+      document.getElementById("main_msg").style.backgroundColor = "red";
+        setTimeout(() => {
+          document.getElementById("main_msg").innerHTML = "";
+          document.getElementById("main_msg").style.backgroundColor = "";
+        }, 1500);
+    }
+    else if( startDate =="")
+    {
+      document.getElementById("main_msg").innerHTML = "Please select start date";
+      document.getElementById("main_msg").style.backgroundColor = "red";
+        setTimeout(() => {
+          document.getElementById("main_msg").innerHTML = "";
+          document.getElementById("main_msg").style.backgroundColor = "";
+        }, 1500);
+    }
+    else if( endDate =="")
+    {
+      document.getElementById("main_msg").innerHTML = "Please select end date";
+      document.getElementById("main_msg").style.backgroundColor = "red";
+        setTimeout(() => {
+          document.getElementById("main_msg").innerHTML = "";
+          document.getElementById("main_msg").style.backgroundColor = "";
+        }, 1500);
+    }
+    else if(Date.parse(startDate) >= Date.parse(endDate)   )
+    {
+      document.getElementById("main_msg").innerHTML = "Please select start date less than end date";
+      document.getElementById("main_msg").style.backgroundColor = "red";
+        setTimeout(() => {
+          document.getElementById("main_msg").innerHTML = "";
+          document.getElementById("main_msg").style.backgroundColor = "";
+        }, 1500);
+    } 
+
+   else
+    {
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].u_name == currentUser) {
+          todo = data[i].pToDo;
+        }
+      }
+      if (todo.length > 0) {
+        let rows =
+          "<th>Task Name</th> <th>Category</th> <th>Status</th><th>End Date</th><th></th>";
+        for (let i = 0; i < todo.length; i++) {
+          if (
+            Date.parse(todo[i].endDate) >= Date.parse(startDate) &&
+            Date.parse(todo[i].endDate) <= Date.parse(endDate) &&
+            todo[i].status != "Done"
+          ) {
+            rows =
+              rows +
+              `<tr> <td>${todo[i].name}</td><td>${todo[i].category}</td> <td>${
+                pTodo[i].status
+              }</td><td>${
+                todo[i].endDate
+              }</td><td><input onclick= "doneFun(this.id)" type="button" id=${doneCount++} value="Done"></td></tr>`;
+          }
+        }
+        table.innerHTML = rows;
+        if(rows.length == 78)
+        {
+          document.getElementById("nothing").innerText = "No data to show";
+        }
+      } else {
+        let rows =
+          "<th>Task Name</th> <th>Category</th> <th>Status</th><th>End Date</th><th></th>";
+        table.innerHTML = rows;
+        document.getElementById("nothing").innerText = "No data to show";
+        document.getElementById("main_msg").innerHTML = "Please add To list";
+        document.getElementById("main_msg").style.backgroundColor = "red";
+        setTimeout(() => {
+          document.getElementById("main_msg").innerHTML = "";
+          document.getElementById("main_msg").style.backgroundColor = "";
+        }, 1500);
+      }
+
+    }
+
   }
 
   function public() {
     let div = document.getElementById("public");
     let publictable = document.getElementById("pubTable");
-
     let data = JSON.parse(window.localStorage.getItem("user"));
     for (let i = 0; i < data.length; i++) {
       if (data[i].u_name == currentUser) {
@@ -714,10 +771,11 @@ if (session == null) {
         }
       }
       publictable.innerHTML = rows;
-      if(rows.length == 55)
-      {
+      if (rows.length == 55) {
         publictable.innerHTML = "<tr><td>No data to show</td></tr>";
       }
+    } else {
+      publictable.innerHTML = "<tr><td>No data to show</td></tr>";
     }
   }
   categ("all");

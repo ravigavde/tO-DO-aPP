@@ -42,32 +42,45 @@
                 <input type="button" id="searchBtn" class="btnn" value="Search" onclick="nameSeacrh()">
             </div>
             <div class="radioCategory">
-                <p class="categoryHead">Category</p>
+             <span class="radiobtn" id="first">
+                 <p class="category">Category</p>
+                 <ul class="ulradio">
+                     <li>
+                         <label class="tableLabel" for="">All</label> <input onclick="categ('all')" type="radio"
+                             name="cat" checked id="all">
+                     </li>
+                     <li>
+                         <label class="tableLabel" for="">Work</label> <input onclick="categ('work')" type="radio"
+                             name="cat" id="work">
+                     </li>
+                     <li>
+                         <label class="tableLabel" for="">Personal</label><input onclick="categ('Personal')" type="radio"
+                             name="cat" id="personal">
+                     </li>
+                 </ul>
+             </span>   
+             <span class="checkbtn">
+                 <p class="category">Status</p>
+                 <ul class="ulradio">
+                     <li>
+                         <label class="tableLabel" for="">Pending</label> <input onclick="stat()" type="checkbox"
+                             name="status" id="pending">
+                     </li>
+                     <li>
+                         <label class="tableLabel" for="">Done</label> <input onclick="stat()" type="checkbox"
+                             name="status" id="done">
+                     </li>
+                     <li>
+                         <label class="tableLabel" for="">Overdue</label> <input onclick="stat()" type="checkbox"
+                             name="status" id="due">
+                     </li>
+                 </ul>
+             </span>
+                <p class="categoryHead">Date</p>
                 <ul class="ulradio">
-                    <li>
-                        <label class="tableLabel" for="">All</label> <input onclick="categ('all')" type="radio"
-                            name="cat" checked id="all">
-                    </li>
-                    <li>
-                        <label class="tableLabel" for="">Work</label> <input onclick="categ('work')" type="radio"
-                            name="cat" id="work">
-                    </li>
-                    <li>
-                        <label class="tableLabel" for="">Personal</label><input onclick="categ('Personal')" type="radio"
-                            name="cat" id="personal">
-                    </li>
-                    <li>
-                        <label class="tableLabel" for="">Pending</label> <input onclick="categ('Pending')" type="radio"
-                            name="cat" id="pending">
-                    </li>
-                    <li>
-                        <label class="tableLabel" for="">Done</label> <input onclick="categ('Done')" type="radio"
-                            name="cat" id="done">
-                    </li>
-                    <li>
-                        <label class="tableLabel" for="">Overdue</label> <input onclick="categ('Due')" type="radio"
-                            name="cat" id="">
-                    </li>
+                    <li><p class="dateFinder">Start Date</p>  <input type="date" name="" id="start"></li>
+                    <li><p class="dateFinder">End Date</p>  <input type="date" name="" id="end"></li>
+                    <li><input type="button" onclick="find()" value="Find"></li>
                 </ul>
             </div>
             <table id="display">

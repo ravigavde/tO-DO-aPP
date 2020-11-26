@@ -1,10 +1,12 @@
 let session = localStorage.getItem("loggedIn");
+let currentUser;
 if (session == null) {
   let a = document.createElement("a");
   a.href = "index.html";
   a.click();
 } else {
-  let currentUser = localStorage.getItem("CurrentUser");
+  
+  currentUser = localStorage.getItem("Current_user");
   let taskName;
   let remRadio;
   let remDate;
@@ -17,7 +19,7 @@ if (session == null) {
   let today = new Date().toISOString().split("T")[0];
 
   let toDo = [];
-
+  
   function remindDate(value) {
     // console.log(value);
     if (value == "yes") {
@@ -98,6 +100,8 @@ if (session == null) {
   function Confirm() {
     countId = countId - deleteCounter;
     let newTodo = [];
+    let error = false;
+    let errorLine = 0;
     let taskname;
     let enddate;
     let categ;
@@ -118,7 +122,7 @@ if (session == null) {
         deleteList.push(index);
       }
     }
-    console.log(deleteList);
+    // console.log(deleteList);
 
     for (let i = 0; i < data.length; i++) {
       if (data[i].u_name == currentUser) {
@@ -127,18 +131,21 @@ if (session == null) {
     }
 
     let getData = document.getElementsByClassName("name");
-    console.log(getData);
+    // console.log(getData);
 
     let myTab = document.getElementById("list_t");
     // console.log(myTab);
 
     for (let i = 0; i < myTab.rows.length; i++) {
       // console.log(myTab.rows[i]);
-
       let localCounter = 0;
+      if(error == true)
+      {
+        break;
+      }
       let tCells = myTab.rows.item(i).cells;
       for (let j = 0; j < tCells.length; j++) {
-        if (localCounter == 0) {
+        if (localCounter == 0 ) {
           let a = tCells.item(j);
           let b = a.childNodes[0].value;
           // console.log("name"+b);
@@ -146,18 +153,33 @@ if (session == null) {
         } else if (localCounter == 1) {
           let a = tCells.item(j);
           let b = a.childNodes[0].value;
-          // console.log("Task name"+b);
+          if(b=="")
+          {  
+            error = true;
+            errorLine = i;
+          }
           taskname = b;
           localCounter++;
         } else if (localCounter == 2) {
           let a = tCells.item(j);
           let b = a.childNodes[0].value;
+          if(b=="")
+          {  
+            error = true;
+            errorLine = i;
+          }
           // console.log("End date"+b);
           enddate = b;
           localCounter++;
         } else if (localCounter == 3) {
+          let catReg =  /^(?:Work|work|Personal|personal)$/;
           let a = tCells.item(j);
           let b = a.childNodes[0].value;
+          if(b=="" || !(catReg.test(b)) )
+          {  
+            error = true;
+            errorLine = i;
+          }
           // console.log("Category"+b);
           categ = b;
           localCounter++;
@@ -168,8 +190,14 @@ if (session == null) {
           remindDate = b;
           localCounter++;
         } else if (localCounter == 5) {
+          let pubReg =  /^(?:Yes|yes|No|no)$/;
           let a = tCells.item(j);
           let b = a.childNodes[0].value;
+          if(b==""|| !(pubReg.test(b)))
+          {  
+            error = true;
+            errorLine = i;
+          }
           // console.log("Is public"+b);
           publc = b;
           localCounter++;
@@ -194,34 +222,45 @@ if (session == null) {
 
       // console.log(rowCounter++);
     }
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].u_name == currentUser) {
-        data[i].toDo = [];
-      }
-    }
-    if(confirm != undefined)
+    if(!error)
     {
-      alert("Succesfully saved data");
-      window.location = "dashboard.html";
+
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].u_name == currentUser) {
+          data[i].toDo = [];
+        }
+      }
+      if(confirm != undefined)
+      {
+        alert("Succesfully saved data");
+        window.location = "dashboard.html";
+      }
+      else
+      {
+        document.getElementById("errorMsg").innerText = "Nothing to save, Please add some task first";
+        document.getElementById("errorMsg").style.backgroundColor = "red";
+        setTimeout(() => {
+          document.getElementById("errorMsg").innerHTML = "";
+          document.getElementById("errorMsg").style.backgroundColor = "";
+        }, 1500);
+      }
+      countId = 0;
+      deleteCounter = 0;
+      window.localStorage.setItem("user", JSON.stringify(data));
     }
     else
     {
-      document.getElementById("errorMsg").innerText = "Nothing to save, Please add some task first";
-      document.getElementById("errorMsg").style.backgroundColor = "red";
-      setTimeout(() => {
-        document.getElementById("errorMsg").innerHTML = "";
-        document.getElementById("errorMsg").style.backgroundColor = "";
-      }, 1500);
+          document.getElementById("errorMsg").innerText = `Error at task line ${errorLine+1}`;
+          document.getElementById("errorMsg").style.backgroundColor = "red";
+          setTimeout(() => {
+            document.getElementById("errorMsg").innerHTML = "";
+            document.getElementById("errorMsg").style.backgroundColor = "";
+          }, 1500);
     }
-    countId = 0;
-    deleteCounter = 0;
-    window.localStorage.setItem("user", JSON.stringify(data));
   }
 
   function add() {
     let mainUl = document.getElementById("edit_unorderList");
-
-    currentUser = localStorage.getItem("currentUser");
     let data = JSON.parse(window.localStorage.getItem("user"));
     let correct = true;
 
@@ -236,15 +275,60 @@ if (session == null) {
     let pubRadio = document.getElementsByName("pub");
 
     category = document.getElementById("priority").value;
-    // console.log(taskName + endDate + category);
+    console.log(taskName + endDate + category);
+    if(taskName != "")
+    {
+      let ptodo;
+      let todo;
+      for(let i =0 ; i < data.length ; i++ )
+      {
+        if(currentUser == data[i].u_name)
+        {
+          ptodo = data[i].pToDo;
+          todo = data[i].toDo;
+        }
+      }
+      
+      if(ptodo != undefined)
+      {
+        for(let i =0 ; i< ptodo.length ; i++)
+        {
+          if(taskName == ptodo[i].name)
+          {
+            correct = false;
+            document.getElementById("errorMsg").innerText = "Task name already exists";
+            document.getElementById("errorMsg").style.backgroundColor = "red";
+            setTimeout(() => {
+              document.getElementById("errorMsg").innerHTML = "";
+              document.getElementById("errorMsg").style.backgroundColor = "";
+            }, 1500);
+  
+          }
+        }
+      }
+      
+      if(todo != undefined)
+      {
+        for(let i =0 ; i< todo.length ; i++)
+        {
+            if(taskName == todo[i].name)
+            {
+              correct = false;
+              document.getElementById("errorMsg").innerText = "Task name already exists";
+              document.getElementById("errorMsg").style.backgroundColor = "red";
+              setTimeout(() => {
+                document.getElementById("errorMsg").innerHTML = "";
+                document.getElementById("errorMsg").style.backgroundColor = "";
+              }, 1500);
+            }
+        }
+      }
+
+    }
 
     if (taskName == "") {
+      currentUser = 
       document.getElementById("errorMsg").innerText = "Please enter task name";
-      document.getElementById("errorMsg").style.backgroundColor = "red";
-      setTimeout(() => {
-        document.getElementById("errorMsg").innerHTML = "";
-        document.getElementById("errorMsg").style.backgroundColor = "";
-      }, 1500);
       document.getElementById("errorMsg").style.backgroundColor = "red";
       setTimeout(() => {
         document.getElementById("errorMsg").innerHTML = "";
@@ -336,7 +420,7 @@ if (session == null) {
         public: public,
       };
       toDo.push(task);
-      // console.log(currentUser);
+      console.log("The current user is"+currentUser);
       for (let i = 0; i < data.length; i++) {
         if (data[i].u_name == currentUser) {
           data[i].toDo.push(task);
@@ -348,7 +432,7 @@ if (session == null) {
       window.localStorage.setItem("user", JSON.stringify(data));
 
       document.getElementById("errorMsg").innerText = "Sucessfully Added Task";
-      document.getElementById("errorMsg").style.backgroundColor = "red";
+      document.getElementById("errorMsg").style.backgroundColor = "green";
       setTimeout(() => {
         document.getElementById("errorMsg").innerHTML = "";
         document.getElementById("errorMsg").style.backgroundColor = "";
@@ -365,21 +449,20 @@ if (session == null) {
       display();
     }
   }
-
   function display() {
     countId = 0;
-    // console.log("In disp");
+    let rowTable = "";
     let toDoRawData = [];
     let mainUl = document.getElementById("edit_unorderList");
     let data = JSON.parse(window.localStorage.getItem("user"));
+
     for (let i = 0; i < data.length; i++) {
       // console.log("In disp user find loop");
       if (data[i].u_name == currentUser) {
         toDoRawData = data[i].toDo;
       }
     }
-    // console.log(  currentUser   );
-
+    
     let checkBox = document.createElement("input");
     checkBox.type = "checkbox";
 
@@ -399,7 +482,7 @@ if (session == null) {
     let pubSelect = document.createElement("input");
     pubSelect.type = "text";
     pubSelect.title = "Please Enter yes or no";
-    let rowTable = "";
+    
     for (let i = 0; i < toDoRawData.length; i++) {
       taskInput.value = toDoRawData[i].name;
       endDate.value = toDoRawData[i].endDate;
@@ -407,8 +490,6 @@ if (session == null) {
       remDate.value = toDoRawData[i].reminder;
       pubSelect.value = toDoRawData[i].public;
 
-      // console.log(toDoRawData[i].name+toDoRawData[i].endDate+toDoRawData[i].category+toDoRawData[i].reminder+toDoRawData[i].public);
-      // rowTable  = rowTable + `<tr><td><input type="checkbox" name="" id="${countId}"> </td> <td>${taskInput.value}</td> <td>${endDate}</td> <td>${tCategory}</td> <td>${remDate}</td> <td>${pubSelect}</td></tr>`;
       rowTable =
         rowTable +
         `<tr><td><input type="checkbox" name="" id="${countId++}"> </td>  <td><input type="text" class="name" value="${
@@ -425,4 +506,5 @@ if (session == null) {
     }
     document.getElementById("list_t").innerHTML = rowTable;
   }
+  
 }
