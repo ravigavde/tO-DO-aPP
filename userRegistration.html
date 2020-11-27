@@ -18,28 +18,29 @@
     <section>
         <h1 id="heading">Enter the following details</h1>
         <div class="details">
+            <h2>(*) marked fields are compulsory</h2>
             <br><span id="gen_error"></span>
             <form action="">
-                <input type="email" id="username" placeholder="Enter email" onclick="remove()"><br><span
+                <span>*</span><input type="email" id="username" placeholder="Enter email" onclick="remove()"> <br><span
                     id="emaiError"></span><br>
-                <input type="text" id="Name" placeholder="Enter First Name" onclick="remove()">
+                    <span>*</span> <input type="text" id="Name" placeholder="Enter First Name" onclick="remove()"> 
                 <br> <span id="f_Error"></span><br>
-                <input type="text" id="Last-Name" onclick="remove()" placeholder="Enter Last Name">
+                <span>*</span><input type="text" id="Last-Name" onclick="remove()" placeholder="Enter Last Name"> 
                 <br> <span id="l_Error"></span><br>
-                <select name="" id="Gender" onclick="remove()">
+                <span>*</span> <select name="" id="Gender" onclick="remove()">
                     <option selected disabled hidden>Select your Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
-                </select>
+                </select> 
                 <br><span id="g_Error"></span><br>
-                <input type="password" name="" onclick="remove()" placeholder="Enter Password" id="pass1">
+                <span>*</span> <input type="password" name="" onclick="remove()" placeholder="Enter Password" id="pass1"> 
                 <br><br>
-                <input type="password" name="" onclick="remove()" placeholder="Repeat Password" id="pass2">
+                <span>*</span> <input type="password" name="" onclick="remove()" placeholder="Repeat Password" id="pass2"> 
                 <br><span id="p_Error"></span><br>
-                <textarea id="Address" onclick="remove()" cols="30" rows="10" placeholder="Enter Address"></textarea>
+                <span>*</span> <textarea id="Address" onclick="remove()" cols="30" rows="10" placeholder="Enter Address"></textarea> 
                 <br><span id="a_Error"></span><br>
-                <input type="file" onclick="remove()" id="image" onchange="imageee();" required alt="">
+                <input type="file" onclick="remove()" id="image" onchange="imageee();" required alt=""> 
                 <br> <span id="i_error"></span><br>
                 <input type="button" value="Submit" onclick="add_user()">
                 <input type="reset" id="resetBtn" value="Reset"><br>
