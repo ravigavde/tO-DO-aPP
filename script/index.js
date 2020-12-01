@@ -64,7 +64,7 @@ if(window.localStorage)
         }
         if (a == false) {
           document.getElementById("error").innerHTML =
-            "User not found please check username/password";
+            "username/password not matched";
           document.getElementById("error").style.backgroundColor = "red";
           setTimeout(() => {
             document.getElementById("error").innerHTML = "";
@@ -77,7 +77,7 @@ if(window.localStorage)
         }
       } else {
         document.getElementById("error").innerHTML =
-          "Please create your account first";
+        "username/password not matched";
         document.getElementById("error").style.backgroundColor = "red";
         setTimeout(() => {
           document.getElementById("error").innerHTML = "";

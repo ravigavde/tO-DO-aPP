@@ -336,7 +336,7 @@ if (session == null) {
       }, 1500);
       correct = false;
     } else if (endDate == "") {
-      document.getElementById("errorMsg").innerText = "Please select date";
+      document.getElementById("errorMsg").innerText = "Please select end date";
       document.getElementById("errorMsg").style.backgroundColor = "red";
       setTimeout(() => {
         document.getElementById("errorMsg").innerHTML = "";
@@ -437,8 +437,11 @@ if (session == null) {
         document.getElementById("errorMsg").innerHTML = "";
         document.getElementById("errorMsg").style.backgroundColor = "";
       }, 1500);
+      
       document.getElementById("remDate").value = "";
       document.getElementById("e_date").value = "";
+      document.getElementById("tasks").value = "";
+      document.getElementById("priority").value = "";
 
       let sendData = [];
       for (let i = 0; i < data.length; i++) {

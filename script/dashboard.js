@@ -60,8 +60,6 @@ if (session == null) {
       } else if (tempGender == "Other") {
         document.getElementById("other").selected = true;
       }
-      public();
-      reminder();
     };
 
     searchBox.addEventListener("keyup", function (event) {
@@ -515,6 +513,96 @@ if (session == null) {
           }
           table.innerHTML = rows;
         }
+      } else if (value == "public") {
+        let data = JSON.parse(window.localStorage.getItem("user"));
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].u_name == currentUser) {
+            pTodo = data[i].pToDo;
+          }
+        }
+        // console.log(pTodo.length);
+        if (pTodo.length == 0) {
+          let table = document.getElementById("display");
+          let rows =
+            "<th>Task Name</th> <th>Category</th> <th>Status</th><th>End Date</th><th></th>";
+          table.innerHTML = rows;
+          document.getElementById("nothing").innerText = "No data to show";
+          document.getElementById("main_msg").innerHTML = "Please add To list";
+          document.getElementById("main_msg").style.backgroundColor = "red";
+          setTimeout(() => {
+            document.getElementById("main_msg").innerHTML = "";
+            document.getElementById("main_msg").style.backgroundColor = "";
+          }, 1500);
+        } else {
+          // console.log(pTodo);
+          taskName;
+          endDate;
+          category;
+          reminderDate;
+
+          let table = document.getElementById("display");
+          let rows =
+            "<th>Task Name</th> <th>Category</th> <th>Status</th><th>End Date</th><th>Public</th>";
+          for (let i = 0; i < pTodo.length; i++) {
+            if (pTodo[i].public == "yes") {
+              rows =
+                rows +
+                `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td><td>${pTodo[i].endDate}</td><td>${pTodo[i].public}</td></tr>`;
+            }
+          }
+          console.log(rows.length);
+          if (rows.length == 91) {
+            document.getElementById("nothing").innerText = "No data to show";
+          }
+          table.innerHTML = rows;
+        }
+        doneCount = 0;
+      } else if (value == "reminder") {
+        let data = JSON.parse(window.localStorage.getItem("user"));
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].u_name == currentUser) {
+            pTodo = data[i].pToDo;
+          }
+        }
+        // console.log(pTodo.length);
+        if (pTodo.length == 0) {
+          let table = document.getElementById("display");
+          let rows =
+            "<th>Task Name</th> <th>Category</th> <th>Status</th><th>Reminder Date</th><th>End Date</th>";
+          table.innerHTML = rows;
+          document.getElementById("nothing").innerText = "No data to show";
+          document.getElementById("main_msg").innerHTML = "Please add To list";
+          document.getElementById("main_msg").style.backgroundColor = "red";
+          setTimeout(() => {
+            document.getElementById("main_msg").innerHTML = "";
+            document.getElementById("main_msg").style.backgroundColor = "";
+          }, 1500);
+        } else {
+          // console.log(pTodo);
+          taskName;
+          endDate;
+          category;
+          reminderDate;
+
+          let table = document.getElementById("display");
+          let rows =
+            "<th>Task Name</th> <th>Category</th> <th>Status</th><th>Reminder Date</th><th>End Date</th>";
+          for (let i = 0; i < pTodo.length; i++) {
+            if (pTodo[i].reminder != "") {
+              if (pTodo[i].status != "Done") {
+                rows =
+                  rows +
+                  `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td><td>${pTodo[i].reminder}</td><td>${pTodo[i].endDate}</td></tr>`;
+              }
+            }
+          }
+          // console.log(rows.length);
+          if (rows.length == 91) {
+            document.getElementById("nothing").innerText = "No data to show";
+          }
+          table.innerHTML = rows;
+        }
+        doneCount = 0;
       }
     }
     function nameSeacrh() {
@@ -615,40 +703,7 @@ if (session == null) {
     console.log(Error);
   }
 
-  function reminder() {
-    let date = new Date().getDate();
-    let month = new Date().getMonth();
-    let year = new Date().getYear();
-    let reminTable = document.getElementById("reminTable");
-    let div = document.getElementById("reminder");
-    let data = JSON.parse(window.localStorage.getItem("user"));
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].u_name == currentUser) {
-        pTodo = data[i].pToDo;
-      }
-    }
-    if (pTodo.length > 0) {
-      // reminTable
 
-      let rows = "  <th>Task Name</th> <th>Reminder Date</th>";
-      for (let i = 0; i < pTodo.length; i++) {
-        if (pTodo[i].reminder != "" && pTodo[i].reminder != undefined) {
-          rows =
-            rows +
-            `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].reminder}</td></tr>`;
-        }
-      }
-      reminTable.innerHTML = rows;
-      if (rows.length == 43) {
-        reminTable.innerHTML = "<tr><td>No data to show</td></tr>";
-      }
-    } else {
-      rows =
-        "<th>Task Name</th> <th>Category</th> <th>Status</th><th>End Date</th><th></th>";
-        reminTable.innerHTML = rows;
-      reminTable.innerHTML = "<tr><td>No data to show</td></tr>";
-    }
-  }
   function find() {
     let radio = document.getElementsByName("cat");
     let checkBox = document.getElementsByName("status");
@@ -659,54 +714,47 @@ if (session == null) {
     let todo;
     let table = document.getElementById("display");
     let doneCount = 0;
-  
-    for(let i=0 ; i < radio.length ; i++)
-    {
+
+    for (let i = 0; i < radio.length; i++) {
       radio[i].checked = false;
+    }
+
+    for (let i = 0; i < checkBox.length; i++) {
       checkBox[i].checked = false;
-
     }
 
-
-    if(startDate =="" && endDate=="")
-    {
-      document.getElementById("main_msg").innerHTML = "Please select start date and end date";
+    if (startDate == "" && endDate == "") {
+      document.getElementById("main_msg").innerHTML =
+        "Please select start date and end date";
       document.getElementById("main_msg").style.backgroundColor = "red";
-        setTimeout(() => {
-          document.getElementById("main_msg").innerHTML = "";
-          document.getElementById("main_msg").style.backgroundColor = "";
-        }, 1500);
-    }
-    else if( startDate =="")
-    {
-      document.getElementById("main_msg").innerHTML = "Please select start date";
+      setTimeout(() => {
+        document.getElementById("main_msg").innerHTML = "";
+        document.getElementById("main_msg").style.backgroundColor = "";
+      }, 1500);
+    } else if (startDate == "") {
+      document.getElementById("main_msg").innerHTML =
+        "Please select start date";
       document.getElementById("main_msg").style.backgroundColor = "red";
-        setTimeout(() => {
-          document.getElementById("main_msg").innerHTML = "";
-          document.getElementById("main_msg").style.backgroundColor = "";
-        }, 1500);
-    }
-    else if( endDate =="")
-    {
+      setTimeout(() => {
+        document.getElementById("main_msg").innerHTML = "";
+        document.getElementById("main_msg").style.backgroundColor = "";
+      }, 1500);
+    } else if (endDate == "") {
       document.getElementById("main_msg").innerHTML = "Please select end date";
       document.getElementById("main_msg").style.backgroundColor = "red";
-        setTimeout(() => {
-          document.getElementById("main_msg").innerHTML = "";
-          document.getElementById("main_msg").style.backgroundColor = "";
-        }, 1500);
-    }
-    else if(Date.parse(startDate) >= Date.parse(endDate)   )
-    {
-      document.getElementById("main_msg").innerHTML = "Please select start date less than end date";
+      setTimeout(() => {
+        document.getElementById("main_msg").innerHTML = "";
+        document.getElementById("main_msg").style.backgroundColor = "";
+      }, 1500);
+    } else if (Date.parse(startDate) >= Date.parse(endDate)) {
+      document.getElementById("main_msg").innerHTML =
+        "Please select start date less than end date";
       document.getElementById("main_msg").style.backgroundColor = "red";
-        setTimeout(() => {
-          document.getElementById("main_msg").innerHTML = "";
-          document.getElementById("main_msg").style.backgroundColor = "";
-        }, 1500);
-    } 
-
-   else
-    {
+      setTimeout(() => {
+        document.getElementById("main_msg").innerHTML = "";
+        document.getElementById("main_msg").style.backgroundColor = "";
+      }, 1500);
+    } else {
       for (let i = 0; i < data.length; i++) {
         if (data[i].u_name == currentUser) {
           todo = data[i].pToDo;
@@ -731,8 +779,7 @@ if (session == null) {
           }
         }
         table.innerHTML = rows;
-        if(rows.length == 78)
-        {
+        if (rows.length == 78) {
           document.getElementById("nothing").innerText = "No data to show";
         }
       } else {
@@ -747,36 +794,8 @@ if (session == null) {
           document.getElementById("main_msg").style.backgroundColor = "";
         }, 1500);
       }
-
-    }
-
-  }
-
-  function public() {
-    let div = document.getElementById("public");
-    let publictable = document.getElementById("pubTable");
-    let data = JSON.parse(window.localStorage.getItem("user"));
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].u_name == currentUser) {
-        pTodo = data[i].pToDo;
-      }
-    }
-    if (pTodo.length > 0) {
-      let rows = "  <th>Task Name</th> <th>Category</th> <th>Status </th>";
-      for (let i = 0; i < pTodo.length; i++) {
-        if (pTodo[i].public == "yes" || pTodo[i].public == "Yes") {
-          rows =
-            rows +
-            `<tr> <td>${pTodo[i].name}</td><td>${pTodo[i].category}</td> <td>${pTodo[i].status}</td></tr>`;
-        }
-      }
-      publictable.innerHTML = rows;
-      if (rows.length == 55) {
-        publictable.innerHTML = "<tr><td>No data to show</td></tr>";
-      }
-    } else {
-      publictable.innerHTML = "<tr><td>No data to show</td></tr>";
     }
   }
+
   categ("all");
 }

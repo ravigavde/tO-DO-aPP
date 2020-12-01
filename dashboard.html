@@ -57,6 +57,12 @@
                          <label class="tableLabel" for="">Personal</label><input onclick="categ('Personal')" type="radio"
                              name="cat" id="personal">
                      </li>
+                     <li>
+                        <label class="tableLabel">Reminder</label> <input type="radio" name="cat" id="remin" onclick="categ('reminder')">
+                     </li>
+                     <li>
+                        <label class="tableLabel">Public</label> <input type="radio" name="cat" id="public" onclick="categ('public')">
+                     </li>
                  </ul>
              </span>   
              <span class="checkbtn">
@@ -89,20 +95,6 @@
 
             </div>
         </div>
-        <br><br>
-        <div class="other">
-            <div id="reminder">
-                <h2>Reminder for tasks</h2>
-                <table id="reminTable">
-
-                </table>
-            </div>
-            <div id="public">
-                <h2>Public View</h2>
-                <table id="pubTable"></table>
-            </div>
-        </div>
-
     </section>
     <footer>
         <ul class="social-network social-circle">

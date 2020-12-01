@@ -9,7 +9,7 @@ function add_user() {
   }
 
   let userName = document.getElementById("username").value;
-  let regEmail = /^[a-z A-Z 0-9 _ -]+@[a-zA-Z]+\.com$/gi;
+  let regEmail =  /\S+@\S+\.\S+/;
 
   if (!regEmail.test(userName)) {
     document.getElementById("emaiError").innerText = "wrong email";
@@ -118,11 +118,10 @@ function add_user() {
         let res = window.localStorage.getItem("user");
         // console.log(res);
       }
-      document.getElementById("gen_error").innerText =
-        "User Rgistered Successfully";
+      alert("User Rgistered Successfully");
       setTimeout(() => {
         window.location = "index.html";
-      }, 2000);
+      }, 100);
     }
   } else {
     document.getElementById("gen_error").innerText = "Enter Values Properly";
