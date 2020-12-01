@@ -269,13 +269,19 @@ if (session == null) {
     document.getElementById("e_date").setAttribute("min", new Date());
 
     let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); 
+    let yyyy = today.getFullYear();
+    
+    today = mm + '/' + dd + '/' + yyyy;
+    today = Date.parse(today);
     remRadio = document.getElementsByClassName("r_date");
     remDate = remRadio[1].value;
     let rad = document.getElementsByName("rem");
     let pubRadio = document.getElementsByName("pub");
 
     category = document.getElementById("priority").value;
-    console.log(taskName + endDate + category);
+    // console.log(taskName + endDate + category);
     if(taskName != "")
     {
       let ptodo;
@@ -388,8 +394,9 @@ if (session == null) {
       }, 1500);
       correct = false;
     } else if (rad[0].checked == true && Date.parse(remDate) < today) {
+      // console.log(remDate +" "+ today);
       document.getElementById("errorMsg").innerText =
-        "Please select reminder date greater tha today";
+        "Please select reminder date greater than or equal to today";
       document.getElementById("errorMsg").style.backgroundColor = "red";
       setTimeout(() => {
         document.getElementById("errorMsg").innerHTML = "";

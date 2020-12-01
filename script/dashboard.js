@@ -644,7 +644,7 @@ if (session == null) {
           let rows =
             "<th>Task Name</th> <th>Category</th> <th>Status</th><th></th>";
           for (let i = 0; i < pTodo.length; i++) {
-            if (nameReg.test(pTodo[i].name)) {
+            if (pTodo[i].name.match(nameReg)) {
               searchByNameCount++;
               rows =
                 rows +
