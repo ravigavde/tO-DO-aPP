@@ -351,7 +351,7 @@ if (session == null) {
       correct = false;
     } else if (Date.parse(endDate) <= today) {
       document.getElementById("errorMsg").innerText =
-        "Please select date greater tha today";
+        "Please select End date greater than today";
       document.getElementById("errorMsg").style.backgroundColor = "red";
       setTimeout(() => {
         document.getElementById("errorMsg").innerHTML = "";
